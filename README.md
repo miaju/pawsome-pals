@@ -1,6 +1,8 @@
 # Getting Started
 
-## Set up database
+## Set up
+
+### The Database
 
 Type the following command on your vagrant machine to connect to your postgres server:
 
@@ -16,6 +18,10 @@ Run the following SQL commands to create the necessary objects in the DB:
 CREATE ROLE labber WITH LOGIN password 'labber';
 CREATE DATABASE finals OWNER labber;
 ```
+
+### Environment Variables
+
+Make a .env file using .env.example as a template. Fill in the required values.
 
 ## Available Scripts
 

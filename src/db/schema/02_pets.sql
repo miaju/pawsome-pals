@@ -3,5 +3,7 @@ DROP TABLE IF EXISTS pets CASCADE;
 CREATE TABLE pets (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  name VARCHAR(255)
+  name VARCHAR(255),
+  description VARCHAR(255),
+  picture_url VARCHAR(255)
 );

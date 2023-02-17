@@ -6,6 +6,12 @@ import db from '../db/connection.mjs';
 
 import dotenv from 'dotenv';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 dotenv.config();
 
 
@@ -17,10 +23,10 @@ dotenv.config();
 // Loads the schema files from db/schema
 const runSchemaFiles = async () => {
   console.log(chalk.cyan(`-> Loading Schema Files ...`));
-  const schemaFilenames = readdirSync('./db/schema');
+  const schemaFilenames = readdirSync(__dirname + '/../db/schema');
 
   for (const fn of schemaFilenames) {
-    const sql = readFileSync(`./db/schema/${fn}`, 'utf8');
+    const sql = readFileSync(__dirname + `/../db/schema/${fn}`, 'utf8');
     console.log(`\t-> Running ${chalk.green(fn)}`);
     await db.query(sql);
   }
@@ -28,10 +34,10 @@ const runSchemaFiles = async () => {
 
 const runSeedFiles = async () => {
   console.log(chalk.cyan(`-> Loading Seeds ...`));
-  const schemaFilenames = readdirSync('./db/seeds');
+  const schemaFilenames = readdirSync(__dirname + '/../db/seeds');
 
   for (const fn of schemaFilenames) {
-    const sql = readFileSync(`./db/seeds/${fn}`, 'utf8');
+    const sql = readFileSync(__dirname + `/../db/seeds/${fn}`, 'utf8');
     console.log(`\t-> Running ${chalk.green(fn)}`);
     await db.query(sql);
   }
