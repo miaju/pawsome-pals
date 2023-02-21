@@ -2,6 +2,8 @@
 
 ## Set up
 
+install dependencies using `npm install`
+
 ### The Database
 
 Type the following command on your vagrant machine to connect to your postgres server:
