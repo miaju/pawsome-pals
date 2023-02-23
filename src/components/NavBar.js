@@ -26,9 +26,12 @@ const NavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
+            <Nav.Link href="#explore">Explore</Nav.Link>
+            <Nav.Link href="#matched">Matched</Nav.Link>
+            <Nav.Link href="#messages">Messages</Nav.Link>
             {user ? (
               <>
-                <Nav.Link href="#profile">You are logged in as: {user.name}</Nav.Link>
+                <Nav.Link href="#profile">Profile</Nav.Link>
                 <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
             ): (
