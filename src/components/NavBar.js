@@ -8,7 +8,7 @@ import logo from "./pawprint.svg"
 
 
 const NavBar = () => {
-  const { user, loginWithRedirect, logout } = useAuth0();
+  const { user, loginWithRedirect, logout, isLoading } = useAuth0();
 
   return (
     <Navbar sticky="top" bg="light" expand="lg">
@@ -38,7 +38,8 @@ const NavBar = () => {
                 </NavDropdown>
                 <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
-            ): (
+            ): isLoading ? (<><Navbar.Text>Loading...</Navbar.Text></>) :
+            (
               <Nav.Link onClick={() => loginWithRedirect()}>Login</Nav.Link>
             )}
           </Nav>
