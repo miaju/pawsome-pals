@@ -1,9 +1,13 @@
 import { useState, React } from "react";
 import './App.css';
-import LoginButton from 'components/LoginButton';
-import LogoutButton from 'components/LogoutButton';
-import Profile from 'components/Profile';
+
+// import LoginButton from 'components/LoginButton';
+// import LogoutButton from 'components/LogoutButton';
+// import Profile from 'components/Profile';
 import Form from 'components/Form';
+
+import NavBar from 'components/NavBar';
+
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -18,15 +22,12 @@ function App() {
   }
 
   // An array containing an object of objects => pets[0]
-  // console.log(pets[0]);
+  console.log(pets[0]);
 
   return (
     <div className="App">
-
-    <LoginButton/>
-    <LogoutButton/>
-    <Profile/>
     <Form addPet={addPet}/>
+    <NavBar/>
     </div>
 
   );
