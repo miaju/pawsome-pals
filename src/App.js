@@ -11,14 +11,14 @@ function App() {
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
-   * Object { value: }
    * Values: name, fixed, breed, sex, age, location, description, size, housetrained
    */
   function addPet(pet) {
     setPets([...pets, pet]);
   }
 
-  console.log(pets);
+  // An array containing an object of objects => pets[0]
+  console.log(pets[0]);
 
   return (
     <div className="App">
