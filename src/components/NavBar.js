@@ -1,4 +1,3 @@
-import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -29,13 +28,13 @@ const NavBar = () => {
           <Nav>
             {user ? (
               <>
-              <Nav.Link href="#explore">Explore</Nav.Link>
-              <Nav.Link href="#matched">Matched</Nav.Link>
-              <Nav.Link href="#messages">Messages</Nav.Link>
-              <Nav.Link href="#profile">Profile</Nav.Link>
+              <Nav.Link href="/explore">Explore</Nav.Link>
+              <Nav.Link href="/matched">Matched</Nav.Link>
+              <Nav.Link href="/messages">Messages</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
                 <NavDropdown title="Pets" id="basic-nav-dropdown">
-                  <NavDropdown.Item> View Pets</NavDropdown.Item>
-                  <NavDropdown.Item> Create a Pet</NavDropdown.Item>
+                  <NavDropdown.Item href="/pets/view"> View Pets</NavDropdown.Item>
+                  <NavDropdown.Item href="/pets/new"> Create a Pet</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
