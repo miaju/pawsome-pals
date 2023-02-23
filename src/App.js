@@ -1,11 +1,7 @@
 import { useState, React } from "react";
+
 import './App.css';
-
-import LoginButton from 'components/LoginButton';
-import LogoutButton from 'components/LogoutButton';
-import Profile from 'components/Profile';
 import Form from 'components/Form';
-
 import NavBar from 'components/NavBar';
 
 
