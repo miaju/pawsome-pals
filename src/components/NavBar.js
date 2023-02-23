@@ -2,9 +2,10 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from "./pawprint.svg"
-
 import { useAuth0 } from "@auth0/auth0-react";
+import  NavDropdown  from "react-bootstrap/NavDropdown";
+
+import logo from "./pawprint.svg"
 
 
 const NavBar = () => {
@@ -26,12 +27,16 @@ const NavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <Nav.Link href="#explore">Explore</Nav.Link>
-            <Nav.Link href="#matched">Matched</Nav.Link>
-            <Nav.Link href="#messages">Messages</Nav.Link>
             {user ? (
               <>
-                <Nav.Link href="#profile">Profile</Nav.Link>
+              <Nav.Link href="#explore">Explore</Nav.Link>
+              <Nav.Link href="#matched">Matched</Nav.Link>
+              <Nav.Link href="#messages">Messages</Nav.Link>
+              <Nav.Link href="#profile">Profile</Nav.Link>
+                <NavDropdown title="Pets" id="basic-nav-dropdown">
+                  <NavDropdown.Item> View Pets</NavDropdown.Item>
+                  <NavDropdown.Item> Create a Pet</NavDropdown.Item>
+                </NavDropdown>
                 <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
             ): (
