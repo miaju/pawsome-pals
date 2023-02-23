@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div className="App">
-    <Form addPet={addPet}/>
     <NavBar/>
+    <Form addPet={addPet}/>
     </div>
 
   );
