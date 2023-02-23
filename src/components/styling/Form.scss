@@ -1,0 +1,96 @@
+#container {
+  background-color: #F3FFFA;
+  text-align: -webkit-center;
+  margin: 5rem 20rem 5rem 20rem;
+  padding: 2rem 0rem 2rem 0rem;
+  font-variant-caps: petite-caps;
+  font-family: Arial, Helvetica, sans-serif;
+  border-style: groove;
+  border-width: 30px;
+  border-color: #B4E7F2;
+
+  h1 {
+    color:#068DCE;
+  }
+
+  label {
+    display: flex;
+    color: #0076BE;
+    font-size: x-large;
+    padding: 20px 5px 20px 35px;
+    .radio-headers {
+      display: flex;
+      text-align: center;
+    }
+  }
+
+  .text-input {
+    width: 80%;
+    display: block;
+    position: relative;
+    margin-bottom: 2px;
+    // background-color: yellow;
+  }
+
+  .text-input input {
+    cursor: pointer;
+    padding: 1rem;
+    margin-top: 1rem;
+    height: 3rem;
+    width: 50%;
+    font-family: monospace;
+    font-size: xx-large;
+    text-align: center;
+  }
+
+  .radios {
+    place-content: center;
+    // background-color: pink;
+    width: 90%;
+  }
+
+  .radio-tags {
+    padding-right: 15px;
+    font-weight: bold;
+  }
+
+  .sex {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .fixed {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .size {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  #description input {
+    width: 70%;
+    height: 3rem;
+    padding: 1rem;
+  }
+
+  button {
+    margin: 0.5em;
+    background-color: #068DCE;
+    color: white;
+    font-size: x-large;
+    padding: 2rem;
+  }
+
+}
+
+::placeholder {
+  font-size: medium;
+}
+/* On mouse-over, add a color */
+.text-input:hover input {
+  background-color: whitesmoke;
+}
+
+// top right bottom left
