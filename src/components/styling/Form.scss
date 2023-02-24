@@ -1,7 +1,7 @@
 #container {
   background-color: #F3FFFA;
   text-align: -webkit-center;
-  margin: 5rem 20rem 5rem 20rem;
+  margin: 5rem 10rem 5rem 10rem;
   padding: 2rem 0rem 2rem 0rem;
   font-variant-caps: petite-caps;
   font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +16,7 @@
   label {
     display: flex;
     color: #0076BE;
-    font-size: x-large;
+    font-size: medium;
     padding: 20px 5px 20px 35px;
     .radio-headers {
       display: flex;
@@ -39,7 +39,7 @@
     height: 3rem;
     width: 50%;
     font-family: monospace;
-    font-size: xx-large;
+    font-size: x-large;
     text-align: center;
   }
 
