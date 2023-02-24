@@ -1,14 +1,14 @@
-import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from "./pawprint.svg"
-
 import { useAuth0 } from "@auth0/auth0-react";
+import  NavDropdown  from "react-bootstrap/NavDropdown";
+
+import logo from "./pawprint.svg"
 
 
 const NavBar = () => {
-  const { user, loginWithRedirect, logout } = useAuth0();
+  const { user, loginWithRedirect, logout, isLoading } = useAuth0();
 
   return (
     <Navbar sticky="top" bg="light" expand="lg">
@@ -28,10 +28,18 @@ const NavBar = () => {
           <Nav>
             {user ? (
               <>
-                <Nav.Link href="#profile">You are logged in as: {user.name}</Nav.Link>
+              <Nav.Link href="/explore">Explore</Nav.Link>
+              <Nav.Link href="/matched">Matched</Nav.Link>
+              <Nav.Link href="/messages">Messages</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+                <NavDropdown title="Pets" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="/pets/view"> View Pets</NavDropdown.Item>
+                  <NavDropdown.Item href="/pets/new"> Create a Pet</NavDropdown.Item>
+                </NavDropdown>
                 <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
-            ): (
+            ): isLoading ? (<><Navbar.Text>Loading...</Navbar.Text></>) :
+            (
               <Nav.Link onClick={() => loginWithRedirect()}>Login</Nav.Link>
             )}
           </Nav>
