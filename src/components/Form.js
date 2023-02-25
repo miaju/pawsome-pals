@@ -40,14 +40,14 @@ export default function Form(props) {
     e.preventDefault();
 
     const newProfile = {
-      name,
-      breed,
-      age,
-      sex,
-      size,
-      fixed,
-      location,
-      description,
+      name: name.value,
+      breed: breed.value,
+      age: age.value,
+      sex: sex.value,
+      size: size.value,
+      fixed: fixed.value,
+      location: location.value,
+      description: description.value
     };
 
     props.addPet(newProfile);
