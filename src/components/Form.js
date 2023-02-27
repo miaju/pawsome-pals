@@ -1,6 +1,7 @@
 import { useState, React } from "react";
 import "./styling/Form.scss";
-
+import cuddling from "./styling/cuddling.png";
+import pawprint from "./pawprint.svg";
 /**
  *
  * @param { Object } props: addPet function
@@ -40,14 +41,14 @@ export default function Form(props) {
     e.preventDefault();
 
     const newProfile = {
-      name,
-      breed,
-      age,
-      sex,
-      size,
-      fixed,
-      location,
-      description,
+      name: name.value,
+      breed: breed.value,
+      age: age.value,
+      sex: sex.value,
+      size: size.value,
+      fixed: fixed.value,
+      location: location.value,
+      description: description.value,
     };
 
     props.addPet(newProfile);
@@ -55,88 +56,101 @@ export default function Form(props) {
   }
 
   return (
-    <div id="container">
-      <form className="new-profile" onSubmit={onSubmit} autoComplete="off">
-        <h1>Create Your Pet Profile</h1>
-        <br />
-        <label htmlFor="name" className="text-input">
-          Name
+    <body id="body">
+      <div id="page-container">
+      <div id="header">
+        <h1>
+          All's well that friends well
+          <img src={pawprint} id="pawprint" alt="pawprint-icon" />
+        </h1>
+        <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
+      </div>
+      <div id="container">
+        <h1>Create Your Pet's <b>Paw</b>file</h1>
+        <form className="new-profile" onSubmit={onSubmit} autoComplete="off">
+          {/* <br /> */}
+          <div id="labels">
+            <label htmlFor="name" className="text-input">
+              Name
+              <br />
+              <input
+                {...name}
+                id="name"
+                placeholder="enter your pet's name"
+                required
+              />
+            </label>
+
+            <label htmlFor="breed" className="text-input">
+              Breed
+              <br />
+              <input
+                {...breed}
+                id="breed"
+                placeholder="enter your pet's breed"
+                required
+              />
+            </label>
+
+            <label htmlFor="age" className="text-input">
+              Age
+              <br />
+              <input
+                {...age}
+                id="age"
+                placeholder="enter your pet's age"
+                required
+              />
+            </label>
+            {/* <br /> */}
+          </div>
+
+          <label htmlFor="sex" className="radios">
+            <span className="radio-tags">Gender :</span>
+            <input {...sex} value="Male" type="radio" name="sex" required />
+            <span className="sex">Male</span>
+            <input {...sex} value="Female" type="radio" name="sex" />
+            <span className="sex">Female</span>
+          </label>
+
+          <label htmlFor="fixed" className="radios">
+            <span className="radio-tags">Spayed / Neutered :</span>
+            <input {...fixed} value="Yes" type="radio" name="fixed" required />
+            <span className="fixed">Yes</span>
+            <input {...fixed} value="No" type="radio" name="fixed" />
+            <span className="fixed">No</span>
+          </label>
+
+          <label htmlFor="size" className="radios">
+            <span className="radio-tags">Size :</span>
+            <input {...size} value="small" type="radio" name="size" required />
+            <span className="size">Small (up to 24 lbs)</span>
+            <input {...size} value="medium" type="radio" name="size" />
+            <span className="size">Medium (25- 59 lbs)</span>
+            <input {...size} value="large" type="radio" name="size" />
+            <span className="size">Large (over 60 lbs)</span>
+          </label>
           <br />
-          <input
-            {...name}
-            id="name"
-            placeholder="enter your pet's name"
-            required
-          />
-        </label>
 
-        <label htmlFor="breed" className="text-input">
-          Breed
+          <label htmlFor="location" className="text-input">
+            Location
+            <br />
+            <input {...location} placeholder="City" required />
+          </label>
+
+          <label htmlFor="description" className="text-input" id="description">
+            Description <br />
+            <input
+              {...description}
+              placeholder="How would your pet describe themselves?"
+              required
+            />
+          </label>
           <br />
-          <input
-            {...breed}
-            id="breed"
-            placeholder="enter your pet's breed"
-            required
-          />
-        </label>
-
-        <label htmlFor="age" className="text-input">
-          Age
-          <br />
-          <input
-            {...age}
-            id="age"
-            placeholder="enter your pet's age"
-            required
-          />
-        </label>
-        <br />
-
-        <label htmlFor="sex" className="radios">
-          <span className="radio-tags">Gender :</span>
-          <input {...sex} value="Male" type="radio" name="sex" required />
-          <span className="sex">Male</span>
-          <input {...sex} value="Female" type="radio" name="sex" />
-          <span className="sex">Female</span>
-        </label>
-
-        <label htmlFor="fixed" className="radios">
-          <span className="radio-tags">Spayed / Neutered :</span>
-          <input {...fixed} value="Yes" type="radio" name="fixed" required />
-          <span className="fixed">Yes</span>
-          <input {...fixed} value="No" type="radio" name="fixed" />
-          <span className="fixed">No</span>
-        </label>
-
-        <label htmlFor="size" className="radios">
-          <span className="radio-tags">Size :</span>
-          <input {...size} value="small" type="radio" name="size" required />
-          <span className="size">Small (up to 24 lbs)</span>
-          <input {...size} value="medium" type="radio" name="size" />
-          <span className="size">Medium (25- 59 lbs)</span>
-          <input {...size} value="large" type="radio" name="size" />
-          <span className="size">Large (over 60 lbs)</span>
-        </label>
-        <br />
-
-        <label htmlFor="location" className="text-input">
-          Location
-          <br />
-          <input {...location} placeholder="City" required />
-        </label>
-
-        <label htmlFor="description" className="text-input" id="description">
-          Description <br />
-          <input
-            {...description}
-            placeholder="How would your pet describe themselves?"
-            required
-          />
-        </label>
-        <br />
-        <button type="submit">PLAYTIME!</button>
-      </form>
-    </div>
+          <button type="submit">READY TO PLAY</button>
+        </form>
+      </div>
+      </div>
+    </body>
   );
 }

@@ -1,23 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+
+#body {
+  background: #e7e2d8;
+  #page-container {
+    margin: 0em 10em 0em 10em;
+    padding-bottom: 5em;
+    padding-top: 3em;
+    border-style: double;
+    border-top: none;
+    border-bottom: none;
+    border-color: #960303;
+    border-width: 3px;
+    #header {
+      display: flex;
+      justify-content: center;
+      color: #36454F;
+      h1 {
+        position: absolute;
+        font-family: "sacramento";
+        font-size: 4vw;
+        margin-top: 8vh;
+      }
+      #pawprint {
+        height: 1em;
+        width: 1em;
+      }
+      #pets-cuddling {
+        margin-top: 16vh;
+        padding-bottom: 2vh;
+        width: 45vw;
+        height: 45vh;
+      }
+    }
+  }
+}
+
 #container {
-  background-color: #F3FFFA;
+  margin: auto;
+  width: 50%;
+  background-color: #f4f1ed;
   text-align: -webkit-center;
-  margin: 5rem 20rem 5rem 20rem;
-  padding: 2rem 0rem 2rem 0rem;
-  font-variant-caps: petite-caps;
-  font-family: Arial, Helvetica, sans-serif;
-  border-style: groove;
-  border-width: 30px;
-  border-color: #B4E7F2;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  margin-top: 5vh;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #c5b9a1;
+  border-radius: 50px;
+  width: 65vw;
+
+  #labels {
+    display: flex;
+    justify-content: space-evenly;
+    color: #36454F;
+  }
 
   h1 {
-    color:#068DCE;
+    font-family: "Raleway";
+    padding-bottom: 1em;
+    // color: #960303;
   }
 
   label {
+    // color: #960303;
     display: flex;
-    color: #0076BE;
-    font-size: x-large;
-    padding: 20px 5px 20px 35px;
+    font-size: 1.5em;
+    font-family: "Phudu";
+    // font-variant: all-petite-caps;
+    padding: 20px 0px 20px 0px;
+
     .radio-headers {
       display: flex;
       text-align: center;
@@ -25,7 +79,7 @@
   }
 
   .text-input {
-    width: 80%;
+    // width: 80%;
     display: block;
     position: relative;
     margin-bottom: 2px;
@@ -36,22 +90,24 @@
     cursor: pointer;
     padding: 1rem;
     margin-top: 1rem;
-    height: 3rem;
-    width: 50%;
-    font-family: monospace;
-    font-size: xx-large;
+    font-family: "Handlee";
+    font-size: x-large;
     text-align: center;
+    border-style: solid;
+    border-color: #c5b9a1;
+    border-radius: 10px;
   }
 
   .radios {
     place-content: center;
-    // background-color: pink;
+    font-family: "Raleway";
     width: 90%;
   }
 
   .radio-tags {
     padding-right: 15px;
     font-weight: bold;
+    font-family: "Phudu";
   }
 
   .sex {
@@ -77,20 +133,29 @@
 
   button {
     margin: 0.5em;
-    background-color: #068DCE;
-    color: white;
+    background-color: #960303;
+    color: #eae6dd;
     font-size: x-large;
     padding: 2rem;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
   }
-
 }
 
 ::placeholder {
+  font-family: "Raleway";
   font-size: medium;
+  color: #796949;
 }
 /* On mouse-over, add a color */
 .text-input:hover input {
-  background-color: whitesmoke;
+  background-color: #faf9f7;
+}
+
+#container #description input {
+  height: 5em;
 }
 
 // top right bottom left
