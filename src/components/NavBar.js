@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <Navbar sticky="top" bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             alt="logo"
             src={logo}
@@ -29,18 +29,18 @@ const NavBar = () => {
             {user ? (
               <>
               <Nav.Link href="/explore">Explore</Nav.Link>
-              <Nav.Link href="/matched">Matched</Nav.Link>
+              <Nav.Link href="/matches">Matches</Nav.Link>
               <Nav.Link href="/messages">Messages</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
                 <NavDropdown title="Pets" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/pets/view"> View Pets</NavDropdown.Item>
                   <NavDropdown.Item href="/pets/new"> Create a Pet</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
+                <Nav.Link href="/" onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
               </>
             ): isLoading ? (<><Navbar.Text>Loading...</Navbar.Text></>) :
             (
-              <Nav.Link onClick={() => loginWithRedirect()}>Login</Nav.Link>
+              <Nav.Link href="/" onClick={() => loginWithRedirect()}>Login</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

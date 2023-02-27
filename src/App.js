@@ -7,6 +7,7 @@ import  { BrowserRouter, Routes, Route} from "react-router-dom";
 import Form from 'components/Form';
 import NavBar from 'components/NavBar';
 import Profile from "components/Profile";
+import Home from "components/Home";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <NavBar></NavBar>
         <div className="content">
           <Routes>
+            <Route path="/" element={<Home/>}/>
             <Route path="/pets/new" element={<Form addPet={addPet}/>}/>
             <Route path="/profile" element={<Profile/>}/>
           </Routes>
