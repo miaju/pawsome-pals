@@ -4,6 +4,8 @@
 
 install dependencies using `npm install`
 
+### Api
+
 Clone [this](https://github.com/edlynshih/pawsome_pals_api) repository and follow the set up instructions.
 
 ### Environment Variables
