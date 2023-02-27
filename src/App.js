@@ -1,5 +1,5 @@
 import { useState, React, useEffect } from "react";
-import  { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
 import './App.css';
@@ -15,13 +15,10 @@ function App() {
   useEffect(() => {
     axios.get("http://localhost:8080/api/pets")
       .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({...value}))
-        console.log(data)
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(data);
       });
   }, []);
-
-  console.log("PETS", pets.length)
 
   /**
    *
@@ -41,9 +38,9 @@ function App() {
         <NavBar></NavBar>
         <div className="content">
           <Routes>
-            <Route path="/pets/new" element={<Form addPet={addPet}/>}/>
-            <Route path="/pets/view" element={<PetList pets={pets}/>}/>
-            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/pets/new" element={<Form addPet={addPet} />} />
+            <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </BrowserRouter>

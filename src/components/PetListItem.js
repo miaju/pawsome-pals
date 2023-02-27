@@ -3,7 +3,7 @@ import React from "react"
 export default function PetListItem(props) {
   return(
     <div>
-      <img src={props.photo_url}/>
+      <img src={props.photo_url} alt={props.name}/>
       <p>Name: {props.name}</p>
       <p>Breed: {props.breed}</p>
       <p>Age: {props.age}</p>
