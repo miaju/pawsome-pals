@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useAuth0 } from "@auth0/auth0-react";
 import  NavDropdown  from "react-bootstrap/NavDropdown";
 
-import logo from "./pawprint.svg"
+import logo from "./styling/pawprint.svg"
 
 
 const NavBar = () => {

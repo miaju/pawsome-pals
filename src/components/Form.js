@@ -1,7 +1,7 @@
 import { useState, React } from "react";
 import "./styling/Form.scss";
 import cuddling from "./styling/cuddling.png";
-import pawprint from "./pawprint.svg";
+import pawprint from "./styling/pawprint.svg";
 /**
  *
  * @param { Object } props: addPet function
