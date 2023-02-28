@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import  NavDropdown  from "react-bootstrap/NavDropdown";
 
 import logo from "./styling/pawprint.svg"
+import "./styling/NavBar.scss";
 
 
 const NavBar = () => {
