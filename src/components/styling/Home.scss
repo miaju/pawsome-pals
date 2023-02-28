@@ -1,7 +1,11 @@
+@import "_variables.scss";
+
 .home {
   margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: $font-raleway;
+  color: $text-colour;
 }
