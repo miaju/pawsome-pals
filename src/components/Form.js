@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import "./styling/Form.scss";
 import cuddling from "./styling/cuddling.png";
 import pawprint from "./styling/pawprint.svg";
@@ -8,6 +8,14 @@ import pawprint from "./styling/pawprint.svg";
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
+  const [photo, setPhoto] = useState("");
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setPhoto(e.target.files[0]);
+    }
+  };
+
   /**
    * @param { String } initial
    * @returns the current state based on the user's form input.
@@ -27,8 +35,8 @@ export default function Form(props) {
   const age = useControlledInput("");
   const sex = useControlledInput("");
   const size = useControlledInput("");
-  const fixed = useControlledInput("");
-  const location = useControlledInput("");
+  const spayed_or_neutered = useControlledInput("");
+  const city = useControlledInput("");
   const description = useControlledInput("");
 
   /**
@@ -40,117 +48,160 @@ export default function Form(props) {
   function onSubmit(e) {
     e.preventDefault();
 
-    const newProfile = {
+    const value_toBoolean = spayed_or_neutered.value === "Yes" ? true : false;
+    const age_toNumber = Number(age.value);
+    const photo_toURL = URL.createObjectURL(photo);
+
+    const newPetProfile = {
       name: name.value,
       breed: breed.value,
-      age: age.value,
+      age: age_toNumber,
       sex: sex.value,
       size: size.value,
-      fixed: fixed.value,
-      location: location.value,
+      spayed_or_neutered: value_toBoolean,
+      city: city.value,
       description: description.value,
+      photo_url: photo_toURL,
     };
 
-    props.addPet(newProfile);
-    // console.log(newProfile)
+    props.addPet(newPetProfile);
   }
 
   return (
-    <body id="body">
+    <div id="body">
       <div id="page-container">
-      <div id="header">
-        <h1>
-          All's well that friends well
-          <img src={pawprint} id="pawprint" alt="pawprint-icon" />
-        </h1>
-        <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
-      </div>
-      <div id="container">
-        <h1>Create Your Pet's <b>Paw</b>file</h1>
-        <form className="new-profile" onSubmit={onSubmit} autoComplete="off">
-          {/* <br /> */}
-          <div id="labels">
-            <label htmlFor="name" className="text-input">
-              Name
-              <br />
-              <input
-                {...name}
-                id="name"
-                placeholder="enter your pet's name"
-                required
-              />
+        <div id="header">
+          <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
+          <h1>
+            All's well that friends well
+            <img src={pawprint} id="pawprint" alt="pawprint-icon" />
+          </h1>
+        </div>
+        <div id="form-container">
+          <h1>
+            Create Your Pet's <b>Paw</b>file
+          </h1>
+          <span id="border-line"></span>
+          <form className="new-profile" onSubmit={onSubmit} autoComplete="on">
+            <div id="labels">
+              <label htmlFor="name of pet" className="text-input">
+                Name
+                <br />
+                <input
+                  {...name}
+                  id="name"
+                  placeholder="enter your pet's name"
+                  required
+                />
+              </label>
+
+              <label htmlFor="breed of pet" className="text-input">
+                Breed
+                <br />
+                <input
+                  {...breed}
+                  id="breed"
+                  placeholder="enter your pet's breed"
+                  required
+                />
+              </label>
+
+              <label htmlFor="age of pet" className="text-input">
+                Age
+                <br />
+                <input
+                  {...age}
+                  id="age"
+                  placeholder="enter your pets age"
+                  maxLength="2"
+                  min="0"
+                  type="number"
+                  required
+                />
+              </label>
+            </div>
+
+            <label htmlFor="gender of pet" className="radios">
+              <span className="radio-tags">Gender :</span>
+              <input {...sex} value="Male" type="radio" name="sex" required />
+              <span className="sex">M</span>
+              <input {...sex} value="Female" type="radio" name="sex" />
+              <span className="sex">F</span>
             </label>
 
-            <label htmlFor="breed" className="text-input">
-              Breed
-              <br />
+            <label htmlFor="spayed or neutered" className="radios">
+              <span className="radio-tags">Spayed / Neutered :</span>
               <input
-                {...breed}
-                id="breed"
-                placeholder="enter your pet's breed"
+                {...spayed_or_neutered}
+                value="Yes"
+                type="radio"
+                name="spayed_or_neutered"
                 required
               />
+              <span className="spayed_or_neutered">Y</span>
+              <input
+                {...spayed_or_neutered}
+                value="No"
+                type="radio"
+                name="spayed_or_neutered"
+              />
+              <span className="spayed_or_neutered">N</span>
             </label>
 
-            <label htmlFor="age" className="text-input">
-              Age
-              <br />
+            <label htmlFor="size of pet" className="radios">
+              <span className="radio-tags">Size :</span>
               <input
-                {...age}
-                id="age"
-                placeholder="enter your pet's age"
+                {...size}
+                value="Small"
+                type="radio"
+                name="size"
                 required
               />
+              <span className="size">S (up to 24 lbs)</span>
+              <input {...size} value="Medium" type="radio" name="size" />
+              <span className="size">M (25- 59 lbs)</span>
+              <input {...size} value="Large" type="radio" name="size" />
+              <span className="size">L (60 lbs+)</span>
             </label>
-            {/* <br /> */}
-          </div>
-
-          <label htmlFor="sex" className="radios">
-            <span className="radio-tags">Gender :</span>
-            <input {...sex} value="Male" type="radio" name="sex" required />
-            <span className="sex">Male</span>
-            <input {...sex} value="Female" type="radio" name="sex" />
-            <span className="sex">Female</span>
-          </label>
-
-          <label htmlFor="fixed" className="radios">
-            <span className="radio-tags">Spayed / Neutered :</span>
-            <input {...fixed} value="Yes" type="radio" name="fixed" required />
-            <span className="fixed">Yes</span>
-            <input {...fixed} value="No" type="radio" name="fixed" />
-            <span className="fixed">No</span>
-          </label>
-
-          <label htmlFor="size" className="radios">
-            <span className="radio-tags">Size :</span>
-            <input {...size} value="small" type="radio" name="size" required />
-            <span className="size">Small (up to 24 lbs)</span>
-            <input {...size} value="medium" type="radio" name="size" />
-            <span className="size">Medium (25- 59 lbs)</span>
-            <input {...size} value="large" type="radio" name="size" />
-            <span className="size">Large (over 60 lbs)</span>
-          </label>
-          <br />
-
-          <label htmlFor="location" className="text-input">
-            Location
             <br />
-            <input {...location} placeholder="City" required />
-          </label>
 
-          <label htmlFor="description" className="text-input" id="description">
-            Description <br />
-            <input
-              {...description}
-              placeholder="How would your pet describe themselves?"
-              required
-            />
-          </label>
-          <br />
-          <button type="submit">READY TO PLAY</button>
-        </form>
+            <label htmlFor="city" className="text-input">
+              city
+              <br />
+              <input {...city} placeholder="City" required />
+            </label>
+
+            <label
+              htmlFor="description of pet"
+              className="text-input"
+              id="description"
+            >
+              Description <br />
+              <input
+                {...description}
+                placeholder="How would your pet describe themselves?"
+                minLength="3"
+                required
+              />
+            </label>
+            <br />
+
+            <label name="photo_url" htmlFor="upload pet photo">
+              <input
+                type="file"
+                onChange={handleFileChange}
+                accept="image/*"
+                id="upload_img"
+                name="photo_url"
+                required
+              />
+            </label>
+            <br/>
+
+            <button type="submit">READY TO PLAY</button>
+          </form>
+        </div>
       </div>
-      </div>
-    </body>
+    </div>
   );
 }
