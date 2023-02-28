@@ -9,19 +9,17 @@
   #page-container {
     margin: 0em 10em 0em 10em;
     padding-bottom: 5em;
-    padding-top: 3em;
-    border-style: double;
+    padding-top: 2em;
+    border: 3px double #960303;
     border-top: none;
     border-bottom: none;
-    border-color: #960303;
-    border-width: 3px;
     #header {
       display: flex;
       justify-content: center;
       color: #36454f;
       h1 {
         position: absolute;
-        font: 4vw "sacramento";
+        font: 5vw "sacramento";
         margin-top: 3vh;
       }
       #pawprint {
@@ -29,25 +27,24 @@
         width: 1em;
       }
       #pets-cuddling {
-        margin-top: 12vh;
-        padding-bottom: 2vh;
-        width: 45vw;
-        height: 45vh;
+        margin-top: 15vh;
+        width: 50vw;
+        height: 40vh;
       }
     }
   }
 }
 
-#container {
+#form-container {
   font: 3vh "Phudu";
   margin: auto;
   background-color: #f4f1ed;
   text-align: -webkit-center;
   padding-top: 8vh;
   padding-bottom: 8vh;
-  margin-top: 5vh;
-  border: 3px solid #c5b9a1;
-  border-radius: 50px;
+  margin-top: 10vh;
+  border: 0px solid #c5b9a1;
+  border-radius: 20px;
   width: 65vw;
 
   #labels {
@@ -58,12 +55,14 @@
 
   h1 {
     font-family: "Raleway";
-    padding-bottom: 4vw;
-    color: #960303;
+    font-size: 57px;
+    padding-bottom: 0vw;
+    margin-bottom: 1vw;
+    color: #36454f;
+    // color: #960303;
   }
 
   label {
-    margin: 1rem;
     padding-bottom: 3vh;
   }
 
@@ -91,20 +90,20 @@
   }
 
   .sex {
-    padding: 0 1vw;
+    padding: 1vw;
   }
 
   .spayed_or_neutered {
-    padding: 0 1vw;
+    padding: 1vw;
   }
 
   .size {
-    padding: 0 1vw;
+    padding: 1vw;
   }
 
   #description input {
     width: 70%;
-    height: 3vh;
+    height: 20vh;
     padding: 1rem;
   }
 
@@ -115,6 +114,14 @@
     padding: 2rem;
     border-radius: 100px;
     border: 1px solid black;
+  }
+
+  #border-line {
+    display: flex;
+    width: 51vw;
+    border-top: 4px solid;
+    padding-bottom: 10vh;
+    border-color: #960303;
   }
 }
 

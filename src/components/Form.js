@@ -69,12 +69,10 @@ export default function Form(props) {
           </h1>
           <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
         </div>
-        <div id="container">
-          <h1>
-            Create Your Pet's <b>Paw</b>file
-          </h1>
+        <div id="form-container">
+          <h1>Create Your Pet's <b>Paw</b>file</h1>
+            <span id="border-line"></span>
           <form className="new-profile" onSubmit={onSubmit} autoComplete="on">
-            {/* <br /> */}
             <div id="labels">
               <label htmlFor="name" className="text-input">
                 Name
@@ -111,7 +109,6 @@ export default function Form(props) {
                   required
                 />
               </label>
-              {/* <br /> */}
             </div>
 
             <label htmlFor="sex" className="radios">
