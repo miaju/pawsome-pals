@@ -63,11 +63,11 @@ export default function Form(props) {
     <div id="body">
       <div id="page-container">
         <div id="header">
+          <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
           <h1>
             All's well that friends well
             <img src={pawprint} id="pawprint" alt="pawprint-icon" />
           </h1>
-          <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
         </div>
         <div id="form-container">
           <h1>Create Your Pet's <b>Paw</b>file</h1>
