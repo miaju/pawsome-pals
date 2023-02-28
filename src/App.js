@@ -8,7 +8,10 @@ import axios from "axios";
 import Form from 'components/Form';
 import NavBar from 'components/NavBar';
 import Profile from "components/Profile";
+
+import Home from "components/Home";
 import PetList from "components/PetList"
+
 
 
 function App() {
@@ -40,6 +43,7 @@ function App() {
         <NavBar></NavBar>
         <div className="content">
           <Routes>
+            <Route path="/" element={<Home/>}/>
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
             <Route path="/profile" element={<Profile />} />
