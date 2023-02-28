@@ -35,7 +35,7 @@ function App() {
   }
 
   // An array containing an object of objects => pets[0]
-  console.log(pets[0]);
+  //console.log(pets[0]);
 
   return (
     <div>
