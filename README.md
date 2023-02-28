@@ -4,9 +4,13 @@
 
 install dependencies using `npm install`
 
-### Api
+### Backend
 
 Clone [this](https://github.com/edlynshih/pawsome_pals_api) repository and follow the set up instructions.
+
+### Auth0 Api
+
+Create an Auth0 account and application.
 
 ### Environment Variables
 

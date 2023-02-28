@@ -10,18 +10,25 @@ import NavBar from "components/NavBar";
 import Profile from "components/Profile";
 
 import Home from "components/Home";
-import PetList from "components/PetList";
+import PetList from "components/PetList"
+import Advanced from "components/MatchListTest";
+import shuffle from "components/helpers/shuffleArray";
+
+
 
 function App() {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/pets").then((response) => {
-      const data = Object.entries(response.data).map(([key, value]) => ({
-        ...value,
-      }));
-      setPets(data);
-    });
+    const getData = async () => {
+      await axios.get("http://localhost:8080/api/pets")
+      .then((response) => {
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setPets(shuffle(data));
+      });
+    }
+
+    getData().catch(console.error);
   }, []);
 
   /**
@@ -33,6 +40,7 @@ function App() {
     const id = pets.length + 1;
     const newPet = {};
 
+
     const petDetails = {
       id,
       user_id: 100,
@@ -41,7 +49,6 @@ function App() {
 
     newPet[id] = petDetails;
     console.log(newPet);
-
     return axios
       .put(`http://localhost:8080/api/pets/${id - 1}`, { newPet })
       .then(() => {
@@ -49,6 +56,10 @@ function App() {
         setPets([...pets, newPet]);
       });
   }
+
+  // An array containing an object of objects => pets[0]
+  //console.log(pets[0]);
+
 
   return (
     <div>
@@ -60,6 +71,7 @@ function App() {
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/explore" element={<Advanced pets={pets}/>}/>
           </Routes>
         </div>
       </BrowserRouter>
