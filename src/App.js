@@ -30,7 +30,24 @@ function App() {
    * Values: name, fixed, breed, sex, age, location, description, size, housetrained
    */
   function addPet(pet) {
-    setPets([...pets, newPet]);
+    const id = pets.length + 1;
+    const newPet = {};
+
+    const petDetails = {
+      id,
+      user_id: 100,
+      ...pet,
+    };
+
+    newPet[id] = petDetails;
+    console.log(newPet);
+
+    return axios
+      .put(`http://localhost:8080/api/pets/${id - 1}`, { newPet })
+      .then(() => {
+        console.log("Made it here!");
+        setPets([...pets, newPet]);
+      });
   }
 
   return (

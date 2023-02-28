@@ -5,6 +5,7 @@
 
 #body {
   background: #e7e2d8;
+  width: 100vw;
   #page-container {
     margin: 0em 10em 0em 10em;
     padding-bottom: 5em;
@@ -20,16 +21,15 @@
       color: #36454f;
       h1 {
         position: absolute;
-        font-family: "sacramento";
-        font-size: 4vw;
-        margin-top: 8vh;
+        font: 4vw "sacramento";
+        margin-top: 3vh;
       }
       #pawprint {
         height: 1em;
         width: 1em;
       }
       #pets-cuddling {
-        margin-top: 16vh;
+        margin-top: 12vh;
         padding-bottom: 2vh;
         width: 45vw;
         height: 45vh;
@@ -39,16 +39,14 @@
 }
 
 #container {
+  font: 3vh "Phudu";
   margin: auto;
-  width: 50%;
   background-color: #f4f1ed;
   text-align: -webkit-center;
   padding-top: 8vh;
   padding-bottom: 8vh;
   margin-top: 5vh;
-  border-style: solid;
-  border-width: 3px;
-  border-color: #c5b9a1;
+  border: 3px solid #c5b9a1;
   border-radius: 50px;
   width: 65vw;
 
@@ -60,94 +58,68 @@
 
   h1 {
     font-family: "Raleway";
-    padding-bottom: 1em;
+    padding-bottom: 4vw;
     color: #960303;
-    font-weight: light;
   }
 
   label {
-    // color: #960303;
-    display: flex;
-    font-size: 1.5em;
-    font-family: "Phudu";
-    // font-variant: all-petite-caps;
-    padding: 20px 0px 20px 0px;
-
-    .radio-headers {
-      display: flex;
-      text-align: center;
-    }
+    margin: 1rem;
+    padding-bottom: 3vh;
   }
 
   .text-input {
-    // width: 80%;
     display: block;
-    position: relative;
-    margin-bottom: 2px;
-    // background-color: yellow;
   }
 
   .text-input input {
-    cursor: pointer;
-    padding: 1rem;
-    margin-top: 1rem;
-    font-family: "Handlee";
-    font-size: x-large;
+    width: 18vw;
+    padding: 1vw;
+    margin: 1vw;
+    font: x-large "Handlee";
     text-align: center;
-    border-style: solid;
-    border-color: #c5b9a1;
+    border: 2px solid #c5b9a1;
     border-radius: 10px;
   }
 
   .radios {
-    place-content: center;
-    font-family: "Raleway";
-    width: 90%;
+    display: block;
+    // font-family: "Raleway";
   }
 
   .radio-tags {
-    padding-right: 15px;
-    font-weight: bold;
-    font-family: "Phudu";
+    padding-right: 2vw;
   }
 
   .sex {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0 1vw;
   }
 
-  .fixed {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  .spayed_or_neutered {
+    padding: 0 1vw;
   }
 
   .size {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0 1vw;
   }
 
   #description input {
     width: 70%;
-    height: 3rem;
+    height: 3vh;
     padding: 1rem;
   }
 
   button {
-    margin: 0.5em;
     background-color: #960303;
     color: #eae6dd;
     font-size: x-large;
     padding: 2rem;
     border-radius: 100px;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+    border: 1px solid black;
   }
 }
 
 ::placeholder {
-  font-family: "Raleway";
-  font-size: medium;
+  font: medium "Raleway";
   color: #796949;
 }
 /* On mouse-over, add a color */
@@ -159,4 +131,6 @@
   height: 5em;
 }
 
-// top right bottom left
+// margins: top right bottom left
+// borders: width style(req) color
+// font: style variant weight size/line-height(req) family(req)

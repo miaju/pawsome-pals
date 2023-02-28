@@ -117,9 +117,9 @@ export default function Form(props) {
             <label htmlFor="sex" className="radios">
               <span className="radio-tags">Gender :</span>
               <input {...sex} value="Male" type="radio" name="sex" required />
-              <span className="sex">Male</span>
+              <span className="sex">M</span>
               <input {...sex} value="Female" type="radio" name="sex" />
-              <span className="sex">Female</span>
+              <span className="sex">F</span>
             </label>
 
             <label htmlFor="spayed_or_neutered" className="radios">
@@ -131,14 +131,14 @@ export default function Form(props) {
                 name="spayed_or_neutered"
                 required
               />
-              <span className="spayed_or_neutered">Yes</span>
+              <span className="spayed_or_neutered">Y</span>
               <input
                 {...spayed_or_neutered}
                 value="No"
                 type="radio"
                 name="spayed_or_neutered"
               />
-              <span className="spayed_or_neutered">No</span>
+              <span className="spayed_or_neutered">N</span>
             </label>
 
             <label htmlFor="size" className="radios">
@@ -150,11 +150,11 @@ export default function Form(props) {
                 name="size"
                 required
               />
-              <span className="size">Small (up to 24 lbs)</span>
+              <span className="size">S (up to 24 lbs)</span>
               <input {...size} value="Medium" type="radio" name="size" />
-              <span className="size">Medium (25- 59 lbs)</span>
+              <span className="size">M (25- 59 lbs)</span>
               <input {...size} value="Large" type="radio" name="size" />
-              <span className="size">Large (over 60 lbs)</span>
+              <span className="size">L (60 lbs+)</span>
             </label>
             <br />
 
