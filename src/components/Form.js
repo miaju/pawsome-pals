@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import "./styling/Form.scss";
 import cuddling from "./styling/cuddling.png";
 import pawprint from "./styling/pawprint.svg";
@@ -8,6 +8,14 @@ import pawprint from "./styling/pawprint.svg";
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
+  const [photo, setPhoto] = useState("");
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setPhoto(e.target.files[0]);
+    }
+  };
+
   /**
    * @param { String } initial
    * @returns the current state based on the user's form input.
@@ -30,7 +38,6 @@ export default function Form(props) {
   const spayed_or_neutered = useControlledInput("");
   const city = useControlledInput("");
   const description = useControlledInput("");
-  const photo_url = useControlledInput("");
 
   /**
    *
@@ -43,6 +50,7 @@ export default function Form(props) {
 
     const value_toBoolean = spayed_or_neutered.value === "Yes" ? true : false;
     const age_toNumber = Number(age.value);
+    const photo_toURL = URL.createObjectURL(photo);
 
     const newPetProfile = {
       name: name.value,
@@ -53,7 +61,7 @@ export default function Form(props) {
       spayed_or_neutered: value_toBoolean,
       city: city.value,
       description: description.value,
-      photo_url: "in process",
+      photo_url: photo_toURL,
     };
 
     props.addPet(newPetProfile);
@@ -70,11 +78,13 @@ export default function Form(props) {
           </h1>
         </div>
         <div id="form-container">
-          <h1>Create Your Pet's <b>Paw</b>file</h1>
-            <span id="border-line"></span>
+          <h1>
+            Create Your Pet's <b>Paw</b>file
+          </h1>
+          <span id="border-line"></span>
           <form className="new-profile" onSubmit={onSubmit} autoComplete="on">
             <div id="labels">
-              <label htmlFor="name" className="text-input">
+              <label htmlFor="name of pet" className="text-input">
                 Name
                 <br />
                 <input
@@ -85,7 +95,7 @@ export default function Form(props) {
                 />
               </label>
 
-              <label htmlFor="breed" className="text-input">
+              <label htmlFor="breed of pet" className="text-input">
                 Breed
                 <br />
                 <input
@@ -96,7 +106,7 @@ export default function Form(props) {
                 />
               </label>
 
-              <label htmlFor="age" className="text-input">
+              <label htmlFor="age of pet" className="text-input">
                 Age
                 <br />
                 <input
@@ -111,7 +121,7 @@ export default function Form(props) {
               </label>
             </div>
 
-            <label htmlFor="sex" className="radios">
+            <label htmlFor="gender of pet" className="radios">
               <span className="radio-tags">Gender :</span>
               <input {...sex} value="Male" type="radio" name="sex" required />
               <span className="sex">M</span>
@@ -119,7 +129,7 @@ export default function Form(props) {
               <span className="sex">F</span>
             </label>
 
-            <label htmlFor="spayed_or_neutered" className="radios">
+            <label htmlFor="spayed or neutered" className="radios">
               <span className="radio-tags">Spayed / Neutered :</span>
               <input
                 {...spayed_or_neutered}
@@ -138,7 +148,7 @@ export default function Form(props) {
               <span className="spayed_or_neutered">N</span>
             </label>
 
-            <label htmlFor="size" className="radios">
+            <label htmlFor="size of pet" className="radios">
               <span className="radio-tags">Size :</span>
               <input
                 {...size}
@@ -162,7 +172,7 @@ export default function Form(props) {
             </label>
 
             <label
-              htmlFor="description"
+              htmlFor="description of pet"
               className="text-input"
               id="description"
             >
@@ -175,6 +185,19 @@ export default function Form(props) {
               />
             </label>
             <br />
+
+            <label name="photo_url" htmlFor="upload pet photo">
+              <input
+                type="file"
+                onChange={handleFileChange}
+                accept="image/*"
+                id="upload_img"
+                name="photo_url"
+                required
+              />
+            </label>
+            <br/>
+
             <button type="submit">READY TO PLAY</button>
           </form>
         </div>
