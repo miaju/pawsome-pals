@@ -1,17 +1,15 @@
 import React from "react"
+import "./styling/PetListItem.scss"
 
 export default function PetListItem(props) {
-  return(
-    <div>
-      <img src={props.photo_url} alt={props.name}/>
-      <p>Name: {props.name}</p>
-      <p>Breed: {props.breed}</p>
-      <p>Age: {props.age}</p>
-      <p>Sex: {props.sex}</p>
-      <p>Size: {props.size}</p>
-      <p>Spayed or neutered: {props.spayed_or_neutered}</p>
-      <p>City: {props.city}</p>
-      <p>Description: {props.description}</p>
+  return (
+    <div className="pet-card">
+      <div className="pet-image">
+        <img className="image" src={props.photo_url} alt={props.name} />
+      </div>
+      <div className="pet-info">
+        <p className="bg-light border">{props.name}</p>
+      </div>
     </div>
   )
 }
