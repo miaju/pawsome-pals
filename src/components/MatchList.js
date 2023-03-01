@@ -10,6 +10,7 @@ export default function MatchList(props) {
         props.matches.map(match => (
           <MatchListItem
             key={match.id}
+            id={match.id}
             name={match.name}
             breed={match.breed}
             age={match.age}
