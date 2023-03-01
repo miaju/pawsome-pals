@@ -13,10 +13,12 @@ import Home from "components/Home";
 import PetList from "components/PetList"
 import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
+import MatchList from "components/MatchList";
 
 
 function App() {
   const [pets, setPets] = useState([]);
+  const [matches, setMatches] = useState([]);
 
   useEffect(() => {
 
@@ -25,6 +27,11 @@ function App() {
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
+      });
+      await axios.get("http://localhost:8080/api/matches")
+      .then((response) => {
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setMatches(data);
       });
     }
 
@@ -54,7 +61,8 @@ function App() {
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/explore" element={<Advanced pets={pets}/>}/>
+            <Route path="/explore" element={<Advanced pets={pets} />}/>
+            <Route path="/matches" element={<MatchList matches={matches} />}/>
           </Routes>
         </div>
       </BrowserRouter>
