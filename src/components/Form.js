@@ -82,7 +82,6 @@ export default function Form(props) {
             Create Your Pet's <b>Paw</b>file
           </h1>
           <span id="border-line"></span>
-          
           <form className="new-profile" onSubmit={onSubmit} autoComplete="on">
             <div id="labels">
               <label htmlFor="name of pet" className="text-input">
