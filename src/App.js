@@ -14,7 +14,6 @@ import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
 
 
-
 function App() {
   const [pets, setPets] = useState([]);
   const [matches, setMatches] = useState([]);
@@ -68,36 +67,28 @@ function App() {
   }, [checked, user, users])
 
 
-
-
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
    * Values: name, fixed, breed, sex, age, location, description, size, housetrained
    */
-  function addPet(pet) {
-    const id = pets.length + 1;
-    const newPet = {};
 
+  // useEffect(() => {
+   async function addPet(pet) {
+      const id = pets.length + 1;
+      const newPet = { ...pet };
+      console.log(newPet);
+  
+      return await axios
+        .post(`http://localhost:8080/api/pets/${id}`, { 'name': newPet.name })
+        .then((res) => {
+          console.log("Made it here!");
+          setPets([...pets, newPet]);
+          console.log(res.data);
+        });
+    }
+  // }, [])
 
-    const petDetails = {
-      id,
-      user_id: 100,
-      ...pet,
-    };
-
-    newPet[id] = petDetails;
-    console.log(newPet);
-    return axios
-      .put(`http://localhost:8080/api/pets/${id - 1}`, { newPet })
-      .then(() => {
-        console.log("Made it here!");
-        setPets([...pets, newPet]);
-      });
-  }
-
-  // An array containing an object of objects => pets[0]
-  //console.log(pets[0]);
   async function getUserByEmail(email) {
     setChecked(true);
     return await axios
