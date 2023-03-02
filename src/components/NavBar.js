@@ -1,15 +1,14 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useAuth0 } from "@auth0/auth0-react";
 import  NavDropdown  from "react-bootstrap/NavDropdown";
 
 import logo from "./styling/pawprint.svg"
 import "./styling/NavBar.scss";
 
 
-const NavBar = () => {
-  const { user, loginWithRedirect, logout, isLoading } = useAuth0();
+const NavBar = (props) => {
+  const { user, loginWithRedirect, logout, isLoading } = props;
 
   return (
     <Navbar sticky="top" bg="light" expand="lg">

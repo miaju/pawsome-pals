@@ -1,11 +1,10 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "react-bootstrap";
 
 import "./styling/Profile.scss";
 
-const Profile = () => {
-  const { user, isAuthenticated, logout} = useAuth0();
+const Profile = (props) => {
+  const { user, isAuthenticated, logout} = props;
 
   return (
     isAuthenticated && (
