@@ -70,24 +70,30 @@ function App() {
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
-   * Values: name, fixed, breed, sex, age, location, description, size, housetrained
+   * Values: name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url
    */
 
-  // useEffect(() => {
    async function addPet(pet) {
-      const id = pets.length + 1;
-      const newPet = { ...pet };
-      console.log(newPet);
+      const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
   
-      return await axios
-        .post(`http://localhost:8080/api/pets/${id}`, { 'name': newPet.name })
+      return axios
+        .post(`http://localhost:8080/api/pets`, { 
+          'name': name,
+          'breed': breed,
+          'age': age,
+          'sex': sex,
+          'spayed_or_neutered': spayed_or_neutered,
+          'size': size, 
+          'city': city,
+          'description': description,
+          'photo_url': photo_url
+        })
         .then((res) => {
-          console.log("Made it here!");
-          setPets([...pets, newPet]);
-          console.log(res.data);
+          console.log("made it here")
+          setPets([...pets, pet]);
+          // console.log(res.data);
         });
     }
-  // }, [])
 
   async function getUserByEmail(email) {
     setChecked(true);
