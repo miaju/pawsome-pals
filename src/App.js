@@ -7,7 +7,8 @@ import Form from "components/Form";
 import NavBar from "components/NavBar";
 import Profile from "components/Profile";
 import Home from "components/Home";
-import PetList from "components/PetList"
+import PetList from "components/PetList";
+import PetDetail from "components/PetDetail";
 import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
@@ -58,7 +59,7 @@ function App() {
 
       getUserByEmail(user.name)
       .then(response => {
-
+        // console.log('USER IS', user)
         if(Object.keys(response.data).length === 0) {
           addUser(user);
         }
@@ -116,6 +117,7 @@ function App() {
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/pets/view/:id" element={<PetDetail />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
             <Route path="/explore" element={<Advanced pets={pets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
