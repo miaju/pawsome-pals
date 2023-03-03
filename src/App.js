@@ -43,6 +43,7 @@ function App() {
     getData().catch(console.error);
   }, []);
 
+
   useEffect(() => {
     if (user && !checked) {
 
@@ -72,10 +73,9 @@ function App() {
    * @param { Object } pet: An object of objects containing values for new pet profiles
    * Values: name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url
    */
-
    async function addPet(pet) {
       const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
-  
+
       return axios
         .post(`http://localhost:8080/api/pets`, { 
           'name': name,
@@ -95,14 +95,13 @@ function App() {
         });
     }
 
+
   async function getUserByEmail(email) {
     setChecked(true);
     return await axios
       .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
       .catch(err => console.error(err));
   }
-
-
 
   return (
     <div>

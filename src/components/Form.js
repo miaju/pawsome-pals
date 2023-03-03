@@ -8,13 +8,7 @@ import pawprint from "./styling/pawprint.svg";
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
-  const [photo, setPhoto] = useState("");
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setPhoto(e.target.files[0]);
-    }
-  };
+  const [photo, setPhoto] = useState([]);
 
   /**
    * @param { String } initial
@@ -50,7 +44,7 @@ export default function Form(props) {
 
     const value_toBoolean = spayed_or_neutered.value === "Yes" ? true : false;
     const age_toNumber = Number(age.value);
-    const photo_toURL = URL.createObjectURL(photo);
+    const file_toURL = URL.createObjectURL(photo);
 
     const newPetProfile = {
       name: name.value,
@@ -61,7 +55,7 @@ export default function Form(props) {
       spayed_or_neutered: value_toBoolean,
       city: city.value,
       description: description.value,
-      photo_url: photo_toURL,
+      photo_url: file_toURL
     };
 
     props.addPet(newPetProfile);
@@ -189,8 +183,10 @@ export default function Form(props) {
             <label name="photo_url" htmlFor="upload pet photo">
               <input
                 type="file"
-                onChange={handleFileChange}
-                accept="image/*"
+                onChange={(event) => {
+                  // console.log(event.target.files[0]);
+                  setPhoto(event.target.files[0]);
+                }}
                 id="upload_img"
                 name="photo_url"
                 required
