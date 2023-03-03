@@ -1,95 +1,90 @@
-@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");        // font-family: "Sacramento";
+@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap");    // font-family: "Phudu";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");  // font-family: "Raleway";
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap"); 
 
-#body {
   #page-container {
-    margin: 0em 10em 0em 10em;
-    padding-bottom: 5em;
-    padding-top: 2em;
-    border: 3px double #960303;
-    border-top: none;
-    border-bottom: none;
-    #header {
-      display: flex;
-      justify-content: center;
-      color: #36454f;
+    margin: 0 14vw;
+    padding: 3vh 0;
+    
+    header {
+      text-align: -webkit-center;
+      font-family: "Raleway";
+      
       h1 {
-        position: absolute;
-        font: 7vw "sacramento";
+        font-weight: lighter;
+        font-size: 5vw;
+        padding-bottom: 0vw;
         margin-top: 3vh;
+        margin-bottom: 7vh;
+        b {
+        font-family: "Handlee";
+          color: #960303;
+        }
       }
-      #pawprint {
-        height: 1em;
-        width: 1em;
-      }
-      #pets-cuddling {
-        margin-top: 19vh;
-        width: 48vw;
-        height: 48vh;
-      }
+
+      img {
+      width: 60vw;
+      height: 20vw;
+    }
+    #line-1 {
+      font-weight: lighter;
+      font-size: 2.5vw;
+    }
+    #line-2 {
+      padding-bottom: 8vh;
+      font-weight: bold;
+      font-size: 1.4vw;
     }
   }
-}
-
-#form-container {
-  font: 3vh "Phudu";
-  margin: auto;
-  background-color: #f4f1ed;
-  text-align: -webkit-center;
-  padding-top: 8vh;
-  padding-bottom: 8vh;
-  margin-top: 10vh;
-  border: 0px solid #c5b9a1;
-  border-radius: 20px;
-  width: 65vw;
-  
-  h1 {
-    font-family: "Raleway";
-    font-size: 66px;
-    padding-bottom: 0vw;
-    margin-bottom: 1vw;
-    color: #36454f;
-    // color: #960303;
-  }
-  
-  #border-line {
-    display: flex;
-    width: 55vw;
-    border-top: 4px solid;
-    padding-bottom: 10vh;
-    border-color: #960303;
-  }
-  #labels {
-    display: flex;
-    justify-content: space-evenly;
-    color: #36454f;
-  }
 
 
-  label {
-    padding-bottom: 3vh;
-  }
-
-  .text-input {
-    display: block;
-  }
-
-  .text-input input {
-    width: 18vw;
-    padding: 1vw;
-    margin: 1vw;
-    font: x-large "Handlee";
-    text-align: center;
-    border: 2px solid #c5b9a1;
-    border-radius: 10px;
-  }
-
-  .radios {
-    display: block;
-    // font-family: "Raleway";
-  }
+    }
+    #form-container {
+      font: 3vh "Phudu";
+      margin: auto;
+      text-align: -webkit-center;
+      padding: 8vh 0;
+      margin-top: 0vh;
+      border-radius: 200px;
+      width: 65vw;
+      background: rgb(245,228,252);
+background: linear-gradient(90deg, rgba(245,228,252,1) 4%, rgba(245,241,247,1) 22%, rgba(250,239,254,1) 87%, rgba(245,228,252,1) 96%);
+// #title {
+//   font-size: 3vw;
+//   font-family: "Raleway";
+//   font-weight: lighter;
+// }
+      .labels {
+        display: flex;
+        justify-content: space-evenly;
+        color: #36454f;
+      }
+      
+      
+      label {
+        padding-bottom: 3vh;
+      }
+      
+      .text-input {
+        display: block;
+      }
+      
+      .text-input input {
+        width: 18vw;
+        padding: 1vw;
+        margin: 1vw;
+        font: x-large "Handlee";
+        text-align: center;
+        border: 2px solid #c5b9a1;
+        border-radius: 10px;
+      }
+      
+      .radios {
+        display: block;
+        // font-family: "Raleway";
+      }
+    }
 
   .radio-tags {
     padding-right: 2vw;
@@ -119,14 +114,22 @@
       color: #eae6dd;
       font-size: x-large;
       padding: 2rem;
-      border-radius: 40px;
+      border-radius: 100px;
       border: 0px solid #960303;
     }
-}
+
+    footer {
+      font: 40px "sacramento";
+      #pawprint {
+        height: 1em;
+        width: 1em;
+      }
+  }
+
 
 ::placeholder {
   font: medium "Raleway";
-  color: #796949;
+  // color: #796949;
 }
 /* On mouse-over, add a color */
 .text-input:hover input {

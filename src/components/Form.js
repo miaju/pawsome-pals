@@ -1,7 +1,8 @@
 import { useState, useEffect, React } from "react";
 import "./styling/Form.scss";
-import cuddling from "./styling/cuddling.png";
 import pawprint from "./styling/pawprint.svg";
+import coverphoto from "./styling/dog-cover-photo.png"
+
 /**
  *
  * @param { Object } props: addPet function
@@ -62,22 +63,26 @@ export default function Form(props) {
   }
 
   return (
-    <div id="body">
       <div id="page-container">
-        <div id="header">
-          <img src={cuddling} id="pets-cuddling" alt="cuddling-pets" />
-          <h1>
-            All's well that friends well
-            <img src={pawprint} id="pawprint" alt="pawprint-icon" />
-          </h1>
-        </div>
+
+        <header>
+            <h1>
+             Create <b>Paw</b>file
+            </h1>
+            <img src={coverphoto} />
+            <div id="line-1">
+          Sign up your best friend for more friends today!
+          </div>
+          <div id="line-2">
+          Don't worry - You'll always be their favourite.
+          </div>
+          </header>
+
         <div id="form-container">
-          <h1>
-            Create Your Pet's <b>Paw</b>file
-          </h1>
-          <span id="border-line"></span>
-          <form className="new-profile" onSubmit={onSubmit} autoComplete="on">
-            <div id="labels">
+
+          <span id="title">Brag About Your Pet</span>
+          <form className="new-profile" onSubmit={onSubmit} autoComplete="off">
+            <div className="labels">
               <label htmlFor="name of pet" className="text-input">
                 Name
                 <br />
@@ -196,8 +201,11 @@ export default function Form(props) {
 
             <button type="submit">READY TO PLAY</button>
           </form>
+        <footer>
+            All's well that friends well
+            <img src={pawprint} id="pawprint" alt="pawprint-icon" />
+        </footer>
         </div>
       </div>
-    </div>
   );
 }
