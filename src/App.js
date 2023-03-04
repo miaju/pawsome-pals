@@ -120,7 +120,7 @@ console.log('USER', user)
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
-            <Route path="/pets/view/:id" element={<PetDetail />} />
+            <Route path="/pets/:id" element={<PetDetail />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
             <Route path="/explore" element={<Advanced pets={pets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
