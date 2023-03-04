@@ -22,28 +22,31 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
-
+console.log('USER', user)
   useEffect(() => {
-    const getData = async () => {
-      await axios.get("http://localhost:8080/api/pets")
+    const getData =  () => {
+      axios.get(`http://localhost:8080/api/pets/${user.name}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
       });
-      await axios.get("http://localhost:8080/api/matches")
+      axios.get("http://localhost:8080/api/matches")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setMatches(data);
       });
-      await axios.get("http://localhost:8080/api/users")
+      axios.get("http://localhost:8080/api/users")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setUsers(data);
       });
     }
 
-    getData().catch(console.error);
-  }, []);
+    if(user) {
+      console.log(user)
+      getData();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user && !checked) {
@@ -59,7 +62,7 @@ function App() {
 
       getUserByEmail(user.name)
       .then(response => {
-        // console.log('USER IS', user)
+        console.log('USER IS', user)
         if(Object.keys(response.data).length === 0) {
           addUser(user);
         }
