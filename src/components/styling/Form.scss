@@ -10,9 +10,9 @@
   header {
     text-align: -webkit-center;
     font-family: "Raleway";
+    margin-bottom: 8vh;
 
     h1 {
-      font-weight: lighter;
       font-size: 5vw;
       margin-top: 3vh;
       margin-bottom: 7vh;
@@ -38,34 +38,42 @@
   }
 
   #form-container {
-    font: 3vh "Phudu";
+    // font: 3vh "Phudu";
+    font: 3vh "Raleway";
     margin: auto;
     text-align: -webkit-center;
     width: 65vw;
 
     #title {
-      font-size: 3vw;
-      font-family: "Raleway";
-      font-weight: lighter;
+      font-size: 5vw;
+      font-weight: bolder;
+      background-color: #ac436c;
+      padding: 3vh;
+      border: 3px solid none;
+      border-radius: 30px;
+      color: white;
     }
 
     #new-profile {
+      border: 0.5px solid black;
+      margin-bottom: 6vh;
+
       .text-input {
-        margin: 1vw;
-        // background-color: red;
+        margin-top: 10vh;
         display: block;
 
         label {
           margin: 1vw;
+          color: #520A51;
           // background-color: blue;
 
           input {
-            width: 18vw;
+            width: 20vw;
             padding: 1vw;
             margin: 1vw;
             font: x-large "Handlee";
             text-align: center;
-            border: 2px solid #c5b9a1;
+            border: 1.5px solid black;
             border-radius: 10px;
           }
         }
@@ -84,8 +92,8 @@
         .selection {
           padding: 1vw;
         }
-        // padding: 1vw;
         .radio-options {
+          color: #520A51;
           font-family: "Raleway";
           padding: 1vw;
           padding-right: 2vw;
@@ -95,7 +103,7 @@
       input[type="file"]::file-selector-button {
         margin-right: 20px;
         border: none;
-        background: #084cdf;
+        background: #6BAEFD;
         padding: 10px 20px;
         border-radius: 10px;
         color: #fff;
@@ -117,8 +125,9 @@
         height: 200px;
         padding: 20px;
         border-radius: 10px;
-        border: 2px dashed #555;
+        border: 2px dashed #F9F6FD;;
         color: #444;
+        margin: 0 7vw;
         cursor: pointer;
         transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
       }
@@ -139,26 +148,50 @@
         text-align: center;
         transition: color 0.2s ease-in-out;
       }
-
-      button {
-        background-color: #960303;
-        color: #eae6dd;
-        font-size: x-large;
-        padding: 3vw;
-        border-radius: 100px;
-        border: 0px;
-        margin: 4vw;
-      }
-
-      footer {
-        font: 40px "sacramento";
-        margin-top: 5vh;
-        #pawprint {
-          height: 1em;
-          width: 1em;
-        }
-      }
     }
+
+    button {
+      display: inline-block;
+      outline: 0;
+      border: 0;
+      margin: 4vh;
+      color: #520A51;
+      font-family: "Handlee";
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      background: #fff;
+      line-height: 30px;
+      border-radius: 40px;
+      padding: 30px;
+      font-size: 30px;
+      font-weight: 600;
+      box-shadow: #ac436c -2px -2px 0px 2px, #D6BAEF 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+      transition: all 0.2s;
+    }
+    button:hover {
+      box-shadow: #ac436c -2px -2px 0px 2px, #6BAEFD 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+      transform: scale(1.01);
+    }
+  }
+}
+
+.dog-icon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 15vh;
+}
+
+footer {
+  font: 20px "sacramento";
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  #pawprint {
+    height: 1em;
+    width: 1em;
   }
 }
 
@@ -167,8 +200,8 @@
   // color: #796949;
 }
 /* On mouse-over, add a color */
-.text-input:hover input {
-  background-color: #faf9f7;
+input:hover {
+  background-color: #FDF9FF;
 }
 
 #container #description input {

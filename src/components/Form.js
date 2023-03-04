@@ -1,7 +1,9 @@
-import { useState, useEffect, React } from "react";
+import { useState, React } from "react";
 import "./styling/Form.scss";
 import pawprint from "./styling/pawprint.svg";
 import coverphoto from "./styling/dog-cover-photo.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDog } from '@fortawesome/free-solid-svg-icons'
 
 /**
  *
@@ -74,7 +76,7 @@ export default function Form(props) {
       </header>
 
       <div id="form-container">
-        <span id="title">Brag About Your Pet</span>
+        <span id="title">Pet Registration Form</span>
 
         <form id="new-profile" onSubmit={onSubmit} autoComplete="off">
           <div className="text-input">
@@ -115,7 +117,7 @@ export default function Form(props) {
             </label>
 
             <label htmlFor="city">
-              city
+              City
               <br />
               <input {...city} placeholder="City" required />
             </label>
@@ -126,7 +128,7 @@ export default function Form(props) {
                 {...description}
                 placeholder="How would your pet describe themselves?"
                 minLength="10"
-                maxLength="240"
+                maxLength="140"
                 id="description"
                 required
               />
@@ -173,8 +175,8 @@ export default function Form(props) {
           <br />
 
           <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
-          <span class="drop-title">Drop files here</span>
-          or
+            <span class="drop-title">Drop files here</span>
+            or
             <input
               type="file"
               onChange={(event) => {
@@ -187,12 +189,19 @@ export default function Form(props) {
           </label>
           <br />
 
-          <button type="submit">READY TO PLAY</button>
-          <footer>
-            All's well that friends well
-            <img src={pawprint} id="pawprint" alt="pawprint-icon" />
-          </footer>
+          <button type="submit">playtime</button>
+
         </form>
+          <div className="dog-icon">
+          <FontAwesomeIcon icon={faDog} bounce transform={{ rotate: 5 }}/>
+          <FontAwesomeIcon icon={faDog} size="xl"/> <br/>
+          </div>
+
+        <footer>
+          All's well that friends well
+          <img src={pawprint} id="pawprint" alt="pawprint-icon" />
+        </footer>
+
       </div>
     </div>
   );
