@@ -1,7 +1,7 @@
 import { useState, useEffect, React } from "react";
 import "./styling/Form.scss";
 import pawprint from "./styling/pawprint.svg";
-import coverphoto from "./styling/dog-cover-photo.png"
+import coverphoto from "./styling/dog-cover-photo.png";
 
 /**
  *
@@ -56,156 +56,144 @@ export default function Form(props) {
       spayed_or_neutered: value_toBoolean,
       city: city.value,
       description: description.value,
-      photo_url: file_toURL
+      photo_url: file_toURL,
     };
 
     props.addPet(newPetProfile);
   }
 
   return (
-      <div id="page-container">
+    <div id="page-container">
+      <header>
+        <h1>
+          Create <b>Paw</b>file
+        </h1>
+        <img src={coverphoto} />
+        <div id="line-1">Sign up your best friend for more friends today!</div>
+        <div id="line-2">Don't worry - You'll always be their favourite.</div>
+      </header>
 
-        <header>
-            <h1>
-             Create <b>Paw</b>file
-            </h1>
-            <img src={coverphoto} />
-            <div id="line-1">
-          Sign up your best friend for more friends today!
-          </div>
-          <div id="line-2">
-          Don't worry - You'll always be their favourite.
-          </div>
-          </header>
+      <div id="form-container">
+        <span id="title">Brag About Your Pet</span>
 
-        <div id="form-container">
-
-          <span id="title">Brag About Your Pet</span>
-          <form className="new-profile" onSubmit={onSubmit} autoComplete="off">
-            <div className="labels">
-              <label htmlFor="name of pet" className="text-input">
-                Name
-                <br />
-                <input
-                  {...name}
-                  id="name"
-                  placeholder="enter your pet's name"
-                  required
-                />
-              </label>
-
-              <label htmlFor="breed of pet" className="text-input">
-                Breed
-                <br />
-                <input
-                  {...breed}
-                  id="breed"
-                  placeholder="enter your pet's breed"
-                  required
-                />
-              </label>
-
-              <label htmlFor="age of pet" className="text-input">
-                Age
-                <br />
-                <input
-                  {...age}
-                  id="age"
-                  placeholder="enter your pets age"
-                  maxLength="2"
-                  min="0"
-                  type="number"
-                  required
-                />
-              </label>
-            </div>
-
-            <label htmlFor="gender of pet" className="radios">
-              <span className="radio-tags">Gender :</span>
-              <input {...sex} value="Male" type="radio" name="sex" required />
-              <span className="sex">M</span>
-              <input {...sex} value="Female" type="radio" name="sex" />
-              <span className="sex">F</span>
-            </label>
-
-            <label htmlFor="spayed or neutered" className="radios">
-              <span className="radio-tags">Spayed / Neutered :</span>
+        <form id="new-profile" onSubmit={onSubmit} autoComplete="off">
+          <div className="text-input">
+            <label htmlFor="name of pet">
+              Name
+              <br />
               <input
-                {...spayed_or_neutered}
-                value="Yes"
-                type="radio"
-                name="spayed_or_neutered"
+                {...name}
+                id="name"
+                placeholder="enter your pet's name"
                 required
               />
-              <span className="spayed_or_neutered">Y</span>
-              <input
-                {...spayed_or_neutered}
-                value="No"
-                type="radio"
-                name="spayed_or_neutered"
-              />
-              <span className="spayed_or_neutered">N</span>
             </label>
 
-            <label htmlFor="size of pet" className="radios">
-              <span className="radio-tags">Size :</span>
+            <label htmlFor="breed of pet">
+              Breed
+              <br />
               <input
-                {...size}
-                value="Small"
-                type="radio"
-                name="size"
+                {...breed}
+                id="breed"
+                placeholder="enter your pet's breed"
                 required
               />
-              <span className="size">S (up to 24 lbs)</span>
-              <input {...size} value="Medium" type="radio" name="size" />
-              <span className="size">M (25- 59 lbs)</span>
-              <input {...size} value="Large" type="radio" name="size" />
-              <span className="size">L (60 lbs+)</span>
             </label>
-            <br />
 
-            <label htmlFor="city" className="text-input">
+            <label htmlFor="age of pet">
+              Age
+              <br />
+              <input
+                {...age}
+                id="age"
+                placeholder="enter your pets age"
+                maxLength="2"
+                min="0"
+                type="number"
+                required
+              />
+            </label>
+
+            <label htmlFor="city">
               city
               <br />
               <input {...city} placeholder="City" required />
             </label>
 
-            <label
-              htmlFor="description of pet"
-              className="text-input"
-              id="description"
-            >
+            <label htmlFor="description of pet" className="text-input">
               Description <br />
               <input
                 {...description}
                 placeholder="How would your pet describe themselves?"
-                minLength="3"
+                minLength="10"
+                maxLength="240"
+                id="description"
                 required
               />
             </label>
             <br />
+          </div>
 
-            <label name="photo_url" htmlFor="upload pet photo">
-              <input
-                type="file"
-                onChange={(event) => {
-                  // console.log(event.target.files[0]);
-                  setPhoto(event.target.files[0]);
-                }}
-                id="upload_img"
-                name="photo_url"
-                required
-              />
-            </label>
-            <br/>
+          <label htmlFor="gender of pet" className="radios">
+            <span className="radio-options">Gender :</span>
+            <input {...sex} value="Male" type="radio" name="sex" required />
+            <span className="selection">M</span>
+            <input {...sex} value="Female" type="radio" name="sex" />
+            <span className="selection">F</span>
+          </label>
 
-            <button type="submit">READY TO PLAY</button>
-          </form>
-        <footer>
+          <label htmlFor="spayed or neutered" className="radios">
+            <span className="radio-options">Spayed / Neutered :</span>
+            <input
+              {...spayed_or_neutered}
+              value="Yes"
+              type="radio"
+              name="spayed_or_neutered"
+              required
+            />
+            <span className="selection">Y</span>
+            <input
+              {...spayed_or_neutered}
+              value="No"
+              type="radio"
+              name="spayed_or_neutered"
+            />
+            <span className="selection">N</span>
+          </label>
+
+          <label htmlFor="size of pet" className="radios">
+            <span className="radio-options">Size :</span>
+            <input {...size} value="Small" type="radio" name="size" required />
+            <span className="selection">S (up to 24 lbs)</span>
+            <input {...size} value="Medium" type="radio" name="size" />
+            <span className="selection">M (25- 59 lbs)</span>
+            <input {...size} value="Large" type="radio" name="size" />
+            <span className="selection">L (60 lbs+)</span>
+          </label>
+          <br />
+
+          <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
+          <span class="drop-title">Drop files here</span>
+          or
+            <input
+              type="file"
+              onChange={(event) => {
+                // console.log(event.target.files[0]);
+                setPhoto(event.target.files[0]);
+              }}
+              name="photo_url"
+              required
+            />
+          </label>
+          <br />
+
+          <button type="submit">READY TO PLAY</button>
+          <footer>
             All's well that friends well
             <img src={pawprint} id="pawprint" alt="pawprint-icon" />
-        </footer>
-        </div>
+          </footer>
+        </form>
       </div>
+    </div>
   );
 }

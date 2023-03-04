@@ -1,5 +1,5 @@
 import { useState, React, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -68,6 +68,7 @@ function App() {
   }, [checked, user, users])
 
 
+
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
@@ -77,13 +78,13 @@ function App() {
       const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
 
       return axios
-        .post(`http://localhost:8080/api/pets`, { 
+        .post(`http://localhost:8080/api/pets`, {
           'name': name,
           'breed': breed,
           'age': age,
           'sex': sex,
           'spayed_or_neutered': spayed_or_neutered,
-          'size': size, 
+          'size': size,
           'city': city,
           'description': description,
           'photo_url': photo_url
@@ -91,7 +92,8 @@ function App() {
         .then((res) => {
           console.log("made it here")
           setPets([...pets, pet]);
-          // console.log(res.data);
+          return redirect("http://localhost:3000/pets/view");
+          console.log("didn't redirect")
         });
     }
 
