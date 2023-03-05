@@ -23,7 +23,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
-console.log('USER', user)
+
   useEffect(() => {
     const getData =  () => {
       axios.get("http://localhost:8080/api/pets")
@@ -49,7 +49,6 @@ console.log('USER', user)
     }
 
     if(user) {
-      console.log(user)
       getData();
     }
   }, [user]);
@@ -62,13 +61,11 @@ console.log('USER', user)
           .post('http://localhost:8080/api/users', {'email': user.name})
           .then(response => {
             setUsers([...users, user]);
-            console.log(response.data)
           });
       }
 
       getUserByEmail(user.name)
       .then(response => {
-        console.log('USER IS', user)
         if(Object.keys(response.data).length === 0) {
           addUser(user);
         }
