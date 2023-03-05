@@ -1,5 +1,5 @@
 import React from "react";
-import "./styling/MatchItem.scss"
+import "./styling/PetItem.scss"
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -11,13 +11,13 @@ export default function PetDetail(props) {
 
   return (
     <>
-      <section class="match-card">
+      <section id="pet-card">
         <div class="left">
           <img class="image" src={location.state.data.photo_url} alt={props.name}/>
         </div>
         <div class="right">
-          <div class="match-name">{location.state.data.name}</div>
-          <div class="match-info">
+          <div class="pet-name">{location.state.data.name}</div>
+          <div class="pet-info">
             Breed: {location.state.data.breed}<br />
             Age: {location.state.data.age}<br />
             Sex: {location.state.data.sex}<br />
