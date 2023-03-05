@@ -17,6 +17,7 @@ import MatchDetail from "components/MatchDetail";
 
 
 function App() {
+  const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
@@ -25,6 +26,11 @@ function App() {
 console.log('USER', user)
   useEffect(() => {
     const getData =  () => {
+      axios.get("http://localhost:8080/api/pets")
+      .then((response) => {
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setAllpets(shuffle(data));
+      });
       axios.get(`http://localhost:8080/api/pets/${user.name}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
@@ -122,7 +128,7 @@ console.log('USER', user)
             <Route path="/pets/view" element={<PetList pets={pets} />} />
             <Route path="/pets/:id" element={<PetDetail />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
-            <Route path="/explore" element={<Advanced pets={pets} />}/>
+            <Route path="/explore" element={<Advanced pets={allpets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
             <Route path="/matches/:id" element={<MatchDetail />} />
           </Routes>
