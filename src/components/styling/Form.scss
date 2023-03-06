@@ -1,12 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap"); // font-family: "Sacramento";
-@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap"); // font-family: "Phudu";
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap"); // font-family: "Raleway";
+@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 
 #page-container {
   margin: 0 14vw;
-  padding: 3vh 0;
-
   header {
     text-align: -webkit-center;
     font-family: "Raleway";
@@ -175,23 +172,6 @@
         rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
       transform: scale(1.01);
     }
-  }
-}
-
-.dog-icon {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 15vh;
-}
-
-footer {
-  font: 20px "sacramento";
-  margin-top: 2vh;
-  margin-bottom: 1vh;
-  #pawprint {
-    height: 1em;
-    width: 1em;
   }
 }
 
