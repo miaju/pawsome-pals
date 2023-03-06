@@ -38,7 +38,7 @@ function App() {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setAllpets(shuffle(data));
       });
-      axios.get(`http://localhost:8080/api/pets/${user.name}`)
+      axios.get(`http://localhost:8080/api/pets/${userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
