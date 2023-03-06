@@ -19,6 +19,7 @@ import MatchDetail from "components/MatchDetail";
 function App() {
   const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
+  const [currentpet, setCurrentpet] = useState({});
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -47,7 +48,6 @@ function App() {
         setUsers(data);
       });
     }
-
     if(user) {
       getData();
     }
@@ -113,7 +113,6 @@ function App() {
   }
 
 
-
   return (
     <div>
       <BrowserRouter>
@@ -122,7 +121,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
-            <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/pets/view" element={<PetList pets={pets} onChange={setCurrentpet} />} />
             <Route path="/pets/:id" element={<PetDetail />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
             <Route path="/explore" element={<Advanced pets={allpets} />}/>

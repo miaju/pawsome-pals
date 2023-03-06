@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function PetDetail(props) {
-
   const location = useLocation();
+  console.log('PETDETAIL', location)
   const navigate = useNavigate();
 
   return (
