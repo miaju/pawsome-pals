@@ -12,6 +12,7 @@ import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
+import MessageList from "components/MessageList";
 
 
 function App() {
@@ -118,6 +119,7 @@ function App() {
             <Route path="/explore" element={<Advanced pets={pets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
             <Route path="/matches/:id" element={<MatchDetail />} />
+            <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
       </BrowserRouter>
