@@ -32,16 +32,16 @@
 
   .cardContainer {
     width: 90vw;
-    max-width: 300px;
+    max-width: 90vw;
     height: 500px;
     display: flex;
-    flex-direction: row;
+
   }
 
   .cardInfo {
     position: absolute;
     margin-top: 300px;
-    width: 90vw;
+
   }
 
   .card {

@@ -66,9 +66,9 @@ function Advanced (props) {
   return (
     <div className='matchlist'>
       <h1>Explore!</h1>
-      <div className='cardContainer'>
+      <div className='cardContainer' style={clicked ? {maxHeight: 500} : {maxHeight: 350}}>
         {db.map((character, index) => (
-          <><TinderCard
+          <div><TinderCard
             ref={childRefs[index]}
             className='swipe'
             key={character.name}
@@ -90,7 +90,7 @@ function Advanced (props) {
               Size: {character.size}<br />
               City: {character.city}<br />
               Description: {character.description}
-          </div>) : <></>}</>
+          </div>) : <></>}</div>
         ))}
       </div>
       <div className='buttons'>
