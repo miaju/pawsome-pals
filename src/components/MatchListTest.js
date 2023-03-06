@@ -1,13 +1,16 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faXmark, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 import "./styling/MatchListTest.scss";
 
 
 function Advanced (props) {
-  const db = props.pets;
+  const db = props.pets.slice(0,4);
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
+  const [clicked, setClicked] = useState(false);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
@@ -35,6 +38,8 @@ function Advanced (props) {
     updateCurrentIndex(index - 1)
   }
 
+  const click = () => {setClicked(!clicked)}
+
   const outOfFrame = (name, idx) => {
     console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
     // handle the case in which go back is pressed before card goes outOfFrame
@@ -60,29 +65,38 @@ function Advanced (props) {
 
   return (
     <div className='matchlist'>
-      <h1>React Tinder Card</h1>
+      <h1>Explore!</h1>
       <div className='cardContainer'>
         {db.map((character, index) => (
-          <TinderCard
+          <><TinderCard
             ref={childRefs[index]}
             className='swipe'
             key={character.name}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}
+
           >
             <div
               style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
               className='card'
             >
-              <h3>{character.name}</h3>
+            <h3 onClick={click}>{character.name}</h3>
             </div>
           </TinderCard>
+          {clicked ? (<div className='cardInfo' >
+              Breed: {character.breed}<br />
+              Age: {character.age}<br />
+              Sex: {character.sex}<br />
+              Size: {character.size}<br />
+              City: {character.city}<br />
+              Description: {character.description}
+          </div>) : <></>}</>
         ))}
       </div>
       <div className='buttons'>
-        <button onClick={() => swipe('left')}>Swipe left!</button>
-        <button onClick={() => goBack()}>Undo swipe!</button>
-        <button onClick={() => swipe('right')}>Swipe right!</button>
+        <button onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
+        <button onClick={() => goBack()}><FontAwesomeIcon icon={faUndo} /></button>
+        <button onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
       </div>
       {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
@@ -90,7 +104,6 @@ function Advanced (props) {
         </h2>
       ) : (
         <h2 className='infoText'>
-          Swipe a card or press a button to get Restore Card button visible!
         </h2>
       )}
     </div>
