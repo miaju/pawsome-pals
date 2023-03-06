@@ -12,7 +12,7 @@ export default function PetDetail(props) {
     <>
       <section id="pet-card">
         <div className="left">
-          <img className="image" src={location.state.data.photo_url} alt={props.name}/>
+          <img className="image" src={location.state.data.photo_url} alt={props.name} />
         </div>
         <div className="right">
           <div className="pet-name">{location.state.data.name}</div>
@@ -25,13 +25,13 @@ export default function PetDetail(props) {
             Description: {location.state.data.description}
           </div>
         </div>
-        <div className="select-pet">
+      </section>
+      <div className="select-pet">
         <button onClick={() => props.onChange(location.state.data.id)}>
           Go on a playdate with me!
         </button>
       </div>
-      </section>
-      <div>
+      <div className="previous-page">
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
       </div>
     </>
