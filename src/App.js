@@ -1,5 +1,5 @@
 import { useState, React, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -12,7 +12,6 @@ import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
-
 
 
 function App() {
@@ -44,6 +43,7 @@ function App() {
     getData().catch(console.error);
   }, []);
 
+
   useEffect(() => {
     if (user && !checked) {
 
@@ -69,43 +69,41 @@ function App() {
 
 
 
-
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
-   * Values: name, fixed, breed, sex, age, location, description, size, housetrained
+   * Values: name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url
    */
-  function addPet(pet) {
-    const id = pets.length + 1;
-    const newPet = {};
+   async function addPet(pet) {
+      const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
+
+      return axios
+        .post(`http://localhost:8080/api/pets`, {
+          'name': name,
+          'breed': breed,
+          'age': age,
+          'sex': sex,
+          'spayed_or_neutered': spayed_or_neutered,
+          'size': size,
+          'city': city,
+          'description': description,
+          'photo_url': photo_url
+        })
+        .then((res) => {
+          console.log("made it here")
+          setPets([...pets, pet]);
+          return redirect("http://localhost:3000/pets/view");
+          console.log("didn't redirect")
+        });
+    }
 
 
-    const petDetails = {
-      id,
-      user_id: 100,
-      ...pet,
-    };
-
-    newPet[id] = petDetails;
-    console.log(newPet);
-    return axios
-      .put(`http://localhost:8080/api/pets/${id - 1}`, { newPet })
-      .then(() => {
-        console.log("Made it here!");
-        setPets([...pets, newPet]);
-      });
-  }
-
-  // An array containing an object of objects => pets[0]
-  //console.log(pets[0]);
   async function getUserByEmail(email) {
     setChecked(true);
     return await axios
       .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
       .catch(err => console.error(err));
   }
-
-
 
   return (
     <div>
