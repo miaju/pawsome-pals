@@ -6,18 +6,17 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function PetDetail(props) {
   const location = useLocation();
-  console.log('PETDETAIL', location)
   const navigate = useNavigate();
 
   return (
     <>
       <section id="pet-card">
-        <div class="left">
-          <img class="image" src={location.state.data.photo_url} alt={props.name}/>
+        <div className="left">
+          <img className="image" src={location.state.data.photo_url} alt={props.name}/>
         </div>
-        <div class="right">
-          <div class="pet-name">{location.state.data.name}</div>
-          <div class="pet-info">
+        <div className="right">
+          <div className="pet-name">{location.state.data.name}</div>
+          <div className="pet-info">
             Breed: {location.state.data.breed}<br />
             Age: {location.state.data.age}<br />
             Sex: {location.state.data.sex}<br />
@@ -26,6 +25,11 @@ export default function PetDetail(props) {
             Description: {location.state.data.description}
           </div>
         </div>
+        <div className="select-pet">
+        <button onClick={() => props.onChange(location.state.data.id)}>
+          Go on a playdate with me!
+        </button>
+      </div>
       </section>
       <div>
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
