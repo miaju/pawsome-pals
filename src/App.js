@@ -7,7 +7,8 @@ import Form from "components/Form";
 import NavBar from "components/NavBar";
 import Profile from "components/Profile";
 import Home from "components/Home";
-import PetList from "components/PetList"
+import PetList from "components/PetList";
+import PetDetail from "components/PetDetail";
 import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
@@ -15,33 +16,41 @@ import MatchDetail from "components/MatchDetail";
 
 
 function App() {
+  const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
+  const [currentpet, setCurrentpet] = useState({});
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    const getData = async () => {
-      await axios.get("http://localhost:8080/api/pets")
+    const getData =  () => {
+      axios.get("http://localhost:8080/api/pets")
+      .then((response) => {
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setAllpets(shuffle(data));
+      });
+      axios.get(`http://localhost:8080/api/pets/${user.name}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
       });
-      await axios.get("http://localhost:8080/api/matches")
+      axios.get("http://localhost:8080/api/matches")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setMatches(data);
       });
-      await axios.get("http://localhost:8080/api/users")
+      axios.get("http://localhost:8080/api/users")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setUsers(data);
       });
     }
-
-    getData().catch(console.error);
-  }, []);
+    if(user) {
+      getData();
+    }
+  }, [user]);
 
 
   useEffect(() => {
@@ -52,13 +61,11 @@ function App() {
           .post('http://localhost:8080/api/users', {'email': user.name})
           .then(response => {
             setUsers([...users, user]);
-            console.log(response.data)
           });
       }
 
       getUserByEmail(user.name)
       .then(response => {
-
         if(Object.keys(response.data).length === 0) {
           addUser(user);
         }
@@ -67,7 +74,7 @@ function App() {
     }
   }, [checked, user, users])
 
-
+console.log('CURRENTPET', currentpet)
 
   /**
    *
@@ -114,8 +121,9 @@ function App() {
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/pets/:id" element={<PetDetail onChange={setCurrentpet} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
-            <Route path="/explore" element={<Advanced pets={pets} />}/>
+            <Route path="/explore" element={<Advanced pets={allpets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
             <Route path="/matches/:id" element={<MatchDetail />} />
           </Routes>

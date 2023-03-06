@@ -10,6 +10,7 @@ export default function PetList(props) {
         props.pets.map(pet => (
           <PetListItem
             key={pet.id}
+            id={pet.id}
             name={pet.name}
             breed={pet.breed}
             age={pet.age}

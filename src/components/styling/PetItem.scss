@@ -1,4 +1,4 @@
-.match-card {
+#pet-card {
   width: 75%;
   display: flex;
   float: left;
@@ -35,7 +35,7 @@
     flex-direction: column;
 
 
-    .match-name {
+    .pet-name {
       position: absolute;
       width: max-content;
       font-size: 2.575rem;
@@ -46,7 +46,7 @@
       left: 7%;
     }
 
-    .match-name::after {
+    .pet-name::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -57,7 +57,7 @@
       background: black;
     }
 
-    .match-info {
+    .pet-info {
       position: absolute;
       font-size: 1.25rem;
       width: 40%;
@@ -68,15 +68,37 @@
       text-align: left;
 
     }
+  }
 
+}
+
+.select-pet {
+  font-family: Courier New;
+
+  button {
+    background: hsl(0, 0%, 95%);
+    box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, .3);
+    position: fixed;
+    bottom: 3em;
+    left: 50%;
+    transform: translateX(-50%) scale(1.2);
+    border: 0;
+    background: transparent;
+  }
+  button:hover {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.19), rgba(0, 0, 255, 0.197));
   }
 }
 
-.back-btn {
-  position: absolute;
-  left: 6%;
-  width: 100px;
-  top: 5em;
-  background: transparent;
-  border: 0;
+.previous-page{
+  font-family: Courier New;
+
+  .back-btn {
+    position: absolute;
+    left: 6%;
+    width: 100px;
+    top: 5em;
+    background: transparent;
+    border: 0;
+  }
 }

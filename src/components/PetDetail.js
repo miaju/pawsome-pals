@@ -1,23 +1,22 @@
-import React from "react"
-import "./styling/MatchItem.scss"
+import React from "react";
+import "./styling/PetItem.scss"
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-export default function MatchDetail(props) {
-
+export default function PetDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
     <>
-      <section class="match-card">
-        <div class="left">
-          <img class="image" src={location.state.data.photo_url} alt={props.name}/>
+      <section id="pet-card">
+        <div className="left">
+          <img className="image" src={location.state.data.photo_url} alt={props.name} />
         </div>
-        <div class="right">
-          <div class="match-name">{location.state.data.name}</div>
-          <div class="match-info">
+        <div className="right">
+          <div className="pet-name">{location.state.data.name}</div>
+          <div className="pet-info">
             Breed: {location.state.data.breed}<br />
             Age: {location.state.data.age}<br />
             Sex: {location.state.data.sex}<br />
@@ -27,7 +26,12 @@ export default function MatchDetail(props) {
           </div>
         </div>
       </section>
-      <div>
+      <div className="select-pet">
+        <button onClick={() => props.onChange(location.state.data.id)}>
+          Go on a playdate with me!
+        </button>
+      </div>
+      <div className="previous-page">
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
       </div>
     </>
