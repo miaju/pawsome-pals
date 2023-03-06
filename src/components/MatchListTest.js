@@ -57,7 +57,7 @@ function Advanced (props) {
 
   // increase current index and show card
   const goBack = async () => {
-    if (!canGoBack) return
+    if (!canGoBack) {return}
     const newIndex = currentIndex + 1
     updateCurrentIndex(newIndex)
     await childRefs[newIndex].current.restoreCard()
@@ -82,15 +82,16 @@ function Advanced (props) {
             >
             <h3 onClick={click}>{character.name}</h3>
             </div>
-          </TinderCard>
-          {clicked ? (<div className='cardInfo' >
+            {clicked ? (<div className='cardInfo' >
               Breed: {character.breed}<br />
               Age: {character.age}<br />
               Sex: {character.sex}<br />
               Size: {character.size}<br />
               City: {character.city}<br />
               Description: {character.description}
-          </div>) : <></>}</div>
+          </div>) : <></>}
+          </TinderCard>
+          </div>
         ))}
       </div>
       <div className='buttons'>
