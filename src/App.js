@@ -100,7 +100,6 @@ console.log('CURRENTPET', currentpet)
           console.log("made it here")
           setPets([...pets, pet]);
           return redirect("http://localhost:3000/pets/view");
-          console.log("didn't redirect")
         });
     }
 
