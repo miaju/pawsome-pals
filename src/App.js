@@ -13,6 +13,7 @@ import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
 import MessageList from "components/MessageList";
+import Footer from "components/Footer";
 
 
 function App() {
@@ -123,6 +124,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
