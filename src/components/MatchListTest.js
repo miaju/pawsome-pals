@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import axios from "axios";
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
