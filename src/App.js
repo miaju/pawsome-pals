@@ -38,7 +38,6 @@ function App() {
   };
 
   async function getUserByEmail(email) {
-    setChecked(true);
     return await axios
       .get(`http://localhost:8080/api/users`, { params: { 'email': email } })
       .catch(err => console.error(err));
@@ -93,6 +92,7 @@ function App() {
           .post('http://localhost:8080/api/users', { 'email': user.name })
           .then(response => {
             setUsers([...users, user]);
+            setChecked(true);
           });
       }
 
@@ -151,7 +151,26 @@ function App() {
       });
   }
 
+  async function addMatch(match) {
+    if (match.currentPet && match.target) {
+      const relationship = {
+        current_pet: match.currentPet.id,
+        other_pet: match.target.id
+      }
+      axios.post("http://localhost:8080/api/relationships", relationship)
+        .then((res) => {
+          if (match.dir === 'right') {
+            const newMatch = {
+              pet_one: match.currentPet.id,
+              pet_two: match.target.id,
+            }
 
+            axios.put("http://localhost:8080/api/matches", newMatch)
+              .then(res => console.log(res));
+          }
+        }).catch(err => console.log(err));
+    }
+  }
 
   return (
     <div>
@@ -161,10 +180,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect} />} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
+            <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
             <Route path="/pets/view" element={<PetList pets={pets} current={currentpet} />} />
             <Route path="/pets/:id" element={<PetDetail handlePetChange={handlePetChange} />} />
-            <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated} />} />
-            <Route path="/explore" element={<Advanced pets={allpets} />} />
             <Route path="/matches" element={<MatchList matches={matches} />} />
             <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} current={currentpet} />} />
             <Route path="/messages" element={<MessageList />} />
