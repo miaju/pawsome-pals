@@ -22,6 +22,7 @@ export default function MatchList(props) {
             city={match.city}
             description={match.description}
             photo_url={match.photo_url}
+            current={props.current}
           />
         )
         )
