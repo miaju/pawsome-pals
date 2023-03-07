@@ -19,49 +19,69 @@ import Footer from "components/Footer";
 
 function App() {
   const [allpets, setAllpets] = useState([]);
-  const [userPets, setUserPets] = useState([]);
-  const [currentpet, setCurrentpet] = useState({});
+  const [pets, setPets] = useState([]);
+  const [currentpet, setCurrentpet] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("currentpet");
+    const initialValue = JSON.parse(saved);
+    return initialValue || {};
+  });
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
+
+  const handlePetChange = (id) => {
+    localStorage.setItem('currentpet', JSON.stringify(id));
+    setCurrentpet(JSON.parse(localStorage.getItem('currentpet')));
+  };
+
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
+      .get(`http://localhost:8080/api/users`, { params: { 'email': email } })
       .catch(err => console.error(err));
   }
+
 
   useEffect(() => {
     const getData = (userId) => {
       axios.get("http://localhost:8080/api/pets")
-      .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setAllpets(shuffle(data));
-      });
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          setAllpets(shuffle(data));
+        });
       axios.get(`http://localhost:8080/api/pets/${userId}`)
-      .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setUserPets(shuffle(data));
-      });
-      axios.get("http://localhost:8080/api/matches")
-      .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setMatches(data);
-      });
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          setPets(shuffle(data));
+        });
       axios.get("http://localhost:8080/api/users")
-      .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setUsers(data);
-      });
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          setUsers(data);
+        });
     }
     if (user) {
-       getUserByEmail(user.name).then(res => {
+      getUserByEmail(user.name).then(res => {
         const userId = (Object.keys(res.data)[0]);
         getData(userId);
-       });
+      });
     }
   }, [user]);
+
+
+  useEffect(() => {
+    const currentId = JSON.parse(localStorage.getItem('currentpet'));
+    if (currentId) {
+      console.log(currentId);
+      axios.get(`http://localhost:8080/api/matches/${currentId}`)
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          setMatches(data);
+        });
+    }
+  }, [currentpet])
 
 
   useEffect(() => {
@@ -69,7 +89,7 @@ function App() {
 
       async function addUser(user) {
         return await axios
-          .post('http://localhost:8080/api/users', {'email': user.name})
+          .post('http://localhost:8080/api/users', { 'email': user.name })
           .then(response => {
             setUsers([...users, user]);
             setChecked(true);
@@ -77,43 +97,59 @@ function App() {
       }
 
       getUserByEmail(user.name)
-      .then(response => {
-        if(Object.keys(response.data).length === 0) {
-          addUser(user);
-        }
-      }).catch(err => console.log(err));
+        .then(response => {
+          if (Object.keys(response.data).length === 0) {
+            addUser(user);
+          }
+        }).catch(err => console.log(err));
 
     }
   }, [checked, user, users])
-
-//console.log('CURRENTPET', currentpet)
 
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
    * Values: name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url
    */
-   async function addPet(pet) {
-      const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
+  async function addPet(pet) {
+    const { name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url } = pet;
 
-      return axios
-        .post(`http://localhost:8080/api/pets`, {
-          'name': name,
-          'breed': breed,
-          'age': age,
-          'sex': sex,
-          'spayed_or_neutered': spayed_or_neutered,
-          'size': size,
-          'city': city,
-          'description': description,
-          'photo_url': photo_url
-        })
-        .then((res) => {
-          console.log("made it here")
-          setUserPets([...userPets, pet]);
-          return redirect("http://localhost:3000/pets/view");
-        });
-    }
+    return axios
+      .post(`http://localhost:8080/api/pets`, {
+        'name': name,
+        'breed': breed,
+        'age': age,
+        'sex': sex,
+        'spayed_or_neutered': spayed_or_neutered,
+        'size': size,
+        'city': city,
+        'description': description,
+        'photo_url': photo_url
+      })
+      .then((res) => {
+        console.log("made it here")
+        setPets([...pets, pet]);
+        return redirect("http://localhost:3000/pets/view");
+      });
+  }
+
+  async function unmatch(petId, otherId) {
+    return axios
+      .delete(`http://localhost:8080/api/matches`, {
+        data: {
+          'pet_id': petId,
+          'other_id': otherId
+        }
+      })
+      .then((res) => {
+        const update = matches.filter(p => p.id !== otherId);
+        setMatches(update);
+        return window.location = "/matches";
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   async function addMatch(match) {
     if (match.currentPet && match.target) {
@@ -142,14 +178,14 @@ function App() {
         <NavBar user={user} isLoading={isLoading} loginWithRedirect={loginWithRedirect} logout={logout}></NavBar>
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
+            <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect} />} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
-            <Route path="/pets/view" element={<PetList pets={userPets} />} />
-            <Route path="/pets/:id" element={<PetDetail onChange={setCurrentpet} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
-            <Route path="/explore" element={<Advanced userPets={userPets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
-            <Route path="/matches" element={<MatchList matches={matches} />}/>
-            <Route path="/matches/:id" element={<MatchDetail />} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
+            <Route path="/pets/view" element={<PetList pets={pets} current={currentpet} />} />
+            <Route path="/pets/:id" element={<PetDetail handlePetChange={handlePetChange} />} />
+            <Route path="/matches" element={<MatchList matches={matches} />} />
+            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} current={currentpet} />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
