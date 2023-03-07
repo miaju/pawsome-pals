@@ -19,7 +19,8 @@ import Footer from "components/Footer";
 
 function App() {
   const [allpets, setAllpets] = useState([]);
-  const [pets, setPets] = useState([]);
+  const [userPets, setUserPets] = useState([]);
+  const [explorePets, setExplorePets] = useState([]);
   const [currentpet, setCurrentpet] = useState({});
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
@@ -43,7 +44,7 @@ function App() {
       axios.get(`http://localhost:8080/api/pets/${userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setPets(shuffle(data));
+        setUserPets(shuffle(data));
       });
       axios.get("http://localhost:8080/api/matches")
       .then((response) => {
@@ -54,6 +55,12 @@ function App() {
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setUsers(data);
+      });
+      axios.get(`http://localhost:8080/api/pets/explore/${userId}`)
+      .then((response) => {
+        console.log(response.data);
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setExplorePets(shuffle(data));
       });
     }
     if (user) {
@@ -110,7 +117,7 @@ function App() {
         })
         .then((res) => {
           console.log("made it here")
-          setPets([...pets, pet]);
+          setUserPets([...userPets, pet]);
           return redirect("http://localhost:3000/pets/view");
         });
     }
@@ -125,10 +132,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
-            <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/pets/view" element={<PetList pets={userPets} />} />
             <Route path="/pets/:id" element={<PetDetail onChange={setCurrentpet} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
-            <Route path="/explore" element={<Advanced pets={allpets} />}/>
+            <Route path="/explore" element={<Advanced pets={explorePets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
             <Route path="/matches/:id" element={<MatchDetail />} />
             <Route path="/messages" element={<MessageList />} />
