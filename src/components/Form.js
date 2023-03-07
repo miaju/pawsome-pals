@@ -8,7 +8,7 @@ import coverphoto from "./styling/dog-cover-photo.png";
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
-  const [photo, setPhoto] = useState([]);
+  // const [photo, setPhoto] = useState([]);
 
   /**
    * @param { String } initial
@@ -32,6 +32,7 @@ export default function Form(props) {
   const spayed_or_neutered = useControlledInput("");
   const city = useControlledInput("");
   const description = useControlledInput("");
+  const photo_url = useControlledInput("");
 
   /**
    *
@@ -44,7 +45,7 @@ export default function Form(props) {
 
     const value_toBoolean = spayed_or_neutered.value === "Yes" ? true : false;
     const age_toNumber = Number(age.value);
-    const file_toURL = URL.createObjectURL(photo);
+    // const file_toURL = URL.createObjectURL(photo);
 
     const newPetProfile = {
       name: name.value,
@@ -55,7 +56,7 @@ export default function Form(props) {
       spayed_or_neutered: value_toBoolean,
       city: city.value,
       description: description.value,
-      photo_url: file_toURL,
+      photo_url: photo_url.value,
     };
 
     props.addPet(newPetProfile);
@@ -175,11 +176,12 @@ export default function Form(props) {
             <span className="drop-title">Drop files here</span>
             or
             <input
-              type="file"
-              onChange={(event) => {
-                // console.log(event.target.files[0]);
-                setPhoto(event.target.files[0]);
-              }}
+              type="text"
+              {...photo_url}
+              // onChange={(event) => {
+              //   // console.log(event.target.files[0]);
+              //   setPhoto(event.target.files[0]);
+              // }}
               name="photo_url"
               required
             />

@@ -122,6 +122,7 @@ function App() {
   // Create a new pet profile
   async function addPet(pet) {
     const currentId = userId;
+    console.log(currentId)
 
     const {
       name,
