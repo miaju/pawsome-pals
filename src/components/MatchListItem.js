@@ -11,7 +11,7 @@ export default function MatchListItem(props) {
       <Link to={`/matches/${props.id}`} state={{data: props}} >
       <div className="pet-image">
         <img className="image" src={props.photo_url} alt={props.name} />
-        <div href="#" class="like-button" title="Like Button">
+        <div href="#" className="like-button" title="Like Button">
           <FontAwesomeIcon icon={faHeart} />
         </div>
       </div>

@@ -9,6 +9,7 @@ export default function MatchDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log(props.current, location.state.data.id);
   return (
     <>
       <section class="match-card">
@@ -26,7 +27,7 @@ export default function MatchDetail(props) {
             Description: {location.state.data.description}
           </div>
           <div class="match-buttons">
-            <button class="btn-white">Unmatch <FontAwesomeIcon icon={faHeartCrack} /></button>
+            <button class="btn-white" onClick={() => {props.unmatch(props.current, location.state.data.id)}} >Unmatch <FontAwesomeIcon icon={faHeartCrack} /></button>
             <button component={Link} to="/messages">Message <FontAwesomeIcon icon={faEnvelope} /></button>
           </div>
         </div>

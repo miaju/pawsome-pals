@@ -39,10 +39,10 @@ function App() {
   };
 
   async function getUserByEmail(email) {
-    setChecked(true);
     return await axios
       .get(`http://localhost:8080/api/users`, { params: { email: email } })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
+
   }
 
   useEffect(() => {
@@ -69,6 +69,7 @@ function App() {
     if (user) {
       getUserByEmail(user.name).then((res) => {
         const userId = Object.keys(res.data)[0];
+
         getData(userId);
       });
     }
@@ -89,13 +90,15 @@ function App() {
     }
   }, [currentpet]);
 
+
   useEffect(() => {
     if (user && !checked) {
       async function addUser(user) {
         return await axios
-          .post("http://localhost:8080/api/users", { email: user.name })
-          .then((response) => {
+          .post('http://localhost:8080/api/users', { email: user.name })
+          .then(response => {
             setUsers([...users, user]);
+            setChecked(true);
           });
       }
 
@@ -154,6 +157,44 @@ function App() {
         setPets([...pets, pet]);
         // return redirect("http://localhost:3000/pets/view");
       });
+
+  async function unmatch(petId, otherId) {
+    return axios
+      .delete(`http://localhost:8080/api/matches`, {
+        data: {
+          'pet_id': petId,
+          'other_id': otherId
+        }
+      })
+      .then((res) => {
+        const update = matches.filter(p => p.id !== otherId);
+        setMatches(update);
+        return window.location = "/matches";
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  async function addMatch(match) {
+    if (match.currentPet && match.target) {
+      const relationship = {
+        current_pet: match.currentPet.id,
+        other_pet: match.target.id
+      }
+      axios.post("http://localhost:8080/api/relationships", relationship)
+        .then((res) => {
+          if (match.dir === 'right') {
+            const newMatch = {
+              pet_one: match.currentPet.id,
+              pet_two: match.target.id,
+            }
+
+            axios.put("http://localhost:8080/api/matches", newMatch)
+              .then(res => console.log(res));
+          }
+        }).catch(err => console.log(err));
+    }
   }
 
   return (
@@ -167,6 +208,7 @@ function App() {
         ></NavBar>
         <div className="content">
           <Routes>
+
             <Route
               path="/"
               element={
@@ -197,10 +239,12 @@ function App() {
                 />
               }
             />
-            <Route path="/explore" element={<Advanced pets={allpets} />} />
+
             <Route path="/matches" element={<MatchList matches={matches} />} />
-            <Route path="/matches/:id" element={<MatchDetail />} />
-            {/* <Route path="/messages" element={<MessageList />} /> */}
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
+            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} current={currentpet} />} />
+            <Route path="/messages" element={<MessageList />} />
+
           </Routes>
         </div>
       </BrowserRouter>
