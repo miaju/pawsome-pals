@@ -20,7 +20,6 @@ import Footer from "components/Footer";
 function App() {
   const [allpets, setAllpets] = useState([]);
   const [userPets, setUserPets] = useState([]);
-  const [explorePets, setExplorePets] = useState([]);
   const [currentpet, setCurrentpet] = useState({});
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
@@ -28,7 +27,6 @@ function App() {
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
   async function getUserByEmail(email) {
-    setChecked(true);
     return await axios
       .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
       .catch(err => console.error(err));
@@ -56,12 +54,6 @@ function App() {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setUsers(data);
       });
-      axios.get(`http://localhost:8080/api/pets/explore/${userId}`)
-      .then((response) => {
-        console.log(response.data);
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setExplorePets(shuffle(data));
-      });
     }
     if (user) {
        getUserByEmail(user.name).then(res => {
@@ -80,6 +72,7 @@ function App() {
           .post('http://localhost:8080/api/users', {'email': user.name})
           .then(response => {
             setUsers([...users, user]);
+            setChecked(true);
           });
       }
 
@@ -122,7 +115,26 @@ function App() {
         });
     }
 
+  async function addMatch(match) {
+    if (match.currentPet && match.target) {
+      const relationship = {
+        current_pet: match.currentPet.id,
+        other_pet: match.target.id
+      }
+      axios.post("http://localhost:8080/api/relationships", relationship)
+        .then((res) => {
+          if (match.dir === 'right') {
+            const newMatch = {
+              pet_one: match.currentPet.id,
+              pet_two: match.target.id,
+            }
 
+            axios.put("http://localhost:8080/api/matches", newMatch)
+              .then(res => console.log(res));
+          }
+        }).catch(err => console.log(err));
+    }
+  }
 
   return (
     <div>
@@ -135,7 +147,7 @@ function App() {
             <Route path="/pets/view" element={<PetList pets={userPets} />} />
             <Route path="/pets/:id" element={<PetDetail onChange={setCurrentpet} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
-            <Route path="/explore" element={<Advanced pets={explorePets} />}/>
+            <Route path="/explore" element={<Advanced userPets={userPets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
             <Route path="/matches" element={<MatchList matches={matches} />}/>
             <Route path="/matches/:id" element={<MatchDetail />} />
             <Route path="/messages" element={<MessageList />} />
