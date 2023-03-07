@@ -29,6 +29,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [petPhoto, setPetPhoto] = useState("");
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 
@@ -108,8 +109,7 @@ function App() {
     }
   }, [checked, user, users]);
 
-
-
+  // Store the current user's ID
   useEffect(() => {
     if (user) {
       getUserByEmail(user.name).then((res) => {
@@ -119,6 +119,7 @@ function App() {
     }
   }, [user]);
 
+  // Create a new pet profile
   async function addPet(pet) {
     const currentId = userId;
 
