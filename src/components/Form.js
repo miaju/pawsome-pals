@@ -172,7 +172,19 @@ export default function Form(props) {
           </label>
           <br />
 
-          <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
+          <label htmlFor="pet photo URL input" id="image-label" className="text-input">
+            <span>Image: </span>
+            <input
+            type="text"
+            {...photo_url}
+            placeholder="URL"
+            id="URL"
+            required>
+            </input>
+          </label>
+          <br/>
+
+          {/* <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
             <span className="drop-title">Drop files here</span>
             or
             <input
@@ -186,7 +198,7 @@ export default function Form(props) {
               required
             />
           </label>
-          <br />
+          <br /> */}
 
           <button type="submit">playtime</button>
         </form>
