@@ -13,7 +13,7 @@ import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
-// import MessageList from "components/MessageList";
+import MessageList from "components/MessageList";
 import Footer from "components/Footer";
 
 function App() {
@@ -157,7 +157,7 @@ function App() {
         setPets([...pets, pet]);
         // return redirect("http://localhost:3000/pets/view");
       });
-
+  }
   async function unmatch(petId, otherId) {
     return axios
       .delete(`http://localhost:8080/api/matches`, {
