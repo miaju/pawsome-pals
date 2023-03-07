@@ -7,7 +7,7 @@ import "./styling/MatchListTest.scss";
 
 
 function Advanced (props) {
-  const db = props.pets.slice(0,4);
+  const db = props.pets;
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const [clicked, setClicked] = useState(false);
