@@ -2,14 +2,18 @@ import React, { useState, useMemo, useRef, useEffect } from 'react'
 import axios from "axios";
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faXmark, faUndo, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
 
 import "./styling/MatchListTest.scss";
 import Popup from './Popup';
+import shuffle from './helpers/shuffleArray';
 
-function Advanced (props) {
-  const db = props.pets;
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1)
+
+function Advanced(props) {
+  const [explorePets, setExplorePets] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const [clicked, setClicked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -20,7 +24,7 @@ function Advanced (props) {
     axios.get("http://localhost:8080/api/matches")
       .then(response => {
         const data = response.data;
-        if(data.queryUpdated) {
+        if (data.queryUpdated) {
           setShowPopup(true);
         }
       })
@@ -29,30 +33,42 @@ function Advanced (props) {
       });
   }, []);
 
+  useEffect(() => {
+    props.addMatch({ target: explorePets[currentIndex + 1], dir: lastDirection, currentPet: props.currentPet });
+  }, [currentIndex]);
+
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(explorePets.length)
         .fill(0)
         .map((i) => React.createRef()),
-    [db.length]
+    [explorePets.length]
   )
+
+  useEffect(() => {
+    if (props.currentPet.id) {
+      axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
+      .then((response) => {
+        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        setExplorePets(shuffle(data));
+      });
+    }
+  }, [props.currentPet])
 
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val)
     currentIndexRef.current = val
   }
 
-  const canGoBack = currentIndex < db.length - 1
-
   const canSwipe = currentIndex >= 0
 
   // set last direction and decrease current index
-  const swiped = (direction, nameToDelete, index) => {
+  const swiped = (direction, name, index) => {
     setLastDirection(direction)
     updateCurrentIndex(index - 1)
   }
 
-  const click = () => {setClicked(!clicked)}
+  const click = () => { setClicked(!clicked) }
 
   const outOfFrame = (name, idx) => {
     console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
@@ -64,25 +80,29 @@ function Advanced (props) {
   }
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < db.length) {
+    if (canSwipe && currentIndex < explorePets.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
     }
-  }
-
-  // increase current index and show card
-  const goBack = async () => {
-    if (!canGoBack) {return}
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
   }
 
   return (
     <div className='matchlist'>
       {showPopup && <Popup />}
       <h1>Explore!</h1>
+      <Dropdown>
+        <span>{props.currentPet.name ? `Finding match for ${props.currentPet.name}` : 'Select pet to search for'}</span>
+        <Dropdown.Toggle id="dropdown-basic">
+          Pets
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          {props.userPets.map((pet) => {
+            return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
+
       <div className='cardContainer' >
-        {db.map((character, index) => (
+        {explorePets.map((character, index) => (
           <TinderCard
             ref={childRefs[index]}
             className='swipe'
@@ -94,7 +114,7 @@ function Advanced (props) {
               style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
               className='card'
             >
-            <h3 onClick={click}>{character.name}</h3>
+              <h3 onClick={click}>{character.name}</h3>
             </div>
             {clicked ? (<div className='cardInfo' >
               <p>
@@ -105,17 +125,16 @@ function Advanced (props) {
                 <b>City:</b> {character.city}<br />
                 <b>Description:</b> {character.description}
               </p>
-              <button onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
-          </div>) : <></>}
+              <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+            </div>) : <></>}
           </TinderCard>
 
         ))}
       </div>
-      <div className='buttons'>
-        <button onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
-        <button onClick={() => goBack()}><FontAwesomeIcon icon={faUndo} /></button>
-        <button onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
-      </div>
+      {explorePets.length ? <div className='buttons'>
+        <button className='button' onClick={() => swipe('left', explorePets[currentIndex])}><FontAwesomeIcon icon={faXmark} /></button>
+        <button className='button' onClick={() => swipe('right', explorePets[currentIndex])}><FontAwesomeIcon icon={faHeart} /></button>
+      </div> : <></>}
       {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
           You swiped {lastDirection}
