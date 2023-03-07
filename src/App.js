@@ -26,14 +26,21 @@ function App() {
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
+  async function getUserByEmail(email) {
+    setChecked(true);
+    return await axios
+      .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
+      .catch(err => console.error(err));
+  }
+
   useEffect(() => {
-    const getData =  () => {
+    const getData = (userId) => {
       axios.get("http://localhost:8080/api/pets")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setAllpets(shuffle(data));
       });
-      axios.get(`http://localhost:8080/api/pets/${user.name}`)
+      axios.get(`http://localhost:8080/api/pets/${userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
@@ -49,8 +56,11 @@ function App() {
         setUsers(data);
       });
     }
-    if(user) {
-      getData();
+    if (user) {
+       getUserByEmail(user.name).then(res => {
+        const userId = (Object.keys(res.data)[0]);
+        getData(userId);
+       });
     }
   }, [user]);
 
@@ -76,7 +86,7 @@ function App() {
     }
   }, [checked, user, users])
 
-console.log('CURRENTPET', currentpet)
+//console.log('CURRENTPET', currentpet)
 
   /**
    *
@@ -102,17 +112,10 @@ console.log('CURRENTPET', currentpet)
           console.log("made it here")
           setPets([...pets, pet]);
           return redirect("http://localhost:3000/pets/view");
-          console.log("didn't redirect")
         });
     }
 
 
-  async function getUserByEmail(email) {
-    setChecked(true);
-    return await axios
-      .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
-      .catch(err => console.error(err));
-  }
 
   return (
     <div>

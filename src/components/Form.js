@@ -67,7 +67,7 @@ export default function Form(props) {
         <h1>
           Create <b>Paw</b>file
         </h1>
-        <img src={coverphoto} />
+        <img alt="cover" src={coverphoto} />
         <div id="line-1">Sign up your best friend for more friends today!</div>
         <div id="line-2">Don't worry - You'll always be their favourite.</div>
       </header>
@@ -172,7 +172,7 @@ export default function Form(props) {
           <br />
 
           <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
-            <span class="drop-title">Drop files here</span>
+            <span className="drop-title">Drop files here</span>
             or
             <input
               type="file"
