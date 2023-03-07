@@ -1,9 +1,6 @@
 import { useState, React } from "react";
 import "./styling/Form.scss";
-import pawprint from "./styling/pawprint.svg";
 import coverphoto from "./styling/dog-cover-photo.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDog } from '@fortawesome/free-solid-svg-icons'
 
 /**
  *
@@ -70,7 +67,7 @@ export default function Form(props) {
         <h1>
           Create <b>Paw</b>file
         </h1>
-        <img src={coverphoto} />
+        <img alt="cover" src={coverphoto} />
         <div id="line-1">Sign up your best friend for more friends today!</div>
         <div id="line-2">Don't worry - You'll always be their favourite.</div>
       </header>
@@ -175,7 +172,7 @@ export default function Form(props) {
           <br />
 
           <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
-            <span class="drop-title">Drop files here</span>
+            <span className="drop-title">Drop files here</span>
             or
             <input
               type="file"
@@ -190,18 +187,7 @@ export default function Form(props) {
           <br />
 
           <button type="submit">playtime</button>
-
         </form>
-          <div className="dog-icon">
-          <FontAwesomeIcon icon={faDog} bounce transform={{ rotate: 5 }}/>
-          <FontAwesomeIcon icon={faDog} size="xl"/> <br/>
-          </div>
-
-        <footer>
-          All's well that friends well
-          <img src={pawprint} id="pawprint" alt="pawprint-icon" />
-        </footer>
-
       </div>
     </div>
   );

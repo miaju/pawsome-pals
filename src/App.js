@@ -13,6 +13,8 @@ import Advanced from "components/MatchListTest";
 import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
+import MessageList from "components/MessageList";
+import Footer from "components/Footer";
 
 
 function App() {
@@ -29,19 +31,28 @@ function App() {
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
+
   const handlePetChange = (id) => {
     localStorage.setItem('currentpet', JSON.stringify(id));
     setCurrentpet(JSON.parse(localStorage.getItem('currentpet')));
   };
 
+  async function getUserByEmail(email) {
+    setChecked(true);
+    return await axios
+      .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
+      .catch(err => console.error(err));
+  }
+
+
   useEffect(() => {
-    const getData =  () => {
+    const getData = (userId) => {
       axios.get("http://localhost:8080/api/pets")
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setAllpets(shuffle(data));
       });
-      axios.get(`http://localhost:8080/api/pets/${user.name}`)
+      axios.get(`http://localhost:8080/api/pets/${userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
@@ -52,8 +63,11 @@ function App() {
         setUsers(data);
       });
     }
-    if(user) {
-      getData();
+    if (user) {
+       getUserByEmail(user.name).then(res => {
+        const userId = (Object.keys(res.data)[0]);
+        getData(userId);
+       });
     }
   }, [user]);
 
@@ -92,7 +106,6 @@ function App() {
     }
   }, [checked, user, users])
 
-
   /**
    *
    * @param { Object } pet: An object of objects containing values for new pet profiles
@@ -121,12 +134,6 @@ function App() {
     }
 
 
-  async function getUserByEmail(email) {
-    setChecked(true);
-    return await axios
-      .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
-      .catch(err => console.error(err));
-  }
 
   return (
     <div>
@@ -142,9 +149,11 @@ function App() {
             <Route path="/explore" element={<Advanced pets={allpets} />}/>
             <Route path="/matches" element={<MatchList matches={matches} />} />
             <Route path="/matches/:id" element={<MatchDetail />} />
+            <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
