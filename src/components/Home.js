@@ -18,7 +18,7 @@ const Home = (props) => {
       <div className="banner-text">
         <h1>Welcome {user.name}!</h1>
         <p>
-          Why don't you check out the <a href="/explore"> explore page</a>?
+          Check out the <a href="/explore"> explore page</a> to go on Pawsome Playdates!
         </p>
       </div>
     </div>
