@@ -31,6 +31,7 @@ function App() {
 
   const handlePetChange = (id) => {
     localStorage.setItem('currentpet', JSON.stringify(id));
+    setCurrentpet(JSON.parse(localStorage.getItem('currentpet')));
   };
 
   useEffect(() => {
@@ -54,11 +55,8 @@ function App() {
     if(user) {
       getData();
     }
-    const currentId = JSON.parse(localStorage.getItem('currentpet'));
-    if (currentId) {
-      setCurrentpet(currentId);
-    }
   }, [user]);
+
 
   useEffect(() => {
     const currentId = JSON.parse(localStorage.getItem('currentpet'));
@@ -138,7 +136,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
-            <Route path="/pets/view" element={<PetList pets={pets} />} />
+            <Route path="/pets/view" element={<PetList pets={pets} current={currentpet} />} />
             <Route path="/pets/:id" element={<PetDetail handlePetChange={handlePetChange} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
             <Route path="/explore" element={<Advanced pets={allpets} />}/>
