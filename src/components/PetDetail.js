@@ -27,7 +27,7 @@ export default function PetDetail(props) {
         </div>
       </section>
       <div className="select-pet">
-        <button onClick={() => {props.handlePetChange(location.state.data.id); navigate("/pets/view");}}>
+        <button onClick={() => {props.handlePetChange(location.state.data); navigate("/pets/view");}}>
           Go on a playdate with me!
         </button>
       </div>

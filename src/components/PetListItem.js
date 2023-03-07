@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./styling/PetListItem.scss"
 
 export default function PetListItem(props) {
-  const isSelected = props.id === props.current;
+  const isSelected = props.id === props.current.id;
 
   return (
     <div className="pet-card">
