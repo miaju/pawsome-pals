@@ -11,13 +11,13 @@ export default function MatchDetail(props) {
 
   return (
     <>
-      <section class="match-card">
-        <div class="left">
-          <img class="image" src={location.state.data.photo_url} alt={props.name}/>
+      <section className="match-card">
+        <div className="left">
+          <img className="image" src={location.state.data.photo_url} alt={props.name}/>
         </div>
-        <div class="right">
-          <div class="match-name">{location.state.data.name}</div>
-          <div class="match-info">
+        <div className="right">
+          <div className="match-name">{location.state.data.name}</div>
+          <div className="match-info">
             Breed: {location.state.data.breed}<br />
             Age: {location.state.data.age}<br />
             Sex: {location.state.data.sex}<br />
