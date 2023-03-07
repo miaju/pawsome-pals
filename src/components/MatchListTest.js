@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
+import axios from "axios";
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faXmark, faUndo, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -16,14 +17,16 @@ function Advanced (props) {
   const currentIndexRef = useRef(currentIndex)
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:8080/api/matches");
-      const data = await response.json();
-      if (data.queryUpdated) {
-        setShowPopup(true);
-      }
-    };
-    fetchData();
+    axios.get("http://localhost:8080/api/matches")
+      .then(response => {
+        const data = response.data;
+        if(data.queryUpdated) {
+          setShowPopup(true);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
   }, []);
 
   const childRefs = useMemo(
