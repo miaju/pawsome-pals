@@ -144,7 +144,7 @@ function App() {
       .then((res) => {
         const update = matches.filter(p => p.id !== otherId);
         setMatches(update);
-        return redirect("http://localhost:3000/matches");
+        return window.location = "/matches";
       })
       .catch(err => {
         console.log(err);
