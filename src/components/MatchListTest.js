@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faXmark, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faXmark, faUndo, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import "./styling/MatchListTest.scss";
 
@@ -66,15 +66,14 @@ function Advanced (props) {
   return (
     <div className='matchlist'>
       <h1>Explore!</h1>
-      <div className='cardContainer' style={clicked ? {maxHeight: 500} : {maxHeight: 350}}>
+      <div className='cardContainer' >
         {db.map((character, index) => (
-          <div><TinderCard
+          <TinderCard
             ref={childRefs[index]}
             className='swipe'
             key={character.name}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}
-
           >
             <div
               style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
@@ -83,15 +82,18 @@ function Advanced (props) {
             <h3 onClick={click}>{character.name}</h3>
             </div>
             {clicked ? (<div className='cardInfo' >
-              Breed: {character.breed}<br />
-              Age: {character.age}<br />
-              Sex: {character.sex}<br />
-              Size: {character.size}<br />
-              City: {character.city}<br />
-              Description: {character.description}
+              <p>
+                Breed: {character.breed}<br />
+                Age: {character.age}<br />
+                Sex: {character.sex}<br />
+                Size: {character.size}<br />
+                City: {character.city}<br />
+                Description: {character.description}
+                <button onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+              </p>
           </div>) : <></>}
           </TinderCard>
-          </div>
+
         ))}
       </div>
       <div className='buttons'>
