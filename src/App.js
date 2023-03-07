@@ -20,11 +20,22 @@ import Footer from "components/Footer";
 function App() {
   const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
-  const [currentpet, setCurrentpet] = useState({});
+  const [currentpet, setCurrentpet] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("currentpet");
+    const initialValue = JSON.parse(saved);
+    return initialValue || {};
+  });
   const [matches, setMatches] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
+
+
+  const handlePetChange = (id) => {
+    localStorage.setItem('currentpet', JSON.stringify(id));
+    setCurrentpet(JSON.parse(localStorage.getItem('currentpet')));
+  };
 
   async function getUserByEmail(email) {
     setChecked(true);
@@ -32,6 +43,7 @@ function App() {
       .get(`http://localhost:8080/api/users`, {params: {'email': email}} )
       .catch(err => console.error(err));
   }
+
 
   useEffect(() => {
     const getData = (userId) => {
@@ -44,11 +56,6 @@ function App() {
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setPets(shuffle(data));
-      });
-      axios.get("http://localhost:8080/api/matches")
-      .then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setMatches(data);
       });
       axios.get("http://localhost:8080/api/users")
       .then((response) => {
@@ -63,6 +70,19 @@ function App() {
        });
     }
   }, [user]);
+
+
+  useEffect(() => {
+    const currentId = JSON.parse(localStorage.getItem('currentpet'));
+    if (currentId) {
+          console.log(currentId);
+          axios.get(`http://localhost:8080/api/matches/${currentId}`)
+          .then((response) => {
+            const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+            setMatches(data);
+          });
+        }
+      }, [currentpet])
 
 
   useEffect(() => {
@@ -85,8 +105,6 @@ function App() {
 
     }
   }, [checked, user, users])
-
-//console.log('CURRENTPET', currentpet)
 
   /**
    *
@@ -125,11 +143,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={user} isLoading={isLoading} logout={logout} loginWithRedirect={loginWithRedirect}/>} />
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
-            <Route path="/pets/view" element={<PetList pets={pets} />} />
-            <Route path="/pets/:id" element={<PetDetail onChange={setCurrentpet} />} />
+            <Route path="/pets/view" element={<PetList pets={pets} current={currentpet} />} />
+            <Route path="/pets/:id" element={<PetDetail handlePetChange={handlePetChange} />} />
             <Route path="/profile" element={<Profile user={user} logout={logout} isAuthenticated={isAuthenticated}/>} />
             <Route path="/explore" element={<Advanced pets={allpets} />}/>
-            <Route path="/matches" element={<MatchList matches={matches} />}/>
+            <Route path="/matches" element={<MatchList matches={matches} />} />
             <Route path="/matches/:id" element={<MatchDetail />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>

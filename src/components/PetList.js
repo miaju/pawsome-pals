@@ -20,6 +20,7 @@ export default function PetList(props) {
             city={pet.city}
             description={pet.description}
             photo_url={pet.photo_url}
+            current={props.current}
           />
         )
         )
