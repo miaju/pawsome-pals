@@ -83,14 +83,14 @@ function Advanced (props) {
             </div>
             {clicked ? (<div className='cardInfo' >
               <p>
-                Breed: {character.breed}<br />
-                Age: {character.age}<br />
-                Sex: {character.sex}<br />
-                Size: {character.size}<br />
-                City: {character.city}<br />
-                Description: {character.description}
-                <button onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+                <b>Breed:</b> {character.breed}<br />
+                <b>Age:</b> {character.age}<br />
+                <b>Sex:</b> {character.sex}<br />
+                <b>Size:</b> {character.size}<br />
+                <b>City:</b> {character.city}<br />
+                <b>Description:</b> {character.description}
               </p>
+              <button onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
           </div>) : <></>}
           </TinderCard>
 

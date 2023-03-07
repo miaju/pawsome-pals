@@ -46,9 +46,11 @@
     animation: 0.75s smallPopup;
     p {
       padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      font-family: $font-raleway;
+    }
+    button {
+      position: absolute;
+      bottom: 0;
     }
   }
 
@@ -69,7 +71,9 @@
     margin: 10px;
     color: #fff;
     text-shadow: 2px 2px #333337;
+    font-family: $font-handlee;
     &:hover{
+      transform: scale(1.05);
       cursor: pointer;
     }
   }
@@ -95,7 +99,7 @@
     border-radius: 5px;
     border: none;
     color: #fff;
-    background-color: #9198e5;
+    background-color: $button-color;
     transition: 200ms;
     margin: 10px;
     font-weight: bolder;
