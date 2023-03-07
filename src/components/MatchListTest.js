@@ -1,19 +1,30 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faXmark, faUndo, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import "./styling/MatchListTest.scss";
-
+import Popup from './Popup';
 
 function Advanced (props) {
   const db = props.pets;
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const [clicked, setClicked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:8080/api/matches");
+      const data = await response.json();
+      if (data.queryUpdated) {
+        setShowPopup(true);
+      }
+    };
+    fetchData();
+  }, []);
 
   const childRefs = useMemo(
     () =>
@@ -65,6 +76,7 @@ function Advanced (props) {
 
   return (
     <div className='matchlist'>
+      {showPopup && <Popup />}
       <h1>Explore!</h1>
       <div className='cardContainer' >
         {db.map((character, index) => (
