@@ -21,7 +21,7 @@ function Popup(props) {
         </div>
       </div>
        <Link to="/explore">
-        <button className="continue-button">Continue Swiping</button>
+        <button onClick={() => props.setShowPopup(false)} className="continue-button">Continue Swiping</button>
        </Link>
     </div>
   );

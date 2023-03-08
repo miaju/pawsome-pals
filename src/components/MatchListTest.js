@@ -80,7 +80,7 @@ function Advanced(props) {
   }
 
   return (
-    showPopup ? <Popup petName={props.currentPet} otherPetName={explorePets[currentIndex + 1]} /> :
+    showPopup ? <Popup setShowPopup={setShowPopup} petName={props.currentPet} otherPetName={explorePets[currentIndex + 1]} /> :
 
       <div className='matchlist'>
         <h1>Explore!</h1>
