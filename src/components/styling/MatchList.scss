@@ -7,3 +7,38 @@
     font-family: $font-raleway;
   }
 }
+
+.empty-card {
+  width: 75%;
+  display: flex;
+  float: left;
+  justify-content: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 900px;
+  height: 450px;
+
+  background: hsl(0, 0%, 95%);
+  box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, .3);
+
+  .message {
+    font-family: Courier New;
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    font-size: 1.75rem;
+
+    top: 20%;
+
+    text-align: center;
+
+
+  }
+}
+
