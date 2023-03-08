@@ -9,7 +9,8 @@ import "./styling/MatchListTest.scss";
 import Popup from './Popup';
 import shuffle from './helpers/shuffleArray';
 
-
+// a lot of the code for the tinder swiping effect comes from the react-tinder-card's web demo page
+// code can be found at: https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js
 function Advanced(props) {
   const [explorePets, setExplorePets] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
@@ -82,7 +83,7 @@ function Advanced(props) {
     showPopup ? <Popup setShowPopup={setShowPopup} petName={props.currentPet} otherPetName={explorePets[currentIndex + 1]} /> :
 
       <div className='matchlist'>
-        <h1>Explore!</h1>
+        <h1>Let's look at some <b>Paw</b>tential matches!</h1>
         <Dropdown id="petDropdown">
           <span>{props.currentPet.name ? `Finding match for ${props.currentPet.name}` : 'Select pet to search for'}</span>
           <Dropdown.Toggle id="dropdown-basic">
@@ -108,7 +109,7 @@ function Advanced(props) {
                 style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
                 className='card'
               >
-                <h3 onClick={click}>{character.name}</h3>
+                <h1 onClick={click}>{character.name}</h1>
               </div>
               {clicked ? (<div className='cardInfo' >
                 <p>
@@ -131,7 +132,6 @@ function Advanced(props) {
         </div> : <></>}
         {lastDirection ? (
           <h2 key={lastDirection} className='infoText'>
-            You swiped {lastDirection}
           </h2>
         ) : (
           <h2 className='infoText'>
