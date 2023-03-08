@@ -116,7 +116,7 @@ function App() {
   useEffect(() => {
     if (user) {
       getUserByEmail(user.name).then((res) => {
-        const userId = res.data.id;
+        const userId = Object.keys(res.data)[0];
         setUserId(userId);
       });
     }
