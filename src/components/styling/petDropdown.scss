@@ -1,0 +1,20 @@
+@import "_variables.scss";
+#petDropdown {
+  margin: 5px;
+  span {
+    margin: 5px;
+  }
+  button {
+    background-color: $button-color;
+    border-color: $button-color;
+    &:active {
+      background-color: $button-color;
+      border-color: $button-color;
+    }
+    &:hover {
+      transform: scale(1.05);
+      background-color: $button-darker;
+      border-color: $button-darker;
+    }
+  }
+}

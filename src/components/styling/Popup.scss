@@ -1,0 +1,59 @@
+.match-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: #f7f7f7;
+
+  h1 {
+    font-family: Courier New;
+    font-weight: bold;
+    color:#ac436c;
+  }
+
+  .match-profiles {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px 0;
+  }
+
+  .match-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .match-profile img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .match-profile h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
+
+  .continue-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ac436c;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .continue-button:hover {
+    background-color: #fff;
+    color: #960303;
+
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react"
 import "./styling/MatchItem.scss"
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeartCrack, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,9 +9,12 @@ export default function MatchDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(props.current, location.state.data.id);
+  let email = props.getUserByPet(location.state.data.id).then(e => {
+    email = e.data.email;
+  });
+
   return (
-    <>
+    <div style={{height: "80vh"}}>
       <section class="match-card">
         <div class="right">
           <img class="image" src={location.state.data.photo_url} alt={props.name} />
@@ -27,14 +30,20 @@ export default function MatchDetail(props) {
             Description: {location.state.data.description}
           </div>
           <div class="match-buttons">
-            <button class="btn-white" onClick={() => {props.unmatch(props.current.id, location.state.data.id)}} >Unmatch <FontAwesomeIcon icon={faHeartCrack} /></button>
-            <button component={Link} to="/messages">Message <FontAwesomeIcon icon={faEnvelope} /></button>
+            <button
+              onClick={() => { props.unmatch(props.currentId, location.state.data.id) }} >
+              Unmatch <FontAwesomeIcon icon={faHeartCrack} />
+            </button>
+            <button
+              onClick={() => window.location.href = `mailto:${email}`} >
+              Message <FontAwesomeIcon icon={faEnvelope} />
+            </button>
           </div>
         </div>
       </section>
       <div>
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
       </div>
-    </>
+    </div>
   )
 }

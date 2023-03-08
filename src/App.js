@@ -40,9 +40,21 @@ function App() {
     setCurrentpet(JSON.parse(localStorage.getItem("currentpet")));
   };
 
+  function Logout() {
+    localStorage.clear();
+    logout({ logoutParams: { returnTo: window.location.origin }});
+  };
+
   async function getUserByEmail(email) {
     return await axios
       .get(`http://localhost:8080/api/users`, { params: { email: email } })
+      .catch(err => console.error(err));
+
+  }
+
+  async function getUserByPet(id) {
+    return await axios
+      .get(`http://localhost:8080/api/matches/owner/${id}`)
       .catch(err => console.error(err));
 
   }
@@ -78,8 +90,8 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
-    if (currentId) {
+    if (JSON.parse(localStorage.getItem("currentpet"))) {
+      const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
       console.log(currentId);
       axios
         .get(`http://localhost:8080/api/matches/${currentId}`)
@@ -176,6 +188,7 @@ function App() {
         // return redirect("http://localhost:3000/pets/view");
       });
   }
+
   async function unmatch(petId, otherId) {
     return axios
       .delete(`http://localhost:8080/api/matches`, {
@@ -194,13 +207,13 @@ function App() {
       });
   }
 
-  async function addMatch(match) {
+  function addMatch(match) {
     if (match.currentPet && match.target) {
       const relationship = {
         current_pet: match.currentPet.id,
         other_pet: match.target.id
       }
-      axios.post("http://localhost:8080/api/relationships", relationship)
+      return axios.post("http://localhost:8080/api/relationships", relationship)
         .then((res) => {
           if (match.dir === 'right') {
             const newMatch = {
@@ -208,11 +221,14 @@ function App() {
               pet_two: match.target.id,
             }
 
-            axios.put("http://localhost:8080/api/matches", newMatch)
-              .then(res => console.log(res));
+            return axios.put("http://localhost:8080/api/matches", newMatch)
+              .then(res => res.data);
           }
         }).catch(err => console.log(err));
     }
+    return new Promise((resolve) => {
+      resolve(null);
+    })
   }
 
   return (
@@ -222,7 +238,7 @@ function App() {
           user={user}
           isLoading={isLoading}
           loginWithRedirect={loginWithRedirect}
-          logout={logout}
+          logout={Logout}
         ></NavBar>
         <div className="content">
           <Routes>
@@ -233,7 +249,7 @@ function App() {
                 <Home
                   user={user}
                   isLoading={isLoading}
-                  logout={logout}
+                  logout={Logout}
                   loginWithRedirect={loginWithRedirect}
                 />
               }
@@ -252,17 +268,17 @@ function App() {
               element={
                 <Profile
                   user={user}
-                  logout={logout}
+                  logout={Logout}
                   isAuthenticated={isAuthenticated}
                 />
               }
             />
-
-            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee}/>} />
-            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
-            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} current={currentpet} />} />
+            <Route
+              path="/matches/:id"
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} />} />
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets}/>} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange}/>}/>     
             <Route path="/messages" element={<MessageList />} />
-
           </Routes>
         </div>
       </BrowserRouter>
