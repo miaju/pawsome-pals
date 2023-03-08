@@ -7,7 +7,7 @@
     font-family: $font-raleway;
   }
 
-  p {
+  #des {
     margin-top: 1rem;
     width: 80%;
     padding-left: 10px;
@@ -47,5 +47,12 @@
 
 
   }
+}
+
+.nav-tabs {
+  .nav-item > a{
+    color: $button-darker;
+  }
+  font-family: $font-handlee;
 }
 

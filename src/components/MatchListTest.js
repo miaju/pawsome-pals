@@ -24,7 +24,7 @@ function Advanced(props) {
     .then(
       (matchResult)=> {
         console.log('matchResult', matchResult)
-        if (matchResult.pet_one_match && matchResult.pet_two_match) {
+        if (matchResult && matchResult.pet_one_match && matchResult.pet_two_match) {
           setShowPopup(true);
         }
       }
@@ -83,7 +83,7 @@ function Advanced(props) {
 
       <div className='matchlist'>
         <h1>Explore!</h1>
-        <Dropdown>
+        <Dropdown id="petDropdown">
           <span>{props.currentPet.name ? `Finding match for ${props.currentPet.name}` : 'Select pet to search for'}</span>
           <Dropdown.Toggle id="dropdown-basic">
             Pets

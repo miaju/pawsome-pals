@@ -43,7 +43,7 @@ export default function MatchList(props) {
   return (
     (props.matches && props.pending && props.matchee) ? (
       <>
-      <Dropdown>
+      <Dropdown id="petDropdown">
         <span>{props.currentPet.name ? `Viewing matches for ${props.currentPet.name}` : 'Select pet'}</span>
         <Dropdown.Toggle id="dropdown-basic">
           Pets
@@ -70,7 +70,7 @@ export default function MatchList(props) {
 
       <section className="matches-container">
             <>
-              <p>{content.description}</p>
+            <p id="des">{content.description}</p>
             {(content.matches.length) ? (
               content.matches.map(match => (
                 <MatchListItem
