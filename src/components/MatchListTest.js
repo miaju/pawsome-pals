@@ -30,7 +30,6 @@ function Advanced (props) {
   )
 
   useEffect(() => {
-
     if (props.currentPet.id) {axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
