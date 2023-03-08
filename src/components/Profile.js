@@ -16,7 +16,7 @@ const Profile = (props) => {
             <p>Email: {user.name}</p>
             <p><Button size="sm" variant="outline-secondary" href="/pets/view"> View My Pets </Button></p>
             <p><Button size="sm" variant="outline-secondary" href="/pets/new">Create A New Pet </Button></p>
-            <p><Button size="lg" variant="danger" onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Button></p>
+            <p><Button size="lg" variant="danger" onClick={logout()}>Logout</Button></p>
           </div>
         </div>
 

@@ -14,7 +14,7 @@ export default function MatchDetail(props) {
   });
 
   return (
-    <>
+    <div style={{height: "80vh"}}>
       <section class="match-card">
         <div class="right">
           <img class="image" src={location.state.data.photo_url} alt={props.name} />
@@ -44,6 +44,6 @@ export default function MatchDetail(props) {
       <div>
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
       </div>
-    </>
+    </div>
   )
 }
