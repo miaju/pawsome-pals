@@ -26,6 +26,8 @@ function App() {
     return initialValue || {};
   });
   const [matches, setMatches] = useState([]);
+  const [pending, setPending] = useState([]);
+  const [matchee, setMatchee] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -86,6 +88,22 @@ function App() {
             ...value,
           }));
           setMatches(data);
+        });
+      axios
+        .get(`http://localhost:8080/api/matches/pending/${currentId}`)
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({
+            ...value,
+          }));
+          setPending(data);
+        });
+      axios
+        .get(`http://localhost:8080/api/matches/matchee/${currentId}`)
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({
+            ...value,
+          }));
+          setMatchee(data);
         });
     }
   }, [currentpet]);
@@ -243,7 +261,7 @@ function App() {
               }
             />
 
-            <Route path="/matches" element={<MatchList matches={matches} />} />
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee}/>} />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
             <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} />} />
             <Route path="/messages" element={<MessageList />} />
