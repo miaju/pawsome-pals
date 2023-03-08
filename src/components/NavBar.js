@@ -36,7 +36,7 @@ const NavBar = (props) => {
                   <NavDropdown.Item href="/pets/view"> View Pets</NavDropdown.Item>
                   <NavDropdown.Item href="/pets/new"> Create a Pet</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/" onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Logout</Nav.Link>
+                <Nav.Link href="/" onClick={logout}>Logout</Nav.Link>
               </>
             ): isLoading ? (<><Navbar.Text>Loading...</Navbar.Text></>) :
             (

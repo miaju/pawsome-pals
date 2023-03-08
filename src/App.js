@@ -40,6 +40,11 @@ function App() {
     setCurrentpet(JSON.parse(localStorage.getItem("currentpet")));
   };
 
+  function Logout() {
+    localStorage.clear();
+    logout({ logoutParams: { returnTo: window.location.origin }});
+  };
+
   async function getUserByEmail(email) {
     return await axios
       .get(`http://localhost:8080/api/users`, { params: { email: email } })
@@ -78,8 +83,8 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
-    if (currentId) {
+    if (JSON.parse(localStorage.getItem("currentpet"))) {
+      const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
       console.log(currentId);
       axios
         .get(`http://localhost:8080/api/matches/${currentId}`)
@@ -225,7 +230,7 @@ function App() {
           user={user}
           isLoading={isLoading}
           loginWithRedirect={loginWithRedirect}
-          logout={logout}
+          logout={Logout}
         ></NavBar>
         <div className="content">
           <Routes>
@@ -236,7 +241,7 @@ function App() {
                 <Home
                   user={user}
                   isLoading={isLoading}
-                  logout={logout}
+                  logout={Logout}
                   loginWithRedirect={loginWithRedirect}
                 />
               }
@@ -255,14 +260,14 @@ function App() {
               element={
                 <Profile
                   user={user}
-                  logout={logout}
+                  logout={Logout}
                   isAuthenticated={isAuthenticated}
                 />
               }
             />
 
-            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee}/>} />
-            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets}/>} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange}/>}/>
             <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} />} />
             <Route path="/messages" element={<MessageList />} />
 
