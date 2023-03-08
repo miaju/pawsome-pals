@@ -1,9 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Popup() {
+import "./styling/Popup.scss";
+
+function Popup(props) {
+  console.log(props)
   return (
-    <div className="popup">
-      <p>Query updated to true!</p>
+    <div className="match-page">
+       <h1>It's a match!</h1>
+       <Link to="/">
+        <button className="continue-button">Continue Swiping</button>
+       </Link>
     </div>
   );
 }
