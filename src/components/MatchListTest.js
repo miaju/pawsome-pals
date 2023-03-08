@@ -15,25 +15,20 @@ function Advanced(props) {
   const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const [clicked, setClicked] = useState(false);
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/matches")
-      .then(response => {
-        const data = response.data;
-        if (data.queryUpdated) {
+    props.addMatch({ target: explorePets[currentIndex + 1], dir: lastDirection, currentPet: props.currentPet })
+    .then(
+      (matchResult)=> {
+        console.log('matchResult', matchResult)
+        if (matchResult.pet_one_match && matchResult.pet_two_match) {
           setShowPopup(true);
         }
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      });
-  }, []);
-
-  useEffect(() => {
-    props.addMatch({ target: explorePets[currentIndex + 1], dir: lastDirection, currentPet: props.currentPet });
+      }
+    );
   }, [currentIndex]);
 
   const childRefs = useMemo(
@@ -46,7 +41,8 @@ function Advanced(props) {
 
   useEffect(() => {
 
-    if (props.currentPet.id) {axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
+    if (props.currentPet.id) {
+      axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         setExplorePets(shuffle(data));
@@ -84,7 +80,7 @@ function Advanced(props) {
   }
 
   return (
-    showPopup ? <Popup currentPet={props.userPets} /> :
+    showPopup ? <Popup petName={props.currentPet} otherPetName={explorePets[currentIndex + 1]} /> :
 
       <div className='matchlist'>
         <h1>Explore!</h1>

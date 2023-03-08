@@ -160,13 +160,13 @@ function App() {
   }
   async function unmatch(petId, otherId) {
     return axios
-      .delete(`http://localhost:8080/api/matches`, {
-        data: {
-          'pet_id': petId,
-          'other_id': otherId
-        }
-      })
-      .then((res) => {
+    .delete(`http://localhost:8080/api/matches`, {
+      data: {
+        'pet_id': petId,
+        'other_id': otherId
+      }
+    })
+    .then((res) => {
         const update = matches.filter(p => p.id !== otherId);
         setMatches(update);
         return window.location = "/matches";
@@ -176,13 +176,13 @@ function App() {
       });
   }
 
-  async function addMatch(match) {
+  function addMatch(match) {
     if (match.currentPet && match.target) {
       const relationship = {
         current_pet: match.currentPet.id,
         other_pet: match.target.id
       }
-      axios.post("http://localhost:8080/api/relationships", relationship)
+      return axios.post("http://localhost:8080/api/relationships", relationship)
         .then((res) => {
           if (match.dir === 'right') {
             const newMatch = {
@@ -190,11 +190,14 @@ function App() {
               pet_two: match.target.id,
             }
 
-            axios.put("http://localhost:8080/api/matches", newMatch)
-              .then(res => console.log(res));
+            return axios.put("http://localhost:8080/api/matches", newMatch)
+              .then(res => res.data);
           }
         }).catch(err => console.log(err));
     }
+    return new Promise((resolve) => {
+      resolve(null);
+    })
   }
 
   return (
@@ -242,7 +245,7 @@ function App() {
 
             <Route path="/matches" element={<MatchList matches={matches} />} />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
-            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} current={currentpet} />} />
+            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} />} />
             <Route path="/messages" element={<MessageList />} />
 
           </Routes>
