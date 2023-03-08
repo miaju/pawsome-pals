@@ -76,7 +76,7 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    const currentId = JSON.parse(localStorage.getItem("currentpet"));
+    const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
     if (currentId) {
       console.log(currentId);
       axios
