@@ -261,7 +261,7 @@ function App() {
               }
             />
 
-            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee}/>} />
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} currentPet={currentpet} userPets={pets}/>} />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
             <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} />} />
             <Route path="/messages" element={<MessageList />} />
