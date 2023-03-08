@@ -47,6 +47,13 @@ function App() {
 
   }
 
+  async function getUserByPet(id) {
+    return await axios
+      .get(`http://localhost:8080/api/matches/owner/${id}`)
+      .catch(err => console.error(err));
+
+  }
+
   useEffect(() => {
     const getData = (userId) => {
       axios.get("http://localhost:8080/api/pets").then((response) => {
@@ -176,15 +183,16 @@ function App() {
         // return redirect("http://localhost:3000/pets/view");
       });
   }
+
   async function unmatch(petId, otherId) {
     return axios
-    .delete(`http://localhost:8080/api/matches`, {
-      data: {
-        'pet_id': petId,
-        'other_id': otherId
-      }
-    })
-    .then((res) => {
+      .delete(`http://localhost:8080/api/matches`, {
+        data: {
+          'pet_id': petId,
+          'other_id': otherId
+        }
+      })
+      .then((res) => {
         const update = matches.filter(p => p.id !== otherId);
         setMatches(update);
         return window.location = "/matches";
@@ -261,9 +269,11 @@ function App() {
               }
             />
 
-            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee}/>} />
-            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet}/>}/>
-            <Route path="/matches/:id" element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} />} />
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} />} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={setCurrentpet} />} />
+            <Route
+              path="/matches/:id"
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} />} />
             <Route path="/messages" element={<MessageList />} />
 
           </Routes>
