@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faXmark, faArrowLeft, faL } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
@@ -17,6 +17,7 @@ function Advanced(props) {
   const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const [clicked, setClicked] = useState(false);
+  const [imgClicked, setImgClicked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
@@ -106,8 +107,14 @@ function Advanced(props) {
               onSwipe={(dir) => swiped(dir, character.name, index)}
               onCardLeftScreen={() => outOfFrame(character.name, index)}
             >
-              <Card>
-                <Card.Img draggable="false" style={clicked ? {maxWidth: "50%"} : {}} variant="left" src={character.photo_url} alt="Card image" />
+              <Card style={(imgClicked && !clicked) ? {backgroundColor: "rgb(40, 40, 40)"} : {}}>
+                <Card.Img
+                  draggable="false"
+                  style={clicked ? {maxWidth: "50%"} : imgClicked ? {objectFit: "contain"} : {}} variant="left"
+                  src={character.photo_url}
+                  alt="Card image"
+                  onClick={() => setImgClicked(!imgClicked)}
+                  />
                   {!clicked ? (<h1 onClick={click}>{character.name}</h1>):<></>}
                   {clicked ? (<Card.Body>
                   <div className='cardInfo' >
