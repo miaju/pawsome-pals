@@ -46,7 +46,7 @@ function Advanced(props) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setExplorePets(shuffle(data).slice(0,5));
+        setExplorePets(shuffle(data).slice(0,25));
       });}
   }, [props.currentPet])
 
