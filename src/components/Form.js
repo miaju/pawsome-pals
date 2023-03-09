@@ -117,7 +117,7 @@ export default function Form(props) {
             <label htmlFor="city">
               City
               <br />
-              <input {...city} placeholder="City" required />
+              <input {...city} placeholder="city" required />
             </label>
 
             <label htmlFor="description of pet" className="text-input">
