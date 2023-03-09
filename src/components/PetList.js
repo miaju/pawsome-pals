@@ -6,8 +6,8 @@ export default function PetList(props) {
 
   return (
     <>
-    {props.pets.length === 1 ? <h1 className="title"> Your <b>Paw</b>file</h1> : <h1 className="title"> Your <b>Paw</b>files</h1> }
-    <span id="fact">A dog’s nose print is unique, much like a person’s fingerprint.</span>
+    {props.pets.length === 1 ? <h1 className="title"> <b>Paw</b>file</h1> : <h1 className="title"><b>Paw</b>files</h1> }
+    <span id="fact">A dog’s paw print is unique, much like a person’s fingerprint.</span>
 
     <section className="pets-container">
       {props.pets.length > 0 &&
