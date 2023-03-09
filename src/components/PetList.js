@@ -3,12 +3,12 @@ import PetListItem from "./PetListItem";
 import "./styling/PetListItem.scss"
 
 export default function PetList(props) {
-  // console.log(props.pets.length)
-  console.log(props)
 
   return (
     <>
     {props.pets.length === 1 ? <h1 className="title"> Your <b>Paw</b>file</h1> : <h1 className="title"> Your <b>Paw</b>files</h1> }
+    <span id="fact">A dog’s nose print is unique, much like a person’s fingerprint.</span>
+
     <section className="pets-container">
       {props.pets.length > 0 &&
         props.pets.map(pet => (
