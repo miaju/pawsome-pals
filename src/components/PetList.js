@@ -7,7 +7,7 @@ export default function PetList(props) {
 
   return (
     <>
-    {props.pets.length === 1 ? <h1 className="title"> Pet <b>Paw</b>file</h1> : <h1 className="title"> Pet <b>Paw</b>files</h1> }
+    {props.pets.length === 1 ? <h1 className="title"> Your <b>Paw</b>file</h1> : <h1 className="title"> Your <b>Paw</b>files</h1> }
     <section className="pets-container">
       {props.pets.length > 0 &&
         props.pets.map(pet => (

@@ -13,7 +13,7 @@ export default function PetListItem(props) {
       </div>
       </Link>
       <div className="pet-info">
-        <p className="bg-light border">{props.name}</p>
+        <p className="name">{props.name}</p>
         {isSelected && <p>Selected!</p>}
       </div>
       {/* <div className="select-pet">
