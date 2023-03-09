@@ -3,6 +3,7 @@ import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 import "./styling/MatchListTest.scss";
@@ -45,7 +46,7 @@ function Advanced(props) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setExplorePets(shuffle(data).slice(0,25));
+        setExplorePets(shuffle(data).slice(0,5));
       });}
   }, [props.currentPet])
 
@@ -105,38 +106,31 @@ function Advanced(props) {
               onSwipe={(dir) => swiped(dir, character.name, index)}
               onCardLeftScreen={() => outOfFrame(character.name, index)}
             >
-              <div
-                style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
-                className='card'
-              >
-                <h1 onClick={click}>{character.name}</h1>
-              </div>
-              {clicked ? (<div className='cardInfo' >
-                <p>
-                  <b>Breed:</b> {character.breed}<br />
-                  <b>Age:</b> {character.age}<br />
-                  <b>Sex:</b> {character.sex}<br />
-                  <b>Size:</b> {character.size}<br />
-                  <b>City:</b> {character.city}<br />
-                  <b>Description:</b> {character.description}
-                </p>
-                <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
-              </div>) : <></>}
+              <Card>
+                <Card.Img draggable="false" style={clicked ? {maxWidth: "50%"} : {}} variant="left" src={character.photo_url} alt="Card image" />
+                  {!clicked ? (<h1 onClick={click}>{character.name}</h1>):<></>}
+                  {clicked ? (<Card.Body>
+                  <div className='cardInfo' >
+                  <h2 onClick={click}>{character.name}</h2>
+                    <p>
+                      <b>Breed:</b> {character.breed}<br />
+                      <b>Age:</b> {character.age}<br />
+                      <b>Sex:</b> {character.sex}<br />
+                      <b>Size:</b> {character.size}<br />
+                      <b>City:</b> {character.city}<br />
+                      <b>Description:</b> {character.description}
+                    </p>
+                    <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+                  </div>
+                  </Card.Body>) : <></>}
+              </Card>
             </TinderCard>
-
           ))}
         </div>
         {explorePets.length ? <div className='buttons'>
           <button className='button' onClick={() => swipe('left', explorePets[currentIndex])}><FontAwesomeIcon icon={faXmark} /></button>
           <button className='button' onClick={() => swipe('right', explorePets[currentIndex])}><FontAwesomeIcon icon={faHeart} /></button>
         </div> : <></>}
-        {lastDirection ? (
-          <h2 key={lastDirection} className='infoText'>
-          </h2>
-        ) : (
-          <h2 className='infoText'>
-          </h2>
-        )}
       </div>
   )
 }
