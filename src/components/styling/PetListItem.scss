@@ -1,3 +1,19 @@
+@import "_variables.scss";
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 5vw;
+  font-family: $font-raleway;
+  margin-top: 3vh;
+  margin-bottom: 7vh;
+  b {
+    font-family: $font-handlee;
+    margin-left: 1vw;
+    color: #960303;
+  }
+}
 .pets-container {
   display: flex;
   flex-wrap: wrap;

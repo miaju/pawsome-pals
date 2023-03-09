@@ -3,8 +3,11 @@ import PetListItem from "./PetListItem";
 import "./styling/PetListItem.scss"
 
 export default function PetList(props) {
+  console.log(props.pets.length)
 
   return (
+    <>
+    {props.pets.length === 1 ? <h1 className="title"> Pet <b>Paw</b>file</h1> : <h1 className="title"> Pet <b>Paw</b>files</h1> }
     <section className="pets-container">
       {props.pets.length > 0 &&
         props.pets.map(pet => (
@@ -26,5 +29,6 @@ export default function PetList(props) {
         )
       }
     </section>
+    </>
   )
 }
