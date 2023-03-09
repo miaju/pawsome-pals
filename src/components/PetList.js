@@ -3,7 +3,8 @@ import PetListItem from "./PetListItem";
 import "./styling/PetListItem.scss"
 
 export default function PetList(props) {
-  console.log(props.pets.length)
+  // console.log(props.pets.length)
+  console.log(props)
 
   return (
     <>

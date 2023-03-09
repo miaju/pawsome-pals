@@ -12,14 +12,13 @@
   b {
     font-family: $font-handlee;
     // color: #0e7c7b;
-    color: $paw-header;
+    color: $teal;
   }
 }
 .pets-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // background-color: red;
 
   .pet-card {
     padding: 2%;
@@ -38,9 +37,18 @@
   .pet-info {
     text-align: center;
     font-family: Courier New;
+    .link-to-matches {
+      color: $button-color;
+      font-weight: bold;
+    }
+    p.selected {
+      font-family: $font-raleway;
+      font-size: 15px;
+      font-weight: lighter;
+    }
   }
+
   .name {
-    // background-color: red;
     font-family: $font-raleway;
     color: $text-colour;
     padding: 1vw;

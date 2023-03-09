@@ -14,10 +14,9 @@
   height: 450px;
 
   background: hsl(0, 0%, 95%);
-  box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, .3);
-
+  box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, 0.3);
+  
   .left {
-
     .image {
       object-fit: cover;
       position: absolute;
@@ -34,7 +33,6 @@
     display: flex;
     flex-direction: column;
 
-
     .pet-name {
       position: absolute;
       width: max-content;
@@ -47,7 +45,7 @@
     }
 
     .pet-name::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -65,10 +63,8 @@
       left: 7%;
 
       text-align: left;
-
     }
   }
-
 }
 
 .select-pet {
@@ -76,7 +72,7 @@
 
   button {
     background: hsl(0, 0%, 95%);
-    box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 25px 3px rgba(0, 0, 0, 0.3);
     position: fixed;
     bottom: 3em;
     left: 50%;
@@ -85,19 +81,23 @@
     background: transparent;
   }
   button:hover {
-    background: linear-gradient(to right, rgba(255, 0, 0, 0.19), rgba(0, 0, 255, 0.197));
+    background: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0.19),
+      rgba(0, 0, 255, 0.197)
+      );
+    }
   }
-}
 
-.previous-page{
-  font-family: Courier New;
+  .previous-page {
+    font-family: Courier New;
 
-  .back-btn {
-    position: absolute;
-    left: 6%;
-    width: 100px;
-    top: 5em;
-    background: transparent;
-    border: 0;
+    .back-btn {
+      position: absolute;
+      left: 6%;
+      width: 100px;
+      top: 5em;
+      background: transparent;
+      border: 0;
+    }
   }
-}
