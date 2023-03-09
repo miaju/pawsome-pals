@@ -1,6 +1,7 @@
 import { useState, React } from "react";
 import "./styling/Form.scss";
 import coverphoto from "./styling/dog-cover-photo.png";
+import { useNavigate } from "react-router-dom";
 
 /**
  *
@@ -8,7 +9,7 @@ import coverphoto from "./styling/dog-cover-photo.png";
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
-  // const [photo, setPhoto] = useState([]);
+  const navigate = useNavigate();
 
   /**
    * @param { String } initial
@@ -60,6 +61,7 @@ export default function Form(props) {
     };
 
     props.addPet(newPetProfile);
+    navigate('/pets/view');
   }
 
   return (
