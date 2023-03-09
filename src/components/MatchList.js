@@ -12,6 +12,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 export default function MatchList(props) {
   let [empty, setEmpty] = useState(false);
 
+
   const pending = {
     matches: props.pending,
     title: 'Pending',
@@ -30,12 +31,12 @@ export default function MatchList(props) {
     description: "This are the matches where the other pet matches with your pet."
   }
 
+
   let [content, setContent] = useState(matches);
-
-
+  console.log(content);
   useEffect(() => {
     setTimeout(() => {
-      setEmpty(true)
+      setEmpty(true);
     },500)
   }, [])
 

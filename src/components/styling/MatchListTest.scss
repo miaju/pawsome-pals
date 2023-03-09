@@ -15,9 +15,11 @@
   }
 
   h1 {
-    font-family: $font-phudu;
-    margin: 5px;
-    text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+    font-family: $font-raleway;
+    b {
+      font-family: "Handlee";
+      color: #960303;
+    }
   }
 
   .swipe {
@@ -30,7 +32,7 @@
   .cardContainer {
     width: 90vw;
     max-width: 90vw;
-    height: 350px;
+    height: 65vh;
     display: flex;
     justify-content: center;
   }
@@ -47,6 +49,9 @@
     p {
       padding: 10px;
       font-family: $font-raleway;
+      b {
+        font-family: $font-phudu;
+      }
     }
     button {
       position: absolute;
@@ -57,15 +62,15 @@
   .card {
     position: relative;
     background-color: #fff;
-    width: 80vw;
-    max-width: 300px;
-    height: 300px;
+    width: 60vw;
+    max-width: 80%;
+    height: 65vh;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
   }
 
-  .card h3 {
+  .card h1 {
     position: absolute;
     bottom: 0;
     margin: 10px;
