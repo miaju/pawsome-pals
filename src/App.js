@@ -31,7 +31,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [petPhoto, setPetPhoto] = useState("");
+  const [messages, setMessages] = useState([]);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 
@@ -42,12 +42,12 @@ function App() {
 
   function Logout() {
     localStorage.clear();
-    logout({ logoutParams: { returnTo: window.location.origin }});
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, {  email: email  })
+      .get(`http://localhost:8080/api/users`, { email: email })
       .catch(err => console.error(err));
 
   }
@@ -116,6 +116,14 @@ function App() {
             ...value,
           }));
           setMatchee(data);
+        });
+      axios
+        .get(`http://localhost:8080/api/messages/${currentId}`)
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({
+            ...value,
+          }));
+          setMessages(data);
         });
     }
   }, [currentpet]);
@@ -230,7 +238,7 @@ function App() {
       resolve(null);
     })
   }
-
+console.log(messages)
   return (
     <div>
       <BrowserRouter>
@@ -276,9 +284,9 @@ function App() {
             <Route
               path="/matches/:id"
               element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} />} />
-            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets}/>} />
-            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange}/>}/>
-            <Route path="/messages" element={<MessageList />} />
+            <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets} />} />
+            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange} />} />
+            <Route path="/messages" element={<MessageList messages={messages}/>} />
           </Routes>
         </div>
       </BrowserRouter>
