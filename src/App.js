@@ -45,6 +45,10 @@ function App() {
     logout({ logoutParams: { returnTo: window.location.origin }});
   };
 
+  function deletePet(id) {
+    console.log("delete pet called in app! ID:", id)
+  }
+
   async function getUserByEmail(email) {
     return await axios
       .get(`http://localhost:8080/api/users`, {  email: email  })
@@ -257,7 +261,7 @@ function App() {
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route
               path="/pets/view"
-              element={<PetList pets={pets} current={currentpet} />}
+              element={<PetList pets={pets} current={currentpet} deletePet={deletePet} />}
             />
             <Route
               path="/pets/:id"

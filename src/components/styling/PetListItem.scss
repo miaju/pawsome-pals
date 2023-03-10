@@ -54,11 +54,6 @@
     flex-basis: 20%;
   }
 
-  .name {
-    font-family: $font-raleway;
-    color: $text-colour;
-    font-size: 26px;
-  }
 
   .pet-image {
     #selected-img {
@@ -82,13 +77,10 @@
 
   .pet-info {
     text-align: center;
-    .delete-pet {
-      color: $button-darker;
-      padding: 3px;
-      margin-top: 4px;
-      margin-bottom: 10px;
-      // border: 3px solid;
-      border-radius: 50%;
+    .name {
+      font-family: $font-raleway;
+      color: $text-colour;
+      font-size: 26px;
     }
     p.selected {
       font-size: 11px;
@@ -99,39 +91,49 @@
       text-shadow: 1px -1px 5px pink;
     }
     // p.unselected {
-    //   font-size: 11px;
-    //   font-weight: lighter;
-    //   font-family: $font-raleway;
-    // }
+      //   font-size: 11px;
+      //   font-weight: lighter;
+      //   font-family: $font-raleway;
+      // }
+    }
+
+    #selected-img:hover {
+      border-color: #cededc;
+      box-shadow: 1px -5px 20px 5px $old-rose;
+      width: 260px;
+      height: 260px;
+      margin-bottom: 0;
+    }
+    #unselected-img:hover {
+      border-color: #cededc;
+      box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
+      width: 260px;
+      height: 260px;
+      margin-bottom: 0;
+    }
+    #add-pet:hover {
+      border-color: $button-darker;
+      width: 100px;
+      height: 100px;
+    }
+    .delete-pet:hover {
+      height: 25px;
+      margin-bottom: 1px;
+    }
   }
 
+  #separator {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 50px 100%;
+  }
 
-  #selected-img:hover {
-    border-color: #cededc;
-    box-shadow: 1px -5px 20px 5px $old-rose;
-    width: 260px;
-    height: 260px;
+  #trash-icon {
+    color: $button-darker;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    // border: 3px solid;
+    border-radius: 50%;
   }
-  #unselected-img:hover {
-    border-color: #cededc;
-    box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
-    width: 260px;
-    height: 260px;
-  }
-  #add-pet:hover {
-    border-color: $button-darker;
-    width: 100px;
-    height: 100px;
-  }
-  .delete-pet:hover {
-    height: 25px;
-    margin-bottom: 1px;
-  }
-}
-
-#separator {
-  display: block;
-  height: 50px;
-  width: 100%;
-  padding: 50px 100%;
-}
