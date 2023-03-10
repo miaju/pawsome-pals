@@ -14,8 +14,8 @@ import shuffle from './helpers/shuffleArray';
 // code can be found at: https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js
 function Advanced(props) {
   const [explorePets, setExplorePets] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
-  const [lastDirection, setLastDirection] = useState()
+  const [currentIndex, setCurrentIndex] = useState();
+  const [lastDirection, setLastDirection] = useState();
   const [clicked, setClicked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   // used for outOfFrame closure
@@ -103,8 +103,8 @@ function Advanced(props) {
           <><p>Looks like you don't have a pet selected.</p>
           <p>use the dropdown from above to selected a pet.</p></>
         )}
-        {(lastDirection && (lastDirection === 'right')) ? <h1>{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h1>
-        : (lastDirection && (lastDirection === 'left')) ? <h1>{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h1> : <></>}
+        {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2>{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
+        : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2>{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2> : <></>}
         <div className='cardContainer' >
           {explorePets.map((character, index) => (
             <TinderCard
