@@ -55,6 +55,10 @@ function Advanced(props) {
     currentIndexRef.current = val
   }
 
+  useEffect(() => {
+    setCurrentIndex(explorePets.length - 1);
+  }, [explorePets])
+
   const canSwipe = currentIndex >= 0
 
   // set last direction and decrease current index
@@ -95,7 +99,12 @@ function Advanced(props) {
             })}
           </Dropdown.Menu>
         </Dropdown>
-
+        {(!props.currentPet.id) && (
+          <><p>Looks like you don't have a pet selected.</p>
+          <p>use the dropdown from above to selected a pet.</p></>
+        )}
+        {(lastDirection && (lastDirection === 'right')) ? <h1>{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h1>
+        : (lastDirection && (lastDirection === 'left')) ? <h1>{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h1> : <></>}
         <div className='cardContainer' >
           {explorePets.map((character, index) => (
             <TinderCard
@@ -133,8 +142,8 @@ function Advanced(props) {
           ))}
         </div>
         {explorePets.length ? <div className='buttons'>
-          <button className='button' onClick={() => swipe('left', explorePets[currentIndex])}><FontAwesomeIcon icon={faXmark} /></button>
-          <button className='button' onClick={() => swipe('right', explorePets[currentIndex])}><FontAwesomeIcon icon={faHeart} /></button>
+          <button className='button' onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
+          <button className='button' onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
         </div> : <></>}
       </div>
   )
