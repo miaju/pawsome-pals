@@ -14,6 +14,10 @@ export default function MessageList(props) {
           to_petId={message.to_petid}
           message={message.message}
           timestamp={message.timestamp}
+          from_pet_name={message.from_pet_name}
+          to_pet_name={message.to_pet_name}
+          from_pet_url={message.from_pet_photo_url}
+          to_pet_url={message.to_pet_photo_url}
         />
       ))}
     </section>
