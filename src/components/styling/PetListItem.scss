@@ -56,7 +56,6 @@
   .name {
     font-family: $font-raleway;
     color: $text-colour;
-    padding: 1vw;
     font-size: 26px;
   }
 
@@ -82,16 +81,20 @@
 
   .pet-info {
     text-align: center;
-    font-family: Courier New;
-    .link-to-matches {
-      color: $button-color;
-      font-weight: bold;
-      font-family: $font-handlee;
+    .delete-pet {
+      color: $button-darker;
+      padding: 3px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      // border: 3px solid;
+      border-radius: 50%;
     }
     p.selected {
       font-size: 11px;
-      font-weight: lighter;
+      // font-weight: lighter;
+      font-weight: bold;
       font-family: $font-raleway;
+      color: $old-rose;
     }
     // p.unselected {
     //   font-size: 11px;

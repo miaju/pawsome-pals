@@ -26,7 +26,7 @@ export default function PetList(props) {
       <div id="add-pet">
         <Link to={"/pets/new"}>
           <FontAwesomeIcon className="add-pet" icon={faShieldDog} size="2x" />
-          <FontAwesomeIcon className="add-pet" icon={faPlus} size="s" />
+          <FontAwesomeIcon className="add-pet" icon={faPlus} size="sm" />
         </Link>
       </div>
       </div>

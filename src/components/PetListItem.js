@@ -1,10 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import "./styling/PetListItem.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function PetListItem(props) {
   const isSelected = props.id === props.current.id;
-  console.log(props)
 
   return (
     <div className="pet-card">
@@ -15,6 +16,7 @@ export default function PetListItem(props) {
       </div>
       </Link>
       <div className="pet-info">
+      <FontAwesomeIcon className="delete-pet" icon={faTrash} size="s" />
         <p className="name">{props.name}</p>
         {isSelected && <p className="selected">{props.name} is currently selected for matchmaking!</p>}
         {/* {!isSelected && <p className="unselected">Go to <Link to={'/matches'} className="link-to-matches">Matches</Link> to find a playdate for {props.name}!</p>} */}
@@ -25,5 +27,6 @@ export default function PetListItem(props) {
         </button>
       </div> */}
     </div>
+
   )
 }
