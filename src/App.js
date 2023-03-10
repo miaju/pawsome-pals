@@ -31,7 +31,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [petPhoto, setPetPhoto] = useState("");
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 

@@ -5,7 +5,6 @@ import Collapse from "react-bootstrap/Collapse";
 
 export default function Delete(props) {
   const [open, setOpen] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
 
   return (
     <>
@@ -23,7 +22,6 @@ export default function Delete(props) {
           Are you sure you want to delete {props.name}'s pawfile? <br />
           <button
             onClick={() => {
-              setConfirmation(true);
               setOpen(false);
               props.delete(props.id)
             }}
