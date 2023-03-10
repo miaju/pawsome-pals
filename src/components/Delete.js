@@ -5,6 +5,7 @@ export default function Delete(props) {
   return (
     <>
     HELLOOOOO WOOOORLD!!!
+    {props.id}
     </>
   );
 }

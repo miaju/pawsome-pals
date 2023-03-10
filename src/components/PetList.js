@@ -6,6 +6,10 @@ import { faShieldDog, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function PetList(props) {
+  function test(id) {
+    console.log("CAUGHT IN TEST", id)
+  }
+
   return (
     <>
       {props.pets.length === 1 ? (
@@ -46,6 +50,7 @@ export default function PetList(props) {
               description={pet.description}
               photo_url={pet.photo_url}
               current={props.current}
+              // test={test}
             />
           ))}
       </section>

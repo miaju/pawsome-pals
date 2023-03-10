@@ -1,5 +1,6 @@
 import { useState, React } from "react";
 import { Link } from "react-router-dom";
+import Delete from "./Delete";
 import "./styling/PetListItem.scss";
 import Collapse from "react-bootstrap/Collapse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,10 +10,6 @@ export default function PetListItem(props) {
   const [confirm, setConfirm] = useState(false);
   const [open, setOpen] = useState(false);
   const isSelected = props.id === props.current.id;
-
-  function confirmDelete() {
-    setConfirm(true);
-  }
 
   return (
     <div className="pet-card">
@@ -46,7 +43,16 @@ export default function PetListItem(props) {
         />
         <Collapse in={open}>
           <div id="confirm-delete">
-            Are you sure you want to delete {props.name}'s pawfile?'
+            Are you sure you want to delete {props.name}'s pawfile? <br />
+            <button
+              onClick={() => {
+                setConfirm(true);
+                setOpen(false);
+              }}
+            >
+              Yes
+            </button>
+            <button onClick={() => setOpen(false)}>No</button>
           </div>
         </Collapse>
         {!open && <p className="name">{props.name}</p>}
@@ -57,6 +63,7 @@ export default function PetListItem(props) {
         )}
         {/* {!isSelected && <p className="unselected">Go to <Link to={'/matches'} className="link-to-matches">Matches</Link> to find a playdate for {props.name}!</p>} */}
       </div>
+      {confirm && <Delete id={props.id} />}
     </div>
   );
 }
