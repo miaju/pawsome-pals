@@ -14,6 +14,7 @@ import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
 import MessageList from "components/MessageList";
+import MessageDetail from "components/MessageDetail";
 import Footer from "components/Footer";
 
 function App() {
@@ -287,6 +288,7 @@ console.log(messages)
             <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets} />} />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange} />} />
             <Route path="/messages" element={<MessageList messages={messages}/>} />
+            <Route path="/messages/:id" element={<MessageDetail messages={messages}/>} />
           </Routes>
         </div>
       </BrowserRouter>
