@@ -7,33 +7,59 @@
   margin-top: 3vh;
   margin-bottom: 1vh;
   color: $text-colour;
-  // color: #bad1cd;
-  // color: $text-colour;
+
   b {
     font-family: $font-handlee;
-    // color: #0e7c7b;
     color: $teal;
   }
 }
 #fact {
   display: flex;
   justify-content: center;
-  margin-bottom: 8vh;
+  margin-bottom: 6vh;
   font-family: $font-handlee;
   font-size: 22px;
   color: $old-rose;
   opacity: 0.5;
 }
+
+.add-pet-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+  #add-pet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 75px;
+    border: 2px solid $button-color;
+    border-radius: 50%;
+    .add-pet {
+      color: $button-color;
+    }
+  }
+}
+
 .pets-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-end;
+  // background-color: blue;
+  margin-bottom: 5vh;
 
   .pet-card {
     padding: 2%;
     flex-basis: 20%;
   }
+
+  .name {
+    font-family: $font-raleway;
+    color: $text-colour;
+    padding: 1vw;
+    font-size: 26px;
+  }
+
   .pet-image {
     #selected-img {
       width: 250px;
@@ -42,7 +68,7 @@
       border: 10px solid #bad1cd;
       border-bottom: none;
       border-radius: 50%;
-      box-shadow: 1px -5px 40px 1px $old-rose;
+      box-shadow: 1px -5px 20px 1px $old-rose;
     }
     #unselected-img {
       width: 250px;
@@ -67,29 +93,37 @@
       font-weight: lighter;
       font-family: $font-raleway;
     }
-    p.unselected {
-      font-size: 11px;
-      font-weight: lighter;
-      font-family: $font-raleway;
-    }
+    // p.unselected {
+    //   font-size: 11px;
+    //   font-weight: lighter;
+    //   font-family: $font-raleway;
+    // }
   }
 
-  .name {
-    font-family: $font-raleway;
-    color: $text-colour;
-    padding: 1vw;
-    font-size: 26px;
-  }
+
   #selected-img:hover {
     border-color: #cededc;
-    box-shadow: 1px -5px 35px 5px $old-rose;
-    width: 305px;
-    height: 305px;
+    box-shadow: 1px -5px 20px 5px $old-rose;
+    width: 260px;
+    height: 260px;
   }
   #unselected-img:hover {
     border-color: #cededc;
-    box-shadow: 1px -10px 35px 5px rgba(0, 0, 0, 0.3);
-    width: 305px;
-    height: 305px;
+    box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
+    width: 260px;
+    height: 260px;
   }
+  #add-pet:hover {
+    border-color: $button-darker;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+#separator {
+  display: block;
+  // background-color: red;
+  height: 50px;
+  width: 100%;
+  padding: 50px 100%;
 }

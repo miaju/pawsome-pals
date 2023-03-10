@@ -16,10 +16,9 @@ export default function PetListItem(props) {
       </Link>
       <div className="pet-info">
         <p className="name">{props.name}</p>
-        {isSelected && <p className="selected"><b>{props.name} is currently selected for matchmaking!</b></p>}
-        {!isSelected && <p className="unselected">Go to <Link to={'/matches'} className="link-to-matches">Matches</Link> to find a playdate for {props.name}!</p>}
+        {isSelected && <p className="selected">{props.name} is currently selected for matchmaking!</p>}
+        {/* {!isSelected && <p className="unselected">Go to <Link to={'/matches'} className="link-to-matches">Matches</Link> to find a playdate for {props.name}!</p>} */}
       </div>
-      <footer id="card-footer"></footer>
       {/* <div className="select-pet">
         <button onClick={() => props.setcurrentpet(props.id)}>
           Go on a playdate with me!
