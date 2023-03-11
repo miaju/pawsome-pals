@@ -42,13 +42,16 @@ function Advanced(props) {
   )
 
   useEffect(() => {
-    if (props.currentPet.id) {
-      axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
+    console.log(props.userId)
+    if (props.currentPet.id && props.userId) {
+      console.log(props.userId)
+      axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}/${props.userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+        console.log(data.length);
         setExplorePets(shuffle(data).slice(0,15));
       });}
-  }, [props.currentPet])
+  }, [props.currentPet, props.userId])
 
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val)
