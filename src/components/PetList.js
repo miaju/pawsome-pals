@@ -5,17 +5,22 @@ import "./styling/PetListItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldDog, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function PetList(props) {
   return (
     <>
+
       {/* {props.pets.length > 0 &&
         props.pets.map((pet) => (
           <Delete
-            key={pet.id}
-            id={pet.id}
-            name={pet.name}
-            delete={props.deletePet}
+          key={pet.id}
+          id={pet.id}
+          name={pet.name}
+          delete={props.deletePet}
           />
         ))} */}
       {props.pets.length === 1 ? (

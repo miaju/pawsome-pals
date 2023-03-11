@@ -3,7 +3,6 @@ import "./styling/Delete.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Collapse from "react-bootstrap/Collapse";
-import Stack from 'react-bootstrap/Stack';
 
 export default function Delete(props) {
   const [open, setOpen] = useState(false);
