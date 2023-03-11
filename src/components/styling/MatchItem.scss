@@ -26,7 +26,7 @@ $margin: 15px;
   .left {
     font-family: Courier New;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: column;
     flex-wrap: wrap;
     width: 50%;
@@ -50,7 +50,7 @@ $margin: 15px;
 
     .match-info {
       position: relative;
-      font-size: 1.15em;
+      font-size: 1.25em;
       max-width: 100%;
       text-align: left;
       margin-left: $margin;
