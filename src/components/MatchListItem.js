@@ -60,6 +60,7 @@ export default function MatchListItem(props) {
         </div>) :
         (<div onClick={toMatch}
           className="not-liked"
+          title="Like Button"
           >
           {loading ? <Spinner size="sm"/> : <FontAwesomeIcon icon={faHeart} />}
         </div>)

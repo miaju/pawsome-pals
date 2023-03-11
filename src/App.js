@@ -211,7 +211,7 @@ function App() {
         other_pet: match.target.id
       }
       return axios.post("http://localhost:8080/api/relationships", relationship)
-        .then((res) => {
+        .then((res) => {console.log(res)
           if (match.dir === 'right') {
             const newMatch = {
               pet_one: match.currentPet.id,

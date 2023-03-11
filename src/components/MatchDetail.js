@@ -9,6 +9,9 @@ export default function MatchDetail(props) {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const notif = (location.state.data.type === 'notifications');
   const unMatch = () => {
     setLoading(true)
     props.unmatch(props.currentId, location.state.data.id);
@@ -16,16 +19,13 @@ export default function MatchDetail(props) {
 
   function toMatch() {
     setLoading(true);
-    props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {
+    props.addMatch({target: {id: location.state.data.id}, currentPet: {id: props.currentId}, dir: 'right'}).then((res) => {
       setTimeout(() => {
+        navigate("/matches");
         window.location.reload();
       }, 500)
     })
   }
-
-  const location = useLocation();
-  const navigate = useNavigate();
-  const notif = (location.state.data.type === 'notifications');
 
   let email = props.getUserByPet(location.state.data.id).then(e => {
     email = e.data.email;
