@@ -18,30 +18,24 @@
 
   .pet-image {
     position: relative;
+  }
 
-    .like-button {
-      color: red;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 10rem;
-      background-color: transparent;
-      border: transparent;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
-    .like-button :hover {
+  .like-button {
+    margin: 2px;
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10rem;
+    background-color: transparent;
+    border: transparent;
+    &:hover {
       color: red;
     }
+  }
 
-    .fa-heart {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      color: red;
-      position: absolute;
-    }
+  .fa-heart {
+    color: red;
   }
 
   .pet-info {
