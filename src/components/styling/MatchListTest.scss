@@ -25,14 +25,16 @@
   .swipe {
     position: absolute;
     display: flex;
-    width: 90vw;
+    width: 100%;
+    max-width: 70vw;
+    height: 70vh;
     justify-content: space-evenly;
   }
 
   .cardContainer {
     width: 90vw;
     max-width: 90vw;
-    height: 65vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
   }
@@ -49,6 +51,7 @@
     p {
       padding: 10px;
       font-family: $font-raleway;
+      margin-bottom: 5rem;
       b {
         font-family: $font-phudu;
       }
@@ -61,35 +64,46 @@
 
   .card {
     position: relative;
-    background-color: #fff;
-    width: 60vw;
-    max-width: 80%;
-    height: 65vh;
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .card h1 {
+    width: 100%;
+    max-width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    h1 {
     position: absolute;
     bottom: 0;
     margin: 10px;
     color: #fff;
     text-shadow: 2px 2px #333337;
     font-family: $font-handlee;
-    &:hover{
-      transform: scale(1.05);
-      cursor: pointer;
+      &:hover{
+        transform: scale(1.05);
+        cursor: pointer;
+      }
     }
-  }
 
-  .infoText {
-    width: 100%;
-    justify-content: center;
-    display: flex;
+    h2 {
+      font-family: $font-handlee;
+      &:hover{
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
 
-    animation-name: popup;
-    animation-duration: 800ms;
+    .card-body {
+      background-color: #fff;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+    }
+
+    .card-img-left {
+      object-fit: cover;
+      width: 100%;
+      max-width: 100%;
+      height: 100% !important;
+      border-radius: 5px;
+    }
   }
 
   .buttons {

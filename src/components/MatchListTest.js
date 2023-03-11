@@ -3,6 +3,7 @@ import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 import "./styling/MatchListTest.scss";
@@ -13,8 +14,8 @@ import shuffle from './helpers/shuffleArray';
 // code can be found at: https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js
 function Advanced(props) {
   const [explorePets, setExplorePets] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(explorePets.length - 1)
-  const [lastDirection, setLastDirection] = useState()
+  const [currentIndex, setCurrentIndex] = useState();
+  const [lastDirection, setLastDirection] = useState();
   const [clicked, setClicked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   // used for outOfFrame closure
@@ -45,7 +46,7 @@ function Advanced(props) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        setExplorePets(shuffle(data).slice(0,25));
+        setExplorePets(shuffle(data).slice(0,15));
       });}
   }, [props.currentPet])
 
@@ -53,6 +54,10 @@ function Advanced(props) {
     setCurrentIndex(val)
     currentIndexRef.current = val
   }
+
+  useEffect(() => {
+    setCurrentIndex(explorePets.length - 1);
+  }, [explorePets])
 
   const canSwipe = currentIndex >= 0
 
@@ -81,7 +86,6 @@ function Advanced(props) {
 
   return (
     showPopup ? <Popup setShowPopup={setShowPopup} petName={props.currentPet} otherPetName={explorePets[currentIndex + 1]} /> :
-
       <div className='matchlist'>
         <h1>Let's look at some <b>Paw</b>tential matches!</h1>
         <Dropdown id="petDropdown">
@@ -95,7 +99,12 @@ function Advanced(props) {
             })}
           </Dropdown.Menu>
         </Dropdown>
-
+        {(!props.currentPet.id) && (
+          <><p>Looks like you don't have a pet selected.</p>
+          <p>use the dropdown from above to selected a pet.</p></>
+        )}
+        {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2>{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
+        : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2>{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2> : <></>}
         <div className='cardContainer' >
           {explorePets.map((character, index) => (
             <TinderCard
@@ -105,38 +114,37 @@ function Advanced(props) {
               onSwipe={(dir) => swiped(dir, character.name, index)}
               onCardLeftScreen={() => outOfFrame(character.name, index)}
             >
-              <div
-                style={{ backgroundImage: 'url(' + character.photo_url + ')' }}
-                className='card'
-              >
-                <h1 onClick={click}>{character.name}</h1>
-              </div>
-              {clicked ? (<div className='cardInfo' >
-                <p>
-                  <b>Breed:</b> {character.breed}<br />
-                  <b>Age:</b> {character.age}<br />
-                  <b>Sex:</b> {character.sex}<br />
-                  <b>Size:</b> {character.size}<br />
-                  <b>City:</b> {character.city}<br />
-                  <b>Description:</b> {character.description}
-                </p>
-                <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
-              </div>) : <></>}
+              <Card>
+                <Card.Img
+                  draggable="false"
+                  style={clicked ? {maxWidth: "50%"} : {}}
+                  variant="left"
+                  src={character.photo_url}
+                  alt="Card image"
+                  />
+                  {!clicked ? (<h1 onClick={click}>{character.name}</h1>):<></>}
+                  {clicked ? (<Card.Body>
+                  <div className='cardInfo' >
+                  <h2 onClick={click}>{character.name}</h2>
+                    <p>
+                      <b>Breed:</b> {character.breed}<br />
+                      <b>Age:</b> {character.age}<br />
+                      <b>Sex:</b> {character.sex}<br />
+                      <b>Size:</b> {character.size}<br />
+                      <b>City:</b> {character.city}<br />
+                      <b>Description:</b> {character.description}
+                    </p>
+                    <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+                  </div>
+                  </Card.Body>) : <></>}
+              </Card>
             </TinderCard>
-
           ))}
         </div>
         {explorePets.length ? <div className='buttons'>
-          <button className='button' onClick={() => swipe('left', explorePets[currentIndex])}><FontAwesomeIcon icon={faXmark} /></button>
-          <button className='button' onClick={() => swipe('right', explorePets[currentIndex])}><FontAwesomeIcon icon={faHeart} /></button>
+          <button className='button' onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
+          <button className='button' onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
         </div> : <></>}
-        {lastDirection ? (
-          <h2 key={lastDirection} className='infoText'>
-          </h2>
-        ) : (
-          <h2 className='infoText'>
-          </h2>
-        )}
       </div>
   )
 }

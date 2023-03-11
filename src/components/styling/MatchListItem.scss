@@ -18,29 +18,55 @@
 
   .pet-image {
     position: relative;
+  }
 
-    .like-button {
-      color: red;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 10rem;
-      background-color: transparent;
-      border: transparent;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+  .like-button {
+    margin-left: 5px;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10rem;
+    background-color: transparent;
+    border: transparent;
 
-    .like-button :hover {
+    &:hover {
       color: red;
     }
-
+  }
+  .not-liked {
+    margin-left: 5px;
+    color: black !important;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10rem;
+    background-color: transparent;
+    border: transparent;
     .fa-heart {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      color: black;
+      &:hover {
+        color: red;
+        transform: scale(1.25);
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .fa-heart {
+    color: red;
+    &:hover {
       color: red;
-      position: absolute;
+      transform: scale(1.25);
+      cursor: pointer;
+    }
+  }
+
+  .fa-heart-crack {
+    &:hover {
+      color: black;
+      transform: scale(1.25);
+      cursor: pointer;
     }
   }
 
@@ -48,5 +74,10 @@
     text-align: center;
     font-family: Courier New;
   }
+
+  .spinner {
+    margin: auto;
+  }
+
 
 }
