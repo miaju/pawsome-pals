@@ -77,6 +77,10 @@ export default function MatchList(props) {
               content.matches.map(match => (
                 <MatchListItem
                   key={match.id}
+                  type={content.title.toLowerCase()}
+                  unMatch={props.unMatch}
+                  getUserByPet={props.getUserByPet}
+                  currentPet={props.currentPet}
                   id={match.id}
                   name={match.name}
                   breed={match.breed}
