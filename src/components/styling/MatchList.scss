@@ -35,15 +35,20 @@
     font-size: 1.75rem;
     text-align: center;
      * {
-       margin: 0.5rem;
+       margin: 5%;
      }
   }
 }
 
 .nav-tabs {
+  display: flex;
+  justify-content: space-between;
   .nav-item > a{
     color: $button-darker;
   }
-  font-family: $font-handlee;
+  .tab-names {
+    display: flex;
+    margin-left: 5%;
+    font-family: $font-handlee;
+  }
 }
-
