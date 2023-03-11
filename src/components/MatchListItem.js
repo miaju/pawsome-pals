@@ -2,16 +2,27 @@ import React, {useState} from "react"
 import { Link } from "react-router-dom";
 import "./styling/MatchListItem.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from "react-bootstrap";
 import UnMatchPopup from "./UnMatchPopup";
 
 export default function MatchListItem(props) {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const unMatch = () => {
     setLoading(true)
     props.unMatch(props.currentPet.id, props.id);
+  }
+
+  function toMatch() {
+    setLoading(true);
+    props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500)
+    })
   }
 
   const data = {
@@ -24,7 +35,7 @@ export default function MatchListItem(props) {
     city: props.city,
     description: props.description,
     photo_url: props.photo_url,
-
+    type: props.type
   }
 
   return (
@@ -37,9 +48,22 @@ export default function MatchListItem(props) {
         </div>
       </Link>
       <div className="pet-info">
-        {(props.type !== 'matchee') && <div onClick={() => setShow(true)} className="like-button" title="Like Button">
-          <FontAwesomeIcon icon={faHeart} />
-        </div>}
+        {(props.type !== 'notifications') ?
+        (<div
+          onClick={() => setShow(true)}
+          className="like-button"
+          title="Like Button"
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          {hover ? <FontAwesomeIcon icon={faHeartCrack} />  : <FontAwesomeIcon icon={faHeart} />}
+        </div>) :
+        (<div onClick={toMatch}
+          className="not-liked"
+          >
+          {loading ? <Spinner size="sm"/> : <FontAwesomeIcon icon={faHeart} />}
+        </div>)
+        }
         <p className="bg-light border">{props.name}</p>
       </div>
     </div>

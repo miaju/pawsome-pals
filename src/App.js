@@ -204,6 +204,7 @@ function App() {
   }
 
   function addMatch(match) {
+    console.log(match);
     if (match.currentPet && match.target) {
       const relationship = {
         current_pet: match.currentPet.id,
@@ -271,8 +272,21 @@ function App() {
             />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} />} />
-            <Route path="/matches" element={<MatchList matches={matches} getUserByPet={getUserByPet} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets} unMatch={unmatch}/>} />
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
+            <Route
+              path="/matches"
+              element={
+                <MatchList
+                matches={matches}
+                getUserByPet={getUserByPet}
+                pending={pending}
+                matchee={matchee}
+                setCurrentPet={handlePetChange}
+                currentPet={currentpet} userPets={pets}
+                unMatch={unmatch}
+                addMatch={addMatch}
+              />}
+            />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange}/>}/>
             <Route path="/messages" element={<MessageList />} />
           </Routes>
