@@ -21,7 +21,7 @@ const NavBar = (props) => {
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          Pawsome Pals
+          <b>Paw</b>some Pals
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
