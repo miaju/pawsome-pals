@@ -44,6 +44,13 @@ function App() {
     logout({ logoutParams: { returnTo: window.location.origin }});
   };
 
+  function deletePet(id) {
+    console.log("delete pet called in app! ID:", id)
+    return axios
+    .delete(`http://localhost:8080/api/pets/${id}`)
+    .then(res => console.log(res.data))
+  }
+
   async function getUserByEmail(email) {
     return await axios
       .get(`http://localhost:8080/api/users`, {  email: email  })
@@ -154,35 +161,25 @@ function App() {
   // Create a new pet profile
   async function addPet(pet) {
     const currentId = userId;
-    console.log(currentId)
-
-    const {
-      name,
-      breed,
-      age,
-      sex,
-      size,
-      spayed_or_neutered,
-      city,
-      description,
-      photo_url,
-    } = pet;
+    // console.log(currentId)
+    const newPet = {
+      user_id: currentId,
+      name: pet.name,
+      breed: pet.breed,
+      age: pet.age,
+      sex: pet.sex,
+      size: pet.size,
+      spayed_or_neutered: pet.spayed_or_neutered,
+      city: pet.city,
+      description: pet.description,
+      photo_url: pet.photo_url
+    }
 
     return axios
-      .post(`http://localhost:8080/api/pets`, {
-        user_id: currentId,
-        name: name,
-        breed: breed,
-        age: age,
-        sex: sex,
-        spayed_or_neutered: spayed_or_neutered,
-        size: size,
-        city: city,
-        description: description,
-        photo_url: photo_url,
-      })
+      .post(`http://localhost:8080/api/pets`, newPet)
       .then((res) => {
         console.log("made it here");
+        console.log(res.data);
         setPets([...pets, pet]);
         // return redirect("http://localhost:3000/pets/view");
       });
@@ -256,7 +253,7 @@ function App() {
             <Route path="/pets/new" element={<Form addPet={addPet} />} />
             <Route
               path="/pets/view"
-              element={<PetList pets={pets} current={currentpet} />}
+              element={<PetList pets={pets} current={currentpet} deletePet={deletePet} />}
             />
             <Route
               path="/pets/:id"
