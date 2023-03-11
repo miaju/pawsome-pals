@@ -287,7 +287,15 @@ function App() {
                 addMatch={addMatch}
               />}
             />
-            <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange}/>}/>
+            {userId}
+            <Route path="/explore" element={
+            <Advanced
+            userPets={pets}
+            addMatch={addMatch}
+            currentPet={currentpet}
+            setCurrentPet={handlePetChange}
+            userId={userId}
+            />}/>
             <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
