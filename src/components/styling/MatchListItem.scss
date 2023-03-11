@@ -21,26 +21,63 @@
   }
 
   .like-button {
-    margin: 2px;
+    margin-left: 5px;
     position: absolute;
-    color: red;
     font-size: 20px;
     cursor: pointer;
     border-radius: 10rem;
     background-color: transparent;
     border: transparent;
+
     &:hover {
       color: red;
     }
   }
+  .not-liked {
+    margin-left: 5px;
+    color: black !important;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10rem;
+    background-color: transparent;
+    border: transparent;
+    .fa-heart {
+      color: black;
+      &:hover {
+        color: red;
+        transform: scale(1.25);
+        cursor: pointer;
+      }
+    }
+
+  }
 
   .fa-heart {
     color: red;
+    &:hover {
+      color: red;
+      transform: scale(1.25);
+      cursor: pointer;
+    }
+  }
+
+  .fa-heart-crack {
+    &:hover {
+      color: black;
+      transform: scale(1.25);
+      cursor: pointer;
+    }
   }
 
   .pet-info {
     text-align: center;
     font-family: Courier New;
   }
+
+  .spinner {
+    margin: auto;
+  }
+
 
 }

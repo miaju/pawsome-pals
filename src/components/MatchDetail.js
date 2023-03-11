@@ -2,11 +2,10 @@ import React, {useState} from "react"
 import "./styling/MatchItem.scss"
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faHeartCrack, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faHeartCrack, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons'
 import UnMatchPopup from "./UnMatchPopup";
 
 export default function MatchDetail(props) {
-
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -15,10 +14,18 @@ export default function MatchDetail(props) {
     props.unmatch(props.currentId, location.state.data.id);
   }
 
+  function toMatch() {
+    setLoading(true);
+    props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500)
+    })
+  }
+
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(props)
-  console.log(location);
+  const notif = (location.state.data.type === 'notifications');
 
   let email = props.getUserByPet(location.state.data.id).then(e => {
     email = e.data.email;
@@ -26,7 +33,7 @@ export default function MatchDetail(props) {
 
   return (
     <><UnMatchPopup setShow={setShow} show={show} unMatch={unMatch} loading={loading} />
-    <div style={{ height: "80vh" }}>
+    <div style={{ display: "grid" }}>
       <section className="match-card">
         <div className="right">
           <img className="image" src={location.state.data.photo_url} alt={props.name} />
@@ -42,9 +49,13 @@ export default function MatchDetail(props) {
             Description: {location.state.data.description}
           </div>
           <div className="match-buttons">
+            {notif && (<button
+              onClick={toMatch}>
+              Match <FontAwesomeIcon icon={faHeart} />
+            </button>)}
             <button
               onClick={() => setShow(true)}>
-              Unmatch <FontAwesomeIcon icon={faHeartCrack} />
+              {notif ? "Delete" : "Unmatch"} <FontAwesomeIcon icon={faHeartCrack} />
             </button>
             <button
               onClick={() => window.location.href = `mailto:${email}`}>
