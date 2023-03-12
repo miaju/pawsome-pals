@@ -14,6 +14,7 @@ import shuffle from "components/helpers/shuffleArray";
 import MatchList from "components/MatchList";
 import MatchDetail from "components/MatchDetail";
 import MessageList from "components/MessageList";
+import MessageDetail from "components/MessageDetail";
 import Footer from "components/Footer";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [messages, setMessages] = useState([]);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 
@@ -41,7 +43,7 @@ function App() {
 
   function Logout() {
     localStorage.clear();
-    logout({ logoutParams: { returnTo: window.location.origin }});
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
   function deletePet(id) {
@@ -53,7 +55,7 @@ function App() {
 
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, {  email: email  })
+      .get(`http://localhost:8080/api/users`, { email: email })
       .catch(err => console.error(err));
 
   }
@@ -122,6 +124,14 @@ function App() {
             ...value,
           }));
           setMatchee(data);
+        });
+      axios
+        .get(`http://localhost:8080/api/messages/${currentId}`)
+        .then((response) => {
+          const data = Object.entries(response.data).map(([key, value]) => ({
+            ...value,
+          }));
+          setMessages(data);
         });
     }
   }, [currentpet]);
@@ -228,6 +238,23 @@ function App() {
     })
   }
 
+  function filterDuplicatemsgs(messages) {
+    const uniqueMessages = {};
+    const uniqueArr = messages.filter(message => {
+      const pair1 = `${message.from_petid}-${message.to_petid}`;
+      const pair2 = `${message.to_petid}-${message.from_petid}`;
+      if (!uniqueMessages[pair1] && !uniqueMessages[pair2]) {
+        uniqueMessages[pair1] = true;
+        return true;
+      }
+      return false;
+    });
+    return uniqueArr
+  }
+
+  const uniqueMessages = filterDuplicatemsgs(messages);
+  console.log(uniqueMessages)
+
   return (
     <div>
       <BrowserRouter>
@@ -270,6 +297,9 @@ function App() {
                 />
               }
             />
+ 
+            <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
+            <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
             <Route
               path="/matches/:id"
               element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
