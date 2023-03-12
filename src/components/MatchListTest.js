@@ -48,7 +48,7 @@ function Advanced(props) {
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         console.log(data.length);
-        setExplorePets(shuffle(data).slice(0,15));
+        setExplorePets(shuffle(data.slice(0,15)));
       });}
   }, [props.currentPet, props.userId])
 
