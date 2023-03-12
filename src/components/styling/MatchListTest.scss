@@ -7,18 +7,34 @@
 .matchlist {
   display: flex;
   flex-direction: column;
-
   align-items: center;
   width: 100vw;
-  * {
-    user-select: none;
+  #top {
+    display: flex;
+    width: 90vw;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      margin-top: 10px;
+      font-family: $font-raleway;
+      font-size: 2.5vw;
+      b {
+        font-family: "Handlee";
+        color: $teal;
+      }
+    }
   }
 
-  h1 {
-    font-family: $font-raleway;
-    b {
-      font-family: "Handlee";
-      color: #960303;
+  #top-dialog {
+    color: $old-rose;
+  }
+
+  h2 {
+    font-family: $font-handlee;
+    font-size: 2.5vw;
+    hr {
+      margin-top: 0;
     }
   }
 
@@ -27,13 +43,13 @@
     display: flex;
     width: 100%;
     max-width: 70vw;
+    height: 65vh;
     justify-content: space-evenly;
   }
 
   .cardContainer {
     width: 90vw;
     max-width: 90vw;
-    height: 65vh;
     display: flex;
     justify-content: center;
   }
@@ -47,6 +63,7 @@
     flex-wrap: wrap;
     border-radius: 5px;
     animation: 0.75s smallPopup;
+    font-size: large;
     p {
       padding: 10px;
       font-family: $font-raleway;
@@ -68,15 +85,28 @@
     height: 65vh;
     display: flex;
     flex-direction: row;
+    &:hover{
+      transform: scale(1.01);
+      cursor: move; /* fallback if grab cursor is unsupported */
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+    }
+    &:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+    }
     h1 {
     position: absolute;
     bottom: 0;
-    margin: 10px;
+    margin: 20px;
+    margin-left: 25px;
     color: #fff;
     text-shadow: 2px 2px #333337;
     font-family: $font-handlee;
       &:hover{
-        transform: scale(1.05);
+        transform: scale(1.15);
         cursor: pointer;
       }
     }
@@ -106,45 +136,38 @@
   }
 
   .buttons {
-    margin: 20px;
+    margin: 10px;
     display: flex;
     flex-wrap: wrap;
   }
 
   .button {
-    flex-shrink: 0;
     padding: 10px;
     border-radius: 5px;
     border: none;
     color: #fff;
     background-color: $button-color;
-    transition: 200ms;
     margin: 10px;
     font-weight: bolder;
-    width: 60px;
+    width: 100px;
     &:hover {
       transform: scale(1.05);
       background-color: $button-darker;
+      svg {
+        transform: scale(1.5);
+      }
     }
   }
 
-  .dropdown {
-    margin: 5px;
-    span {
-      margin: 5px;
+  .button.heart {
+    &:hover {
+      background-color: rgb(238, 25, 103);
     }
-    button {
-      background-color: $button-color;
-      border-color: $button-color;
-      &:active {
-        background-color: $button-color;
-        border-color: $button-color;
-      }
-      &:hover {
-        transform: scale(1.05);
-        background-color: $button-darker;
-        border-color: $button-darker;
-      }
+  }
+
+  .button.xmark {
+    &:hover {
+      background-color: rgb(72, 3, 31);
     }
   }
 
@@ -152,16 +175,6 @@
     .buttons {
       flex-direction: column;
     }
-  }
-
-  @keyframes popup {
-    0%   { transform: scale(1,1) }
-    10%  { transform: scale(1.1,1.1) }
-    30%  { transform: scale(.9,.9) }
-    50%  { transform: scale(1,1) }
-    57%  { transform: scale(1,1) }
-    64%  { transform: scale(1,1) }
-    100% { transform: scale(1,1) }
   }
 
   @keyframes smallPopup {

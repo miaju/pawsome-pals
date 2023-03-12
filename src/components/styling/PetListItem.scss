@@ -1,21 +1,130 @@
+@import "_variables.scss";
+
+.title {
+  text-align: -webkit-center;
+  font-size: 5vw;
+  font-family: $font-raleway;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  color: $text-colour;
+
+  b {
+    font-family: $font-handlee;
+    color: $teal;
+  }
+}
+#fact {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6vh;
+  font-family: $font-handlee;
+  font-size: 22px;
+  color: $old-rose;
+  opacity: 0.5;
+  text-shadow: 1px -1px 5px pink;
+}
+
+.add-pet-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+  #add-pet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 75px;
+    border: 2px solid $button-color;
+    border-radius: 50%;
+    .add-pet {
+      color: $button-color;
+    }
+  }
+}
+
 .pets-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  // background-color: blue;
+  margin-bottom: 5vh;
 
   .pet-card {
     padding: 2%;
     flex-basis: 20%;
   }
 
-  .image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
+
+  .pet-image {
+    #selected-img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border: 10px solid #bad1cd;
+      border-bottom: none;
+      border-radius: 50%;
+      box-shadow: 1px -5px 20px 1px $old-rose;
+    }
+    #unselected-img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border: 10px solid #bad1cd;
+      border-bottom: none;
+      border-radius: 50%;
+    }
   }
 
   .pet-info {
     text-align: center;
-    font-family: Courier New;
+    .name {
+      font-family: $font-raleway;
+      color: $text-colour;
+      font-size: 26px;
+    }
+    p.selected {
+      font-size: 11px;
+      // font-weight: lighter;
+      font-weight: bold;
+      font-family: $font-raleway;
+      color: $old-rose;
+      text-shadow: 1px -1px 5px pink;
+    }
+    // p.unselected {
+      //   font-size: 11px;
+      //   font-weight: lighter;
+      //   font-family: $font-raleway;
+      // }
+    }
+
+    #selected-img:hover {
+      border-color: #cededc;
+      box-shadow: 1px -5px 20px 5px $old-rose;
+      width: 260px;
+      height: 260px;
+      margin-bottom: 0;
+    }
+    #unselected-img:hover {
+      border-color: #cededc;
+      box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
+      width: 260px;
+      height: 260px;
+      margin-bottom: 0;
+    }
+    #add-pet:hover {
+      border-color: $button-darker;
+      width: 100px;
+      height: 100px;
+    }
+    .delete-pet:hover {
+      height: 25px;
+      margin-bottom: 1px;
+    }
   }
-}
+
+  #separator {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 50px 100%;
+  }

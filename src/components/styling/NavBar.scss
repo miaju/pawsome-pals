@@ -2,4 +2,13 @@
 
 .navbar {
   font-family: $font-handlee;
+  b {
+    font-size: 111%;
+    color: #0d706e;
+  }
+  .navbar-nav {
+    a:hover {
+      color: $indigo-dye;
+    }
+  }
 }

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons'
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Container } from "react-bootstrap";
 
 export default function MatchList(props) {
   let [empty, setEmpty] = useState(false);
@@ -15,19 +16,19 @@ export default function MatchList(props) {
   const pending = {
     matches: props.pending,
     title: 'Pending',
-    description: "This is where the matches you have made that haven't been responded to yet."
+    description: `These are the pets that ${props.currentPet.name} thinks are great! The other pet owner hasn't responed to these yet.`
   }
 
   const matches = {
     matches: props.matches,
     title: "Matches",
-    description: "These are your pet's full matches."
+    description: `These are ${props.currentPet.name}'s full matches! Both you and the other owner agree they'll be great friends.`
   }
 
   const matchee = {
     matches: props.matchee,
     title: 'Notifications',
-    description: "This are the matches where the other pet matches with your pet."
+    description: `Whoa! These are all the pets that think ${props.currentPet.name} is great! Why don't take a look?`
   }
 
   let [content, setContent] = useState(matches);
@@ -45,29 +46,31 @@ export default function MatchList(props) {
   return (
     (props.matches && props.pending && props.matchee) ? (
       <>
-      <Dropdown id="petDropdown">
-        <span>{props.currentPet.name ? `Viewing matches for ${props.currentPet.name}` : 'Select pet'}</span>
-        <Dropdown.Toggle id="dropdown-basic">
-          Pets
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {props.userPets.map((pet) => {
-            return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
-          })}
-        </Dropdown.Menu>
-      </Dropdown>
       <Nav variant="tabs">
-        <Nav.Item>
-          <Nav.Link onClick={() => setContent(matches)}>Matches</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link onClick={() => setContent(pending)}>Pending</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link onClick={() => setContent(matchee)} >
-            Notifications
-          </Nav.Link>
-        </Nav.Item>
+        <div className="tab-names">
+          <Nav.Item>
+              <Nav.Link onClick={() => setContent(matches)}>Matches</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={() => setContent(pending)}>Pending</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={() => setContent(matchee)} >
+                Notifications
+              </Nav.Link>
+            </Nav.Item>
+        </div>
+        <Dropdown id="petDropdown">
+          <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
+          <Dropdown.Toggle id="dropdown-basic">
+            {props.currentPet.name || "Pets"}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {props.userPets.map((pet) => {
+              return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
       </Nav>
 
       <section className="matches-container">
@@ -77,6 +80,11 @@ export default function MatchList(props) {
               content.matches.map(match => (
                 <MatchListItem
                   key={match.id}
+                  type={content.title.toLowerCase()}
+                  unMatch={props.unMatch}
+                  addMatch={props.addMatch}
+                  getUserByPet={props.getUserByPet}
+                  currentPet={props.currentPet}
                   id={match.id}
                   name={match.name}
                   breed={match.breed}
@@ -93,7 +101,7 @@ export default function MatchList(props) {
             ) : (<></>)}</>
             {(empty && !content.matches.length) &&
               <div className="empty-card">
-                <h2 className="message">No existing {content.title.toLowerCase()} found for the current pet <FontAwesomeIcon icon={faFaceSadTear} /></h2>
+                <h2 className="message">Sorry! No existing {content.title.toLowerCase()} found for the current pet. <FontAwesomeIcon icon={faFaceSadTear} /></h2>
               </div>}
           </section></>
     ) : (<></>)

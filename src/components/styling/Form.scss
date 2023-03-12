@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import "_variables.scss";
+
 
 #page-container {
   margin: 0 14vw;
+  color: $text-colour;
   header {
     text-align: -webkit-center;
     font-family: "Raleway";
@@ -14,8 +17,8 @@
       margin-top: 3vh;
       margin-bottom: 7vh;
       b {
+        color: $teal;
         font-family: "Handlee";
-        color: #960303;
       }
     }
 
@@ -61,7 +64,6 @@
 
         label {
           margin: 1vw;
-          color: #520A51;
           // background-color: blue;
 
           input {
@@ -90,17 +92,18 @@
       }
      label#image-label.text-input {
         margin: 1vh;
+        color: #520A51;
       }
 
       .radios {
         margin: auto;
         display: flex;
         justify-content: center;
+        color: #520A51;
         .selection {
           padding: 1vw;
         }
         .radio-options {
-          color: #520A51;
           font-family: "Raleway";
           padding: 1vw;
           padding-right: 2vw;
@@ -178,7 +181,7 @@
       transition: all 0.2s;
     }
     button:hover {
-      box-shadow: #ac436c -2px -2px 0px 2px, #6BAEFD 0px 0px 0px 4px,
+      box-shadow: #6BAEFD -2px -2px 0px 2px, #ac436c 0px 0px 0px 4px,
         rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
       transform: scale(1.01);
     }
@@ -188,9 +191,14 @@
 ::placeholder {
   font: medium "Raleway";
 }
-/* On mouse-over, add a color */
+
+:hover::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  // color: $text-colour;
+  color: $text-colour;
+}
+
 input:hover {
-  background-color: #FDF9FF;
+  background-color: #f3f7f6;
 }
 
 // margins: top right bottom left
