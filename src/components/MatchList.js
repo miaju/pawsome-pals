@@ -48,13 +48,13 @@ export default function MatchList(props) {
       <Nav variant="tabs">
         <div className="tab-names">
           <Nav.Item>
-              <Nav.Link onClick={() => setContent(matches)}>Matches</Nav.Link>
+              <Nav.Link onClick={() => setContent(matches)} style={(content.title === 'Matches') ? {fontSize: "150%"}: {}}>Matches</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => setContent(pending)}>Pending</Nav.Link>
+              <Nav.Link onClick={() => setContent(pending)} style={(content.title === 'Pending') ? {fontSize: "150%"}: {}}>Pending</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => setContent(matchee)} >
+              <Nav.Link onClick={() => setContent(matchee)} style={(content.title === 'Notifications') ? {fontSize: "150%"}: {}}>
                 Notifications {(matchee.matches.length > 0) && <Badge pill>{matchee.matches.length}</Badge>}
               </Nav.Link>
             </Nav.Item>
