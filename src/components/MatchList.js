@@ -59,17 +59,19 @@ export default function MatchList(props) {
               </Nav.Link>
             </Nav.Item>
         </div>
-        <Dropdown id="petDropdown">
-          <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
-          <Dropdown.Toggle id="dropdown-basic">
-            {props.currentPet.name || "Pets"}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {props.userPets.map((pet) => {
-              return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
+        <div style={{marginRight: "10vw"}}>
+          <Dropdown id="petDropdown">
+            <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
+            <Dropdown.Toggle id="dropdown-basic">
+              {props.currentPet.name || "Pets"}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {props.userPets.map((pet) => {
+                return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </Nav>
 
       <section className="matches-container">

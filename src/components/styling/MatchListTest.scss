@@ -35,6 +35,7 @@
     font-size: 2.5vw;
     hr {
       margin-top: 0;
+      width: 80%;
     }
   }
 
@@ -60,6 +61,7 @@
     position: relative;
     background-color: #fff;
     display: inline-flex;
+    flex-direction: column;
     flex-wrap: wrap;
     border-radius: 5px;
     animation: 0.75s smallPopup;
@@ -75,6 +77,12 @@
     button {
       position: absolute;
       bottom: 0;
+      &:hover{
+        svg {
+          transform: scale(1.25);
+        }
+
+      }
     }
   }
 

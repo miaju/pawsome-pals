@@ -92,7 +92,7 @@ function Advanced(props) {
         <div id="top">
           <h1>Let's look at some <b>Paw</b>tential matches!</h1>
           <Dropdown id="petDropdown">
-            <span>{props.currentPet?.name ? `Finding match for ` : 'Select pet to search for'}</span>
+            <span>{props.currentPet?.name ? `Finding match for ` : 'Select pet to search for '}</span>
             <Dropdown.Toggle id="dropdown-basic">
               {props.currentPet?.name || "Pets"}
             </Dropdown.Toggle>
@@ -143,7 +143,7 @@ function Advanced(props) {
                       <b>City:</b> {character.city}<br />
                       <b>Description:</b> {character.description}
                     </p>
-                    <button className='button' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+                    <button className='button back' onClick={click} ><FontAwesomeIcon icon={faArrowLeft} /></button>
                   </div>
                   </Card.Body>) : <></>}
               </Card>
