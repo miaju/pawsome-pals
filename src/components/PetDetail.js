@@ -9,7 +9,7 @@ export default function PetDetail(props) {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div style={{display: "grid", height: "90vh"}}>
       <section id="pet-card">
         <div className="left">
           <img className="image" src={location.state.data.photo_url} alt={props.name} />
@@ -17,23 +17,23 @@ export default function PetDetail(props) {
         <div className="right">
           <div className="pet-name">{location.state.data.name}</div>
           <div className="pet-info">
-            Breed: {location.state.data.breed}<br />
-            Age: {location.state.data.age}<br />
-            Sex: {location.state.data.sex}<br />
-            Size: {location.state.data.size}<br />
-            City: {location.state.data.city}<br />
-            Description: {location.state.data.description}
+            <b> Breed: </b> {location.state.data.breed}<br />
+            <b> Age: </b> {location.state.data.age}<br />
+            <b> Sex: </b> {location.state.data.sex}<br />
+            <b> Size: </b> {location.state.data.size}<br />
+            <b> City: </b> {location.state.data.city}<br />
+            <b> Description: </b> {location.state.data.description}
           </div>
         </div>
       </section>
       <div className="select-pet">
-        <button onClick={() => {props.handlePetChange(location.state.data); navigate("/pets/view");}}>
+        <button onClick={() => {props.handlePetChange(location.state.data); navigate("/explore");}}>
           Go on a playdate with me!
         </button>
       </div>
       <div className="previous-page">
         <button className="back-btn" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
       </div>
-    </>
+    </div>
   )
 }

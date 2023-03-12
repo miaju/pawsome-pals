@@ -9,6 +9,9 @@ export default function MatchDetail(props) {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const notif = (location.state.data.type === 'notifications');
   const unMatch = () => {
     setLoading(true)
     props.unmatch(props.currentId, location.state.data.id);
@@ -16,16 +19,13 @@ export default function MatchDetail(props) {
 
   function toMatch() {
     setLoading(true);
-    props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {
+    props.addMatch({target: {id: location.state.data.id}, currentPet: {id: props.currentId}, dir: 'right'}).then((res) => {
       setTimeout(() => {
+        navigate("/matches");
         window.location.reload();
       }, 500)
     })
   }
-
-  const location = useLocation();
-  const navigate = useNavigate();
-  const notif = (location.state.data.type === 'notifications');
 
   let email = props.getUserByPet(location.state.data.id).then(e => {
     email = e.data.email;
@@ -39,14 +39,14 @@ export default function MatchDetail(props) {
           <img className="image" src={location.state.data.photo_url} alt={props.name} />
         </div>
         <div className="left">
-          <div className="match-name">{location.state.data.name}</div>
+          <div className="match-name">{location.state.data.name}<hr/></div>
           <div className="match-info">
-            Breed: {location.state.data.breed}<br />
-            Age: {location.state.data.age}<br />
-            Sex: {location.state.data.sex}<br />
-            Size: {location.state.data.size}<br />
-            City: {location.state.data.city}<br />
-            Description: {location.state.data.description}
+            <b> Breed: </b> {location.state.data.breed}<br />
+            <b> Age: </b> {location.state.data.age}<br />
+            <b> Sex: </b> {location.state.data.sex}<br />
+            <b> Size: </b> {location.state.data.size}<br />
+            <b> City: </b> {location.state.data.city}<br />
+            <b> Description: </b> {location.state.data.description}
           </div>
           <div className="match-buttons">
             {notif && (<button
