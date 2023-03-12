@@ -144,30 +144,31 @@
   .button {
     padding: 10px;
     border-radius: 5px;
-    border: none;
     color: #fff;
     background-color: $button-color;
+    border-color: $button-color;
     margin: 10px;
     font-weight: bolder;
     width: 100px;
     &:hover {
       transform: scale(1.05);
-      background-color: $button-darker;
+      background-color: white;
+      color: $button-color;
       svg {
-        transform: scale(1.5);
+        transform: scale(2);
       }
     }
   }
 
   .button.heart {
     &:hover {
-      background-color: rgb(238, 25, 103);
+      color: rgb(238, 25, 103);
     }
   }
 
   .button.xmark {
     &:hover {
-      background-color: rgb(72, 3, 31);
+      color: rgb(72, 3, 31);
     }
   }
 
