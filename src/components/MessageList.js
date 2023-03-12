@@ -18,6 +18,7 @@ export default function MessageList(props) {
           to_pet_name={message.to_pet_name}
           from_pet_url={message.from_pet_photo_url}
           to_pet_url={message.to_pet_photo_url}
+          currentpet={props.currentId}
         />
       ))}
     </section>

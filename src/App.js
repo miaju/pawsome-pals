@@ -239,7 +239,24 @@ function App() {
       resolve(null);
     })
   }
-console.log(messages)
+
+  function filterDuplicatemsgs(messages) {
+    const uniqueMessages = {};
+    const uniqueArr = messages.filter(message => {
+      const pair1 = `${message.from_petid}-${message.to_petid}`;
+      const pair2 = `${message.to_petid}-${message.from_petid}`;
+      if (!uniqueMessages[pair1] && !uniqueMessages[pair2]) {
+        uniqueMessages[pair1] = true;
+        return true;
+      }
+      return false;
+    });
+    return uniqueArr
+  }
+
+  const uniqueMessages = filterDuplicatemsgs(messages);
+  console.log(uniqueMessages)
+
   return (
     <div>
       <BrowserRouter>
@@ -287,8 +304,8 @@ console.log(messages)
               element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} />} />
             <Route path="/matches" element={<MatchList matches={matches} pending={pending} matchee={matchee} setCurrentPet={handlePetChange} currentPet={currentpet} userPets={pets} />} />
             <Route path="/explore" element={<Advanced userPets={pets} addMatch={addMatch} currentPet={currentpet} setCurrentPet={handlePetChange} />} />
-            <Route path="/messages" element={<MessageList messages={messages}/>} />
-            <Route path="/messages/:id" element={<MessageDetail messages={messages}/>} />
+            <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
+            <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
           </Routes>
         </div>
       </BrowserRouter>
