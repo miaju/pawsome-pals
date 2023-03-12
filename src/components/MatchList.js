@@ -61,9 +61,9 @@ export default function MatchList(props) {
             </Nav.Item>
         </div>
         <Dropdown id="petDropdown">
-          <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet'}</span>
+          <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
           <Dropdown.Toggle id="dropdown-basic">
-            {props.currentPet.name}
+            {props.currentPet.name || "Pets"}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {props.userPets.map((pet) => {
