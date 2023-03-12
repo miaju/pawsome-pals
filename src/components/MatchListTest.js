@@ -111,9 +111,9 @@ function Advanced(props) {
           <div className="empty-card">
             <h2 className="message">Looks like you don't any pets. Please create a pet so that you can get swiping!</h2>
           </div> : <></> }
-        {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2>{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
-        : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2>{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2>
-        : props.currentPet?.name ? <h2>Swipe right to love a pet, and swipe left to pass!</h2> : <></>}
+        {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
+        : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2>
+        : props.currentPet?.name ? <h2 id="top-dialog">Swipe right to love a pet, and swipe left to pass!</h2> : <></>}
         <div className='cardContainer' style={props.currentPet.id ? {height: "65vh"} : {}}>
           {explorePets.map((character, index) => (
             <TinderCard
@@ -134,7 +134,7 @@ function Advanced(props) {
                   {!clicked ? (<h1 onClick={click}>{character.name}</h1>):<></>}
                   {clicked ? (<Card.Body>
                   <div className='cardInfo' >
-                  <h2 onClick={click}>{character.name}</h2>
+                  <h2 onClick={click}>{character.name}<hr/></h2>
                     <p>
                       <b>Breed:</b> {character.breed}<br />
                       <b>Age:</b> {character.age}<br />

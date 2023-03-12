@@ -26,9 +26,16 @@
     }
   }
 
+  #top-dialog {
+    color: $old-rose;
+  }
+
   h2 {
     font-family: $font-handlee;
     font-size: 2.5vw;
+    hr {
+      margin-top: 0;
+    }
   }
 
   .swipe {
@@ -56,6 +63,7 @@
     flex-wrap: wrap;
     border-radius: 5px;
     animation: 0.75s smallPopup;
+    font-size: large;
     p {
       padding: 10px;
       font-family: $font-raleway;
@@ -92,12 +100,13 @@
     h1 {
     position: absolute;
     bottom: 0;
-    margin: 10px;
+    margin: 20px;
+    margin-left: 25px;
     color: #fff;
     text-shadow: 2px 2px #333337;
     font-family: $font-handlee;
       &:hover{
-        transform: scale(1.05);
+        transform: scale(1.15);
         cursor: pointer;
       }
     }
