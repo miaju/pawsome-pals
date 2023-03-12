@@ -33,9 +33,9 @@ export default function PetList(props) {
           <b>Paw</b>files
         </h1>
       )}
-      <span id="fact">
+      {/* <span id="fact">
         A dog’s paw print is unique, much like a person’s fingerprint.
-        </span>
+        </span> */}
       <div className="add-pet-container">
         <div id="add-pet">
           <Link to={"/pets/new"}>
