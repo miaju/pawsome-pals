@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons'
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Container } from "react-bootstrap";
+import { Badge} from "react-bootstrap";
 
 export default function MatchList(props) {
   let [empty, setEmpty] = useState(false);
@@ -30,7 +30,6 @@ export default function MatchList(props) {
     title: 'Notifications',
     description: `Whoa! These are all the pets that think ${props.currentPet.name} is great! Why don't take a look?`
   }
-
   let [content, setContent] = useState(matches);
 
   useEffect(() => {
@@ -56,7 +55,7 @@ export default function MatchList(props) {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link onClick={() => setContent(matchee)} >
-                Notifications
+                Notifications {(matchee.matches.length > 0) && <Badge pill>{matchee.matches.length}</Badge>}
               </Nav.Link>
             </Nav.Item>
         </div>
