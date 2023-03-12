@@ -151,8 +151,8 @@ function Advanced(props) {
           ))}
         </div>
         {explorePets.length ? <div className='buttons'>
-          <button className='button' onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
-          <button className='button' onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
+          <button className='button xmark' onClick={() => swipe('left')}><FontAwesomeIcon icon={faXmark} /></button>
+          <button className='button heart' onClick={() => swipe('right')}><FontAwesomeIcon icon={faHeart} /></button>
         </div> : <></>}
       </div>
   )

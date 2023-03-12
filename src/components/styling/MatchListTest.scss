@@ -133,39 +133,32 @@
   }
 
   .button {
-    flex-shrink: 0;
     padding: 10px;
     border-radius: 5px;
     border: none;
     color: #fff;
     background-color: $button-color;
-    transition: 200ms;
     margin: 10px;
     font-weight: bolder;
-    width: 60px;
+    width: 100px;
     &:hover {
       transform: scale(1.05);
       background-color: $button-darker;
+      svg {
+        transform: scale(1.5);
+      }
     }
   }
 
-  .dropdown {
-    margin: 5px;
-    span {
-      margin: 5px;
+  .button.heart {
+    &:hover {
+      background-color: rgb(238, 25, 103);
     }
-    button {
-      background-color: $button-color;
-      border-color: $button-color;
-      &:active {
-        background-color: $button-color;
-        border-color: $button-color;
-      }
-      &:hover {
-        transform: scale(1.05);
-        background-color: $button-darker;
-        border-color: $button-darker;
-      }
+  }
+
+  .button.xmark {
+    &:hover {
+      background-color: rgb(72, 3, 31);
     }
   }
 
@@ -173,16 +166,6 @@
     .buttons {
       flex-direction: column;
     }
-  }
-
-  @keyframes popup {
-    0%   { transform: scale(1,1) }
-    10%  { transform: scale(1.1,1.1) }
-    30%  { transform: scale(.9,.9) }
-    50%  { transform: scale(1,1) }
-    57%  { transform: scale(1,1) }
-    64%  { transform: scale(1,1) }
-    100% { transform: scale(1,1) }
   }
 
   @keyframes smallPopup {
