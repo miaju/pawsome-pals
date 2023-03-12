@@ -1,3 +1,14 @@
+.modal-backdrop {
+  display: grid;
+}
+
+.modal-lg {
+  max-width: 90vw !important;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
 .match-page {
   display: flex;
   flex-direction: column;
