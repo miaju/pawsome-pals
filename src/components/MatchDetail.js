@@ -39,14 +39,14 @@ export default function MatchDetail(props) {
           <img className="image" src={location.state.data.photo_url} alt={props.name} />
         </div>
         <div className="left">
-          <div className="match-name">{location.state.data.name}</div>
+          <div className="match-name">{location.state.data.name}<hr/></div>
           <div className="match-info">
-            Breed: {location.state.data.breed}<br />
-            Age: {location.state.data.age}<br />
-            Sex: {location.state.data.sex}<br />
-            Size: {location.state.data.size}<br />
-            City: {location.state.data.city}<br />
-            Description: {location.state.data.description}
+            <b> Breed: </b> {location.state.data.breed}<br />
+            <b> Age: </b> {location.state.data.age}<br />
+            <b> Sex: </b> {location.state.data.sex}<br />
+            <b> Size: </b> {location.state.data.size}<br />
+            <b> City: </b> {location.state.data.city}<br />
+            <b> Description: </b> {location.state.data.description}
           </div>
           <div className="match-buttons">
             {notif && (<button
