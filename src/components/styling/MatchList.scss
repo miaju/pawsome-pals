@@ -49,6 +49,9 @@
     align-items: end;
     a {
     color: $button-darker;
+    .rounded-pill {
+      background-color: $indigo-dye !important;
+    }
     }
   }
   .tab-names {
@@ -57,3 +60,5 @@
     font-family: $font-handlee;
   }
 }
+
+

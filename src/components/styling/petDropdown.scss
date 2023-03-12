@@ -1,8 +1,9 @@
 @import "_variables.scss";
 #petDropdown {
-  padding-right: 5%;
+  margin-top: 5px;
   font-family: $font-raleway;
   button {
+    font-family: $font-handlee;
     background-color: $indigo-dye;
     border-color: $indigo-dye;
     &:active {
@@ -11,6 +12,11 @@
     }
     &:hover {
       transform: scale(1.05);
+      color: $indigo-dye;
+      background-color: aliceblue;
     }
+  }
+  .dropdown-item{
+    font-family: $font-handlee;
   }
 }

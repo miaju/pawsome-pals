@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons'
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Container } from "react-bootstrap";
+import { Badge} from "react-bootstrap";
 
 export default function MatchList(props) {
   let [empty, setEmpty] = useState(false);
@@ -30,7 +30,6 @@ export default function MatchList(props) {
     title: 'Notifications',
     description: `Whoa! These are all the pets that think ${props.currentPet.name} is great! Why don't take a look?`
   }
-
   let [content, setContent] = useState(matches);
 
   useEffect(() => {
@@ -49,28 +48,30 @@ export default function MatchList(props) {
       <Nav variant="tabs">
         <div className="tab-names">
           <Nav.Item>
-              <Nav.Link onClick={() => setContent(matches)}>Matches</Nav.Link>
+              <Nav.Link onClick={() => setContent(matches)} style={(content.title === 'Matches') ? {fontSize: "150%"}: {}}>Matches</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => setContent(pending)}>Pending</Nav.Link>
+              <Nav.Link onClick={() => setContent(pending)} style={(content.title === 'Pending') ? {fontSize: "150%"}: {}}>Pending</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => setContent(matchee)} >
-                Notifications
+              <Nav.Link onClick={() => setContent(matchee)} style={(content.title === 'Notifications') ? {fontSize: "150%"}: {}}>
+                Notifications {(matchee.matches.length > 0) && <Badge pill>{matchee.matches.length}</Badge>}
               </Nav.Link>
             </Nav.Item>
         </div>
-        <Dropdown id="petDropdown">
-          <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
-          <Dropdown.Toggle id="dropdown-basic">
-            {props.currentPet.name || "Pets"}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {props.userPets.map((pet) => {
-              return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
+        <div style={{marginRight: "10vw"}}>
+          <Dropdown id="petDropdown">
+            <span>{props.currentPet.name ? `Viewing matches for ` : 'Select pet '}</span>
+            <Dropdown.Toggle id="dropdown-basic">
+              {props.currentPet.name || "Pets"}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {props.userPets.map((pet) => {
+                return <Dropdown.Item key={pet.id} onClick={() => props.setCurrentPet(pet)}>{pet.name}</Dropdown.Item>
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </Nav>
 
       <section className="matches-container">
