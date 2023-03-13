@@ -94,7 +94,7 @@ function App() {
         getData(userId);
       });
     }
-  }, [user]);
+  }, [user, checked]);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("currentpet"))) {
@@ -143,7 +143,6 @@ function App() {
           .post('http://localhost:8080/api/users', { email: user.name })
           .then(response => {
             setUsers([...users, user]);
-            setChecked(true);
           });
       }
 
@@ -152,6 +151,7 @@ function App() {
           if (Object.keys(response.data).length === 0) {
             addUser(user);
           }
+          setChecked(true);
         })
         .catch((err) => console.log(err));
     }
