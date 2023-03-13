@@ -33,6 +33,7 @@ function App() {
   const [checked, setChecked] = useState(false);
   const [userId, setUserId] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [showFooter, setShowFooter] = useState(true);
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 
@@ -297,9 +298,9 @@ function App() {
                 />
               }
             />
- 
+
             <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
-            <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
+            <Route path="/messages/:id" element={<MessageDetail messages={messages} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
               element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
@@ -330,7 +331,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 }
