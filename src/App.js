@@ -49,8 +49,8 @@ function App() {
   function deletePet(id) {
     console.log("delete pet called in app! ID:", id)
     return axios
-    .delete(`http://localhost:8080/api/pets/${id}`)
-    .then(res => console.log(res.data))
+      .delete(`http://localhost:8080/api/pets/${id}`)
+      .then(res => console.log(res.data))
   }
 
   async function getUserByEmail(email) {
@@ -302,30 +302,30 @@ function App() {
             <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />
             <Route
               path="/matches"
               element={
                 <MatchList
-                matches={matches}
-                getUserByPet={getUserByPet}
-                pending={pending}
-                matchee={matchee}
-                setCurrentPet={handlePetChange}
-                currentPet={currentpet} userPets={pets}
-                unMatch={unmatch}
-                addMatch={addMatch}
-              />}
+                  matches={matches}
+                  getUserByPet={getUserByPet}
+                  pending={pending}
+                  matchee={matchee}
+                  setCurrentPet={handlePetChange}
+                  currentPet={currentpet} userPets={pets}
+                  unMatch={unmatch}
+                  addMatch={addMatch}
+                />}
             />
             {userId}
             <Route path="/explore" element={
-            <Advanced
-            userPets={pets}
-            addMatch={addMatch}
-            currentPet={currentpet}
-            setCurrentPet={handlePetChange}
-            userId={userId}
-            />}/>
+              <Advanced
+                userPets={pets}
+                addMatch={addMatch}
+                currentPet={currentpet}
+                setCurrentPet={handlePetChange}
+                userId={userId}
+              />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
