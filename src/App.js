@@ -47,7 +47,6 @@ function App() {
   };
 
   function deletePet(id) {
-    console.log("delete pet called in app! ID:", id)
     return axios
     .delete(`http://localhost:8080/api/pets/${id}`)
     .then(res =>
@@ -89,10 +88,9 @@ function App() {
         setUsers(data);
       });
     };
-    if (user) {
+    if (user && checked) {
       getUserByEmail(user.name).then((res) => {
         const userId = Object.keys(res.data)[0];
-
         getData(userId);
       });
     }
