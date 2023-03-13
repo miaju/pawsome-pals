@@ -128,7 +128,7 @@ function Advanced(props) {
               onSwipe={(dir) => swiped(dir, character?.name, index)}
               onCardLeftScreen={() => outOfFrame(character?.name, index)}
             >
-              <Card>
+              <Card style={clicked ? {width: "100%"} : {}}>
                 <Card.Img
                   draggable="false"
                   style={clicked ? {maxWidth: "50%"} : {}}
