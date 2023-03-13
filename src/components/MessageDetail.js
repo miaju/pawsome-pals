@@ -20,11 +20,14 @@ useEffect(() => {
   })}
 }, [location.state.data.from_petId, location.state.data.to_petId])
 console.log('chat', privateMsgs)
+
   return (
-    <div className="privateMsgs">
+    <div className="chatScreen">
+      {privateMsgs.map((message) => (
       <div>
-        <p>{props.message}</p>
+        <p>{message.message}</p>
       </div>
+      ))}
     </div>
   )
 }
