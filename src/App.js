@@ -195,6 +195,24 @@ function App() {
       });
   }
 
+  console.log('MESSAGGES', messages);
+
+  function newMsg(msg) {
+    const newMsg = {
+      from_petId: msg.from_petId,
+      to_petId: msg.to_petId,
+      message: msg.message,
+      timestamp: msg.timestamp
+    }
+
+    return axios
+      .post(`http://localhost:8080/api/messages`, newMsg)
+      .then(res => {
+        console.log('NEW MESSAGE', res.data)
+        setMessages([...messages, msg])
+      })
+  }
+
   async function unmatch(petId, otherId) {
     return axios
       .delete(`http://localhost:8080/api/matches`, {
@@ -299,7 +317,7 @@ function App() {
             />
 
             <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
-            <Route path="/messages/:id" element={<MessageDetail messages={messages} setShowFooter={setShowFooter} />} />
+            <Route path="/messages/:id" element={<MessageDetail newMsg={newMsg} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
               element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />

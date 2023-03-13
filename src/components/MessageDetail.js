@@ -11,6 +11,7 @@ export default function MessageDetail(props) {
 
 
   const [privateMsgs, setPrivateMsgs] = useState([]);
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     if (location.state.data.from_petId && location.state.data.to_petId) {
@@ -23,6 +24,25 @@ export default function MessageDetail(props) {
     }
   }, [location.state.data.from_petId, location.state.data.to_petId])
   console.log('chat', privateMsgs)
+
+  const handleSend = (e) => {
+    e.preventDefault();
+
+    const newMsg = {
+      from_pet_name: location.state.data.from_pet_name,
+      from_pet_photo_url: location.state.data.from_pet_url,
+      from_petId: location.state.data.from_petId,
+      to_pet_name: location.state.data.to_pet_name,
+      to_petId: location.state.data.to_petId,
+      to_pet_photo_url: location.state.data.to_pet_url,
+      message: input,
+      timestamp: new Date().toISOString()
+    };
+
+    props.newMsg(newMsg);
+    setPrivateMsgs([...privateMsgs, newMsg]);
+    setInput("");
+  };
 
   return (
     <div className="chatScreen">
@@ -50,8 +70,14 @@ export default function MessageDetail(props) {
       ))}
 
       <form className="chatScreen_input">
-        <input className="chatScreen_inputField" placeholder="Type a message..." type="text" />
-        <button className="chatScreen_inputButton">SEND</button>
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          className="chatScreen_inputField"
+          placeholder="Type a message..."
+          type="text"
+        />
+        <button onClick={handleSend} type="submit" className="chatScreen_inputButton">SEND</button>
       </form>
       {props.setShowFooter(false)}
     </div>
