@@ -48,15 +48,15 @@ function App() {
   };
 
   function deletePet(id) {
-    console.log("delete pet called in app! ID:", id)
     return axios
     .delete(`http://localhost:8080/api/pets/${id}`)
-    .then(res => console.log(res.data))
+    .then(res =>
+      window.location.reload())
   }
 
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, { email: email })
+      .get(`http://localhost:8080/api/users`, { params: { email: email } })
       .catch(err => console.error(err));
 
   }
@@ -89,14 +89,13 @@ function App() {
         setUsers(data);
       });
     };
-    if (user) {
+    if (user && checked) {
       getUserByEmail(user.name).then((res) => {
         const userId = Object.keys(res.data)[0];
-
         getData(userId);
       });
     }
-  }, [user]);
+  }, [user, checked]);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("currentpet"))) {
@@ -145,7 +144,6 @@ function App() {
           .post('http://localhost:8080/api/users', { email: user.name })
           .then(response => {
             setUsers([...users, user]);
-            setChecked(true);
           });
       }
 
@@ -154,6 +152,7 @@ function App() {
           if (Object.keys(response.data).length === 0) {
             addUser(user);
           }
+          setChecked(true);
         })
         .catch((err) => console.log(err));
     }
@@ -303,30 +302,30 @@ function App() {
             <Route path="/messages/:id" element={<MessageDetail messages={messages} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />
             <Route
               path="/matches"
               element={
                 <MatchList
-                matches={matches}
-                getUserByPet={getUserByPet}
-                pending={pending}
-                matchee={matchee}
-                setCurrentPet={handlePetChange}
-                currentPet={currentpet} userPets={pets}
-                unMatch={unmatch}
-                addMatch={addMatch}
-              />}
+                  matches={matches}
+                  getUserByPet={getUserByPet}
+                  pending={pending}
+                  matchee={matchee}
+                  setCurrentPet={handlePetChange}
+                  currentPet={currentpet} userPets={pets}
+                  unMatch={unmatch}
+                  addMatch={addMatch}
+                />}
             />
             {userId}
             <Route path="/explore" element={
-            <Advanced
-            userPets={pets}
-            addMatch={addMatch}
-            currentPet={currentpet}
-            setCurrentPet={handlePetChange}
-            userId={userId}
-            />}/>
+              <Advanced
+                userPets={pets}
+                addMatch={addMatch}
+                currentPet={currentpet}
+                setCurrentPet={handlePetChange}
+                userId={userId}
+              />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>

@@ -40,10 +40,8 @@ export default function PetListItem(props) {
   );
 }
 
-{
-  /* <div className="select-pet">
+/* <div className="select-pet">
   <button onClick={() => props.setcurrentpet(props.id)}>
     Go on a playdate with me!
   </button>
 </div> */
-}

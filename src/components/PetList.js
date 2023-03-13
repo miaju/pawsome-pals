@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import React from "react";
 import PetListItem from "./PetListItem";
 import Delete from "./Delete";
 import "./styling/PetListItem.scss";
@@ -7,8 +7,6 @@ import { faShieldDog, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function PetList(props) {
-  // console.log(props);
-
   return (
     <>
       {props.pets.length === 1 ? (
@@ -21,9 +19,9 @@ export default function PetList(props) {
           <b>Paw</b>files
         </h1>
       )}
-      <span id="fact">
+      {/* <span id="fact">
         A dog’s paw print is unique, much like a person’s fingerprint.
-      </span>
+        </span> */}
       <div className="add-pet-container">
         <div id="add-pet">
           <Link to={"/pets/new"}>
@@ -48,14 +46,19 @@ export default function PetList(props) {
               description={pet.description}
               photo_url={pet.photo_url}
               current={props.current}
-              // test={test}
             />
           ))}
       </section>
-      {props.pets.length > 0 &&
-        props.pets.map((pet) => (
-          <Delete key={pet.id} id={pet.id} name={pet.name} delete={props.deletePet} />
-        ))}
+      <div id="delete-buttons-container">
+        {props.pets.length > 0 &&
+          props.pets.map((pet) => (
+            <Delete
+              id={pet.id}
+              name={pet.name}
+              delete={props.deletePet}
+            />
+          ))}
+      </div>
       <span id="separator"></span>
     </>
   );
