@@ -1,48 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap"); // font-family: "Sacramento";
-@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap"); // font-family: "Phudu";
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap"); // font-family: "Raleway";
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
-
-#message-container {
+.chat {
   display: flex;
-  justify-content: center;
-  font-family: "Raleway";
-  font-size: 1.2vw;
-  margin-top: 1vh;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  border-bottom: 1px solid #fff;
+  margin: 2em;
+  border-bottom: 1px solid #ccc;
 
-  .receiver {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1vw;
-    #name {
-      font-size: 2vw;
-      // font-weight: lighter;
-      color: #520A51;
-    }
-    img {
-      height: 10vw;
-      width: 10vw;
-      border: 6px double whitesmoke;
-      border-radius: 50%;
-    }
+  .chat-details {
+    flex: 1;
   }
-  #sent-message-container {
-    display: flex;
-    margin-top: 5vw;
-    margin-left: 4vw;
-    border: .5px solid #520A51;
-    width: 40vw;
-    height: 8vw;
-    padding: 1.5vw;
-    background-color: #ac436c;
-    // background-color: #FDF9FF;
-    color: white;
-    border-radius: 60px;
-    #you {
-      font-weight: lighter;
-      color: #520A51;
-      padding-right: 1.5vw;
-    }
+
+  .chat-details > p {
+    color: gray;
   }
+
+  .chat-timestamp {
+    color: lightgray;
+  }
+
+  .chat-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
 }

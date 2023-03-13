@@ -1,20 +1,22 @@
 @import "_variables.scss";
 #petDropdown {
-  margin: 5px;
-  span {
-    margin: 5px;
-  }
+  margin-top: 5px;
+  font-family: $font-raleway;
   button {
-    background-color: $button-color;
-    border-color: $button-color;
+    font-family: $font-handlee;
+    background-color: $indigo-dye;
+    border-color: $indigo-dye;
     &:active {
-      background-color: $button-color;
-      border-color: $button-color;
+      background-color: $indigo-dye;
+      border-color: $indigo-dye;
     }
     &:hover {
       transform: scale(1.05);
-      background-color: $button-darker;
-      border-color: $button-darker;
+      color: $indigo-dye;
+      background-color: aliceblue;
     }
+  }
+  .dropdown-item{
+    font-family: $font-handlee;
   }
 }

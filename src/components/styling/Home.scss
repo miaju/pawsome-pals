@@ -17,24 +17,10 @@
 
   .banner-text {
     position: absolute;
-    top: 16%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    text-shadow: 1px 1px #fff;
-
-    h1 {
-      font-size: 36px;
-    }
-
-    p {
-      font-size: 20px;
-      margin: 0;
-    }
-  }
-
-  .logout-text {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -43,6 +29,37 @@
 
     h1 {
       font-size: 36px;
+      font-family: $font-phudu
+    }
+
+    p {
+      font-size: 20px;
+      margin: 0;
+      b {
+        color: $teal;
+        font-family: $font-handlee;
+      }
+    }
+  }
+
+  .logout-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    text-shadow: 1px 1px #fff;
+
+    h1 {
+      font-size: 36px;
+      b {
+        color: $teal;
+        font-family: $font-handlee;
+      }
     }
 
     p {
@@ -50,5 +67,23 @@
       margin: 0;
     }
   }
-
+  button {
+    margin: 10px;
+    width: 20%;
+    color: #fff;
+    background-color: $indigo-dye;
+    border-color: $indigo-dye;
+    font-family: $font-handlee;
+    &:hover {
+      color: $indigo-dye;
+      background-color: #fff;
+      border-color: $indigo-dye;
+    }
+    &:active {
+      color: #fff;
+      background-color: $indigo-dye;
+      border-color: $indigo-dye;
+      font-family: $font-handlee;
+    }
+  }
 }
