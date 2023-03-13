@@ -56,7 +56,7 @@ function App() {
 
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, { email: email })
+      .get(`http://localhost:8080/api/users`, { params: { email: email } })
       .catch(err => console.error(err));
 
   }
@@ -298,35 +298,35 @@ function App() {
                 />
               }
             />
- 
+
             <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
             <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch}/>} />
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />
             <Route
               path="/matches"
               element={
                 <MatchList
-                matches={matches}
-                getUserByPet={getUserByPet}
-                pending={pending}
-                matchee={matchee}
-                setCurrentPet={handlePetChange}
-                currentPet={currentpet} userPets={pets}
-                unMatch={unmatch}
-                addMatch={addMatch}
-              />}
+                  matches={matches}
+                  getUserByPet={getUserByPet}
+                  pending={pending}
+                  matchee={matchee}
+                  setCurrentPet={handlePetChange}
+                  currentPet={currentpet} userPets={pets}
+                  unMatch={unmatch}
+                  addMatch={addMatch}
+                />}
             />
             {userId}
             <Route path="/explore" element={
-            <Advanced
-            userPets={pets}
-            addMatch={addMatch}
-            currentPet={currentpet}
-            setCurrentPet={handlePetChange}
-            userId={userId}
-            />}/>
+              <Advanced
+                userPets={pets}
+                addMatch={addMatch}
+                currentPet={currentpet}
+                setCurrentPet={handlePetChange}
+                userId={userId}
+              />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>
         </div>
