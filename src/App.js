@@ -55,7 +55,7 @@ function App() {
 
   async function getUserByEmail(email) {
     return await axios
-      .get(`http://localhost:8080/api/users`, { email: email })
+      .get(`http://localhost:8080/api/users`, { params: { email: email } })
       .catch(err => console.error(err));
 
   }
@@ -297,7 +297,7 @@ function App() {
                 />
               }
             />
- 
+
             <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
             <Route path="/messages/:id" element={<MessageDetail messages={messages} />} />
             <Route
