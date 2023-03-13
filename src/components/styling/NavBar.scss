@@ -3,14 +3,14 @@
 #test {
   height: 100px;
   #brand {
-    font-size: 5vh;
+    font-size: 4vh;
     font-weight: bold;
   }
 }
 
 .navbar {
-  height: 100px;
-    font-family: $font-handlee;
+  height: 75px;
+  font-family: $font-handlee;
     b {
       font-size: 111%;
       color: #0d706e;
@@ -18,7 +18,6 @@
     .navbar-nav {
       a {
         font-family: $font-raleway;
-        font-size: 3vh;
         color: $button-color;
       }
       a:hover {
@@ -27,9 +26,11 @@
       #log-btn {
         padding-top: 0;
         padding-bottom: 0;
+        height: 40px;
         a {
           font-family: $font-handlee;
           color: white;
+          padding: 2px;
         }
         &:hover {
           background-color: white;
