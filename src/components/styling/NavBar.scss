@@ -24,10 +24,21 @@
       a:hover {
         color: $indigo-dye;
       }
-      #logout-btn {
-        color: white;
+      #log-btn {
+        padding-top: 0;
+        padding-bottom: 0;
+        a {
+          font-family: $font-handlee;
+          color: white;
+        }
+        &:hover {
+          background-color: white;
+          a {
+            color: $teal;
+          }
+        }
         margin-left: 1vw;
-        border-radius: 15%;
+        background-color: $teal;
         border: 1px solid $teal;
       }
     }

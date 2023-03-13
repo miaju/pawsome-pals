@@ -1,3 +1,5 @@
+@import "_variables.scss";
+
 .modal-backdrop {
   display: grid;
 }
@@ -52,8 +54,9 @@
   }
 
   .continue-button {
+    font-family: $font-handlee;
     padding: 10px 20px;
-    border: none;
+    border-color: #ac436c;
     border-radius: 5px;
     background-color: #ac436c;
     color: #fff;
@@ -64,7 +67,7 @@
 
   .continue-button:hover {
     background-color: #fff;
-    color: #960303;
-
+    color: #ac436c;
+    border-color: #ac436c;
   }
 }
