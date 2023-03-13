@@ -49,8 +49,9 @@ function App() {
   function deletePet(id) {
     console.log("delete pet called in app! ID:", id)
     return axios
-      .delete(`http://localhost:8080/api/pets/${id}`)
-      .then(res => console.log(res.data))
+    .delete(`http://localhost:8080/api/pets/${id}`)
+    .then(res =>
+      window.location.reload())
   }
 
   async function getUserByEmail(email) {
