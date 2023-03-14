@@ -5,23 +5,23 @@
   font-size: 5vw;
   font-family: $font-raleway;
   margin-top: 3vh;
-  margin-bottom: 8vh;
+  // margin-bottom: 8vh;
   color: $text-colour;
   b {
     font-family: $font-handlee;
     color: $teal;
   }
 }
-// #fact {
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 8vh;
-//   font-family: $font-handlee;
-//   font-size: 22px;
-//   color: $old-rose;
-//   opacity: 0.5;
-//   text-shadow: 1px -1px 5px pink;
-// }
+#fact {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8vh;
+  font-family: $font-handlee;
+  font-size: 22px;
+  color: $old-rose;
+  opacity: 0.5;
+  text-shadow: 1px -1px 5px pink;
+}
 
 .add-pet-container {
   display: flex;
@@ -108,7 +108,7 @@
   }
   #unselected-img:hover {
     border-color: #cededc;
-    // box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
     width: 352px;
     height: 352px;
   }
