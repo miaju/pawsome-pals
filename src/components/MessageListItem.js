@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styling/MessageListItem.scss";
+import TimeAgo from 'timeago-react';
 
 export default function MessageListItem(props) {
   console.log('Message list item PROPS', props)
@@ -12,7 +13,10 @@ export default function MessageListItem(props) {
         {props.currentpet === props.from_petId ? <h2>{props.to_pet_name}</h2> : <h2>{props.from_pet_name}</h2>}
           <p>{props.message}</p>
         </div>
-        <p className="chat-timestamp">{props.timestamp}</p>
+        <TimeAgo className="chat-timestamp"
+          datetime={props.timestamp}
+          locale="en-US"
+          />
       </div>
     </Link>
   );
