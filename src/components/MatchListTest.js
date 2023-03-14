@@ -23,12 +23,28 @@ function Advanced(props) {
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
+  const generateFirstMsg = (target, current) => {
+
+    const newMsg = {
+      from_petId: current,
+      to_petId: target,
+      message: "You matched with each other!",
+      timestamp: new Date().toISOString()
+    };
+
+    props.newMsg(newMsg);
+    console.log('newmsg', newMsg)
+  };
+
   useEffect(() => {
-    props.addMatch({ target: explorePets[currentIndex + 1], dir: lastDirection, currentPet: props.currentPet })
+    let target = explorePets[currentIndex + 1];
+    let currentPet = props.currentPet;
+    props.addMatch({ target: target, dir: lastDirection, currentPet: currentPet })
     .then(
       (matchResult)=> {
         if (matchResult && matchResult.pet_one_match && matchResult.pet_two_match) {
           setShowPopup(true);
+          generateFirstMsg(target.id, currentPet.id);
         }
       }
     );
