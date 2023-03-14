@@ -48,7 +48,12 @@ function Advanced(props) {
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
         console.log(data.length);
-        setExplorePets(shuffle(data.slice(0,15)));
+        if (props.currentPet.id === 70) {
+          setExplorePets(shuffle(data.slice(0,15)));
+        } else {
+          setExplorePets(shuffle(data).slice(0,15));
+        }
+
       });}
   }, [props.currentPet, props.userId])
 
@@ -113,7 +118,7 @@ function Advanced(props) {
           </div> : <></> }
         {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
         : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2>
-        : props.currentPet?.name ? <h2 id="top-dialog">Swipe right to love a pet, and swipe left to pass!</h2> : <></>}
+        : props.currentPet?.name ? <div id="top-dialog"><h2 >Swipe right to love a pet, and swipe left to pass!</h2><p>Click the pet's name to view some more info!</p></div> : <></>}
         <div className='cardContainer' style={props.currentPet.id ? {height: "65vh"} : {}}>
           {explorePets.map((character, index) => (
             <TinderCard
@@ -123,7 +128,7 @@ function Advanced(props) {
               onSwipe={(dir) => swiped(dir, character?.name, index)}
               onCardLeftScreen={() => outOfFrame(character?.name, index)}
             >
-              <Card>
+              <Card style={clicked ? {width: "100%"} : {}}>
                 <Card.Img
                   draggable="false"
                   style={clicked ? {maxWidth: "50%"} : {}}

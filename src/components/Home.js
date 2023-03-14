@@ -30,7 +30,7 @@ const Home = (props) => {
           <h1>Welcome to <b>Paw</b>some Pals!</h1>
           <p>Here you can make friends for life for your pet!</p>
           <p>Please log in to get started.</p>
-          <Button size="lg" onClick={loginWithRedirect}>Log in</Button>
+          <Button size="lg" onClick={loginWithRedirect}>Login</Button>
         </div>
       </div>
     </> )
