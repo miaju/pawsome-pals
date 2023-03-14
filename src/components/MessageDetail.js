@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
+import Avatar from '@mui/material/Avatar';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import "./styling/MessageDetail.scss";
