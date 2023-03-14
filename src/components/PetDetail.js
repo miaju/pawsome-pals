@@ -8,6 +8,13 @@ export default function PetDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const playdateButton = (pet) => {
+    props.handlePetChange(pet);
+    setTimeout(() => {
+      navigate("/explore");
+    }, 500)
+  }
+
   return (
     <div style={{display: "grid", height: "90vh"}}>
       <section id="pet-card">
@@ -27,7 +34,7 @@ export default function PetDetail(props) {
         </div>
       </section>
       <div className="select-pet">
-        <button onClick={() => {props.handlePetChange(location.state.data); navigate("/explore");}}>
+        <button onClick={() => playdateButton(location.state.data)}>
           Go on a playdate with me!
         </button>
       </div>

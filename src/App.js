@@ -37,8 +37,8 @@ function App() {
   const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
     useAuth0();
 
-  const handlePetChange = (id) => {
-    localStorage.setItem("currentpet", JSON.stringify(id));
+  const handlePetChange = (pet) => {
+    localStorage.setItem("currentpet", JSON.stringify(pet));
     setCurrentpet(JSON.parse(localStorage.getItem("currentpet")));
   };
 
@@ -98,7 +98,7 @@ function App() {
   }, [user, checked]);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("currentpet"))) {
+    if ((JSON.parse(localStorage.getItem("currentpet")) !== null) && (JSON.parse(localStorage.getItem("currentpet")) !== undefined)) {
       const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
       console.log(currentId);
       axios
@@ -149,7 +149,7 @@ function App() {
 
       getUserByEmail(user.name)
         .then((response) => {
-          if (Object.keys(response.data).length === 0) {
+          if (response && Object.keys(response.data).length === 0) {
             addUser(user);
           }
           setChecked(true);
@@ -191,7 +191,7 @@ function App() {
         console.log("made it here");
         console.log(res.data);
         setPets([...pets, pet]);
-        // return redirect("http://localhost:3000/pets/view");
+        return window.location = "/pets/view";
       });
   }
 
