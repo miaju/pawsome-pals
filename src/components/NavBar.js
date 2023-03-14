@@ -12,13 +12,13 @@ const NavBar = (props) => {
 
   return (
     <Navbar sticky="top" bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">
+      <Container id="test">
+        <Navbar.Brand id="brand" href="/">
           <img
             alt="logo"
             src={logo}
-            width="30"
-            height="30"
+            width="50"
+            height="50"
             className="d-inline-block align-top"
           />{' '}
           <b>Paw</b>some Pals
@@ -31,12 +31,14 @@ const NavBar = (props) => {
               <Nav.Link href="/explore">Explore</Nav.Link>
               <Nav.Link href="/matches">Matches</Nav.Link>
               <Nav.Link href="/messages">Messages</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
+              {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
                 <NavDropdown title="Pets" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/pets/view"> View Pets</NavDropdown.Item>
                   <NavDropdown.Item href="/pets/new"> Create a Pet</NavDropdown.Item>
                 </NavDropdown>
+                <button id="logout-btn">
                 <Nav.Link href="/" onClick={logout}>Logout</Nav.Link>
+                </button>
               </>
             ): isLoading ? (<><Navbar.Text>Loading...</Navbar.Text></>) :
             (

@@ -6,12 +6,10 @@ import "./styling/MessageDetail.scss";
 
 export default function MessageDetail(props) {
   const location = useLocation();
-  console.log('LOCATION>>>>>>>', location.state.data)
-  console.log('Message detail PROPS', props)
-
-
   const [privateMsgs, setPrivateMsgs] = useState([]);
   const [input, setInput] = useState('');
+
+  const { setShowFooter } = props;
 
   useEffect(() => {
     if (location.state.data.from_petId && location.state.data.to_petId) {
@@ -21,6 +19,9 @@ export default function MessageDetail(props) {
           // const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
           // console.log(data.length);
           setPrivateMsgs(response.data);
+          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          setPrivateMsgs(data);
+          setShowFooter(false);
         })
     }
   }, [location.state.data.from_petId, location.state.data.to_petId])
@@ -51,7 +52,7 @@ export default function MessageDetail(props) {
     <div className="chatScreen">
       {privateMsgs.map((message) => (
         location.state.data.currentpet !== (message.from_petid || message.from_petId) ? (
-          <div className="chatScreen_message">
+          <div key = {message.id} className="chatScreen_message">
             <Avatar
               className="chatScreen_image"
               alt={message.from_pet_name}
@@ -61,7 +62,7 @@ export default function MessageDetail(props) {
           </div>
         ) :
           (
-            <div className="chatScreen_message">
+            <div key = {message.id} className="chatScreen_message">
               <p className="chatScreen_textUser">{message.message}</p>
               <Avatar
                 className="chatScreen_image"
@@ -82,7 +83,6 @@ export default function MessageDetail(props) {
         />
         <button onClick={handleSend} type="submit" className="chatScreen_inputButton">SEND</button>
       </form>
-      {props.setShowFooter(false)}
     </div>
   )
 }

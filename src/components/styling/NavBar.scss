@@ -1,14 +1,34 @@
 @import "_variables.scss";
 
-.navbar {
-  font-family: $font-handlee;
-  b {
-    font-size: 111%;
-    color: #0d706e;
-  }
-  .navbar-nav {
-    a:hover {
-      color: $indigo-dye;
-    }
+#test {
+  height: 100px;
+  #brand {
+    font-size: 5vh;
+    font-weight: bold;
   }
 }
+
+.navbar {
+  height: 100px;
+    font-family: $font-handlee;
+    b {
+      font-size: 111%;
+      color: #0d706e;
+    }
+    .navbar-nav {
+      a {
+        font-family: $font-raleway;
+        font-size: 3vh;
+        color: $button-color;
+      }
+      a:hover {
+        color: $indigo-dye;
+      }
+      #logout-btn {
+        color: white;
+        margin-left: 1vw;
+        border-radius: 15%;
+        border: 1px solid $teal;
+      }
+    }
+  }
