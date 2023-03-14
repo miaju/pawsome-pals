@@ -10,7 +10,7 @@ export default function MessageDetail(props) {
   const [input, setInput] = useState('');
 
   const { setShowFooter } = props;
-  console.log("msg detail from and to", location.state.data);
+
   useEffect(() => {
     if (location.state.data.current_petId && location.state.data.other_petId) {
       axios.get(`http://localhost:8080/api/messages/chat/${location.state.data.current_petId}/${location.state.data.other_petId}`)

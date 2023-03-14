@@ -4,7 +4,6 @@ import "./styling/MessageListItem.scss";
 import TimeAgo from 'timeago-react';
 
 export default function MessageListItem(props) {
-  console.log('Message list item PROPS', props)
 
   const petData = {
     current_pet_name: props.currentpet === props.to_petId ? props.to_pet_name : props.from_pet_name,
@@ -14,7 +13,6 @@ export default function MessageListItem(props) {
     other_pet_photo_url: props.currentpet === props.to_petId ? props.from_pet_url : props.to_pet_url,
     other_petId: props.currentpet === props.to_petId ? props.from_petId : props.to_petId
   }
-  console.log("petdata", petData)
 
   return (
     <Link className="link" to={`/messages/${props.id}`} state={{ data: petData }} >

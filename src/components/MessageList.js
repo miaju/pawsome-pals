@@ -2,7 +2,7 @@ import React from "react";
 import MessageListItem from "./MessageListItem";
 
 export default function MessageList(props) {
-  console.log(props)
+
   return (
     <section className="messages-container">
       {
