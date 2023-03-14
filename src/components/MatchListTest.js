@@ -118,7 +118,7 @@ function Advanced(props) {
           </div> : <></> }
         {(lastDirection && (lastDirection === 'right') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} loved {explorePets[currentIndex + 1].name}!</h2>
         : (lastDirection && (lastDirection === 'left') && props.currentPet) ? <h2 id="top-dialog">{props.currentPet.name} passed on {explorePets[currentIndex + 1].name}</h2>
-        : props.currentPet?.name ? <h2 id="top-dialog">Swipe right to love a pet, and swipe left to pass!</h2> : <></>}
+        : props.currentPet?.name ? <div id="top-dialog"><h2 >Swipe right to love a pet, and swipe left to pass!</h2><p>Click the pet's name to view some more info!</p></div> : <></>}
         <div className='cardContainer' style={props.currentPet.id ? {height: "65vh"} : {}}>
           {explorePets.map((character, index) => (
             <TinderCard
