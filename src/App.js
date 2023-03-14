@@ -320,7 +320,7 @@ function App() {
             <Route path="/messages/:id" element={<MessageDetail newMsg={newMsg} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />
+              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} newMsg={newMsg} />} />
             <Route
               path="/matches"
               element={
@@ -333,6 +333,7 @@ function App() {
                   currentPet={currentpet} userPets={pets}
                   unMatch={unmatch}
                   addMatch={addMatch}
+                  newMsg={newMsg}
                 />}
             />
             {userId}
@@ -343,6 +344,7 @@ function App() {
                 currentPet={currentpet}
                 setCurrentPet={handlePetChange}
                 userId={userId}
+                newMsg={newMsg}
               />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>

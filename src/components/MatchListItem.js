@@ -17,6 +17,15 @@ export default function MatchListItem(props) {
   }
 
   function toMatch() {
+    const newMsg = {
+      from_petId: props.currentPet.id,
+      to_petId: props.id,
+      message: "You matched with each other!",
+      timestamp: new Date().toISOString()
+    };
+    props.newMsg(newMsg);
+    console.log(newMsg);
+
     setLoading(true);
     props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {
       setTimeout(() => {
