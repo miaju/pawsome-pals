@@ -3,6 +3,7 @@ import "./styling/MatchItem.scss"
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeartCrack, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { Spinner } from "react-bootstrap";
 import UnMatchPopup from "./UnMatchPopup";
 
 export default function MatchDetail(props) {
@@ -53,7 +54,7 @@ export default function MatchDetail(props) {
             <div className="match-buttons">
               {notif && (<button
                 onClick={toMatch}>
-                Match <FontAwesomeIcon icon={faHeart} />
+                {loading ? <Spinner></Spinner>: <>Match <FontAwesomeIcon icon={faHeart} /></>}
               </button>)}
               <button
                 onClick={() => setShow(true)}>
