@@ -17,9 +17,10 @@ export default function MessageDetail(props) {
     if (location.state.data.from_petId && location.state.data.to_petId) {
       axios.get(`http://localhost:8080/api/messages/chat/${location.state.data.from_petId}/${location.state.data.to_petId}`)
         .then((response) => {
-          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-          console.log(data.length);
-          setPrivateMsgs(data);
+          // console.log('RESPONSE', response)
+          // const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
+          // console.log(data.length);
+          setPrivateMsgs(response.data);
         })
     }
   }, [location.state.data.from_petId, location.state.data.to_petId])
@@ -40,6 +41,8 @@ export default function MessageDetail(props) {
     };
 
     props.newMsg(newMsg);
+    console.log('newmsg', newMsg)
+    console.log('privatemessages', privateMsgs)
     setPrivateMsgs([...privateMsgs, newMsg]);
     setInput("");
   };
@@ -47,7 +50,7 @@ export default function MessageDetail(props) {
   return (
     <div className="chatScreen">
       {privateMsgs.map((message) => (
-        location.state.data.currentpet !== message.from_petid ? (
+        location.state.data.currentpet !== (message.from_petid || message.from_petId) ? (
           <div className="chatScreen_message">
             <Avatar
               className="chatScreen_image"

@@ -209,7 +209,7 @@ function App() {
       .post(`http://localhost:8080/api/messages`, newMsg)
       .then(res => {
         console.log('NEW MESSAGE', res.data)
-        setMessages([...messages, msg])
+        setMessages([...messages, newMsg])
       })
   }
 
