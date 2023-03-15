@@ -4,62 +4,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  font-family: $font-raleway;
-  color: $ash-grey;
-  font-size: 1vw;
   width: 400px;
-  // margin: 30px;
+  height: 40px;
 
   #trash-icon {
     display: flex;
-    color: $button-darker;
-    height: 40px;
-  }
-
-  #confirm-delete {
-    padding-left: 3vw;
-    #pop-up-message {
-      display: flex;
-      justify-content: center;
-      color: white;
-      font-size: 20px;
-      padding-top: 9.5vh;
-      padding-right: 3vw;
-      padding-left: 3vw;
-      background-color: white;
-      color: $button-color;
-      border: 3px solid white;
-    }
-    .button-option {
-      width: 75px;
-      height: 75px;
-      margin-left: 2.5vw;
-      border-style: none;
-      border-radius: 50%;
-    }
-    #delete-btn-yes {
-      color: darkred;
-      background-color: white;
-      border: 3px solid darkred;
-    }
-    #delete-btn-no {
-      background-color: $button-color;
-      color: white;
-      border: 3px solid $button-darker;
-    }
-    .delete-choice-text {
-      font-family: $font-phudu;
-    }
+    color: $button-color;
+    height: 25px;
   }
 
   #trash-icon:hover {
-    color: $button-color;
-    height: 45px;
-    cursor: pointer;
+    color: $button-darker;
+    height: 40px;
   }
-}
-
-#delete-buttons-container {
-  height: 50px;
 }
