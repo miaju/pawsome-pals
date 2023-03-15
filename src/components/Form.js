@@ -1,4 +1,4 @@
-import { useState, React, useEffect } from "react";
+import React, { useState } from "react";
 import "./styling/Form.scss";
 import coverphoto from "./styling/dog-cover-photo.png";
 import { useNavigate } from "react-router-dom";

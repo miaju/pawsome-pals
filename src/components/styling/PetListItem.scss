@@ -2,42 +2,49 @@
 
 .title {
   text-align: -webkit-center;
-  font-size: 5vw;
+  font-size: 2.5vw;
   font-family: $font-raleway;
-  margin-top: 3vh;
-  margin-bottom: 8vh;
+  margin: 3vh;
   color: $text-colour;
   b {
     font-family: $font-handlee;
     color: $teal;
   }
 }
-// #fact {
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 8vh;
-//   font-family: $font-handlee;
-//   font-size: 22px;
-//   color: $old-rose;
-//   opacity: 0.5;
-//   text-shadow: 1px -1px 5px pink;
-// }
+
+#instructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-bottom: 2vh;
+  font-family: $font-handlee;
+  font-size: 22px;
+  color: $old-rose;
+}
 
 .add-pet-container {
   display: flex;
   justify-content: center;
-  width: 100%;
-  #add-pet {
-    position: absolute;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-bottom: 2vh;
+  font-family: $font-handlee;
+  font-size: 22px;
+  color: $old-rose;
+  // border: 1px solid;
+
+  #add-pet-button {
+    margin-right: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 75px;
-    width: 75px;
-    border: 2px solid $button-color;
-    border-radius: 50%;
-    .add-pet {
+    .add-pet-icons {
       color: $button-color;
+    }
+    .add-pet-icons:hover {
+      color: $button-darker;
     }
   }
 }
@@ -46,88 +53,76 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // background-color: blue;
+  margin: 0 15%;
   margin-top: 5vh;
-  height: 460px;
+  padding-top: 7vh;
+  background-color: hsl(0, 0%, 95%);
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3);
 
   .pet-card {
-    padding: 2% 1%;
+    padding: 0 2%;
     flex-basis: 20%;
     width: 500px;
   }
 
   .pet-image {
-    // background-color: red;
-    width: 365px;
     #selected-img {
       width: 350px;
       height: 350px;
       object-fit: cover;
-      border: 10px solid #bad1cd;
+      border: 20px solid white;
       border-bottom: none;
-      border-radius: 50%;
-      box-shadow: 1px -5px 20px 1px $old-rose;
+      // box-shadow: 0px -10px 20px 5px $old-rose;
     }
     #unselected-img {
       width: 350px;
       height: 350px;
       object-fit: cover;
-      border: 10px solid #bad1cd;
+      border: 20px solid white;
       border-bottom: none;
-      border-radius: 50%;
     }
   }
 
   .pet-info {
     text-align: center;
+    font-family: $font-raleway;
+    color: $text-colour;
+    font-size: 26px;
     .name {
-      font-family: $font-raleway;
-      color: $text-colour;
-      font-size: 26px;
+      background-color: white;
+      border: 15px solid white;
+      border-top: none;
+      padding: 5px 0;
     }
+
     p.selected {
       font-size: 11px;
-      // font-weight: lighter;
-      font-weight: bold;
       font-family: $font-raleway;
       color: $old-rose;
-      text-shadow: 1px -1px 5px pink;
     }
-    // p.unselected {
-    //   font-size: 11px;
-    //   font-weight: lighter;
-    //   font-family: $font-raleway;
-    // }
   }
 
   #selected-img:hover {
-    border-color: #cededc;
-    box-shadow: 1px -5px 20px 5px $old-rose;
-    width: 352px;
-    height: 352px;
+    box-shadow: 0px -13px 30px 5px $old-rose;
   }
   #unselected-img:hover {
-    border-color: #cededc;
-    // box-shadow: 1px -10px 20px 5px rgba(0, 0, 0, 0.3);
-    width: 352px;
-    height: 352px;
-  }
-  .delete-pet:hover {
-    height: 150px;
-    margin-bottom: 1px;
+    box-shadow: 0px -13px 20px 5px rgba(0, 0, 0, 0.3);
   }
 }
 
 #delete-buttons-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 5vh;
 }
 
-#separator {
-  display: block;
-  // background-color: red;
-  height: 50px;
-  width: 100%;
-  padding: 50px 100%;
-  margin-top: 40px;
+#no-pets-view {
+  font-family: "Raleway";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 5vh;
+  padding-bottom: 7vh;
 }
