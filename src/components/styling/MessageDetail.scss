@@ -1,3 +1,14 @@
+@import "_variables.scss";
+
+.chatScreen {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .chatScreen_message {
   display: flex;
   align-items: center;
@@ -41,4 +52,12 @@
   background-color: white;
   font-weight: bolder;
   color: #ac436c;
+}
+
+.buffer {
+  display: flex;
+  padding: 5px;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
 }

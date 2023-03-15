@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./styling/MessageDetail.scss";
 
 export default function MessageDetail(props) {
@@ -49,40 +51,43 @@ export default function MessageDetail(props) {
   };
 
   return (
+    <>
+    <div className="previous-page">
+      <button className="back-btn" onClick={() => {window.location = "/messages"}}><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
+    </div>
     <div className="chatScreen">
-      {privateMsgs.map((message) => (
-        location.state.data.currentpet !== (message.from_petid || message.from_petId) ? (
-          <div key = {message.id} className="chatScreen_message">
-            <Avatar
-              className="chatScreen_image"
-              alt={message.from_pet_name}
-              src={message.from_pet_photo_url}
-            />
-            <p className="chatScreen_text">{message.message}</p>
-          </div>
-        ) :
-          (
-            <div key = {message.id} className="chatScreen_message">
-              <p className="chatScreen_textUser">{message.message}</p>
+    <div className="chat-messages">
+    {privateMsgs.map((message) => (
+          location.state.data.currentpet !== (message.from_petid || message.from_petId) ? (
+            <div key={message.id} className="chatScreen_message">
               <Avatar
                 className="chatScreen_image"
                 alt={message.from_pet_name}
-                src={message.from_pet_photo_url}
-              />
+                src={message.from_pet_photo_url} />
+              <p className="chatScreen_text">{message.message}</p>
             </div>
-          )
-      ))}
-
-      <form className="chatScreen_input">
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          className="chatScreen_inputField"
-          placeholder="Type a message..."
-          type="text"
-        />
-        <button onClick={handleSend} type="submit" className="chatScreen_inputButton">SEND</button>
-      </form>
+          ) :
+            (
+              <div key={message.id} className="chatScreen_message">
+                <p className="chatScreen_textUser">{message.message}</p>
+                <Avatar
+                  className="chatScreen_image"
+                  alt={message.from_pet_name}
+                  src={message.from_pet_photo_url} />
+              </div>
+            )
+        ))}
+        <div className="buffer"></div>
     </div>
+        <form className="chatScreen_input">
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            className="chatScreen_inputField"
+            placeholder="Type a message..."
+            type="text" />
+          <button onClick={handleSend} type="submit" className="chatScreen_inputButton">SEND</button>
+        </form>
+      </div></>
   )
 }
