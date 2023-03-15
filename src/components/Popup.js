@@ -2,12 +2,10 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 
 import "./styling/Popup.scss";
 
 function Popup(props) {
-  const nav = useNavigate();
   return (
     <Modal
       size="lg"
@@ -30,7 +28,7 @@ function Popup(props) {
         </div>
         <div className="buttons">
           <Button onClick={() => props.setShowPopup(false)} className="button continue-button">Continue Swiping</Button>
-          <Button onClick={() => nav("/matches")} className="button matches-button">Go to matches</Button>
+          <Button onClick={() => {window.location = "/matches"}} className="button matches-button">Go to matches</Button>
         </div>
       </div>
     </Modal>
