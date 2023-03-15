@@ -21,7 +21,7 @@ export default function PetList(props) {
       )}
       <span id="fact">
         A dog’s paw print is unique, much like a person’s fingerprint.
-        </span>
+      </span>
       <div className="add-pet-container">
         <div id="add-pet">
           <Link to={"/pets/new"}>
@@ -52,11 +52,7 @@ export default function PetList(props) {
       <div id="delete-buttons-container">
         {props.pets.length > 0 &&
           props.pets.map((pet) => (
-            <Delete
-              id={pet.id}
-              name={pet.name}
-              delete={props.deletePet}
-            />
+            <Delete id={pet.id} name={pet.name} delete={props.deletePet} />
           ))}
       </div>
       <span id="separator"></span>
