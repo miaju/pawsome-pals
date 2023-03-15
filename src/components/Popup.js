@@ -1,9 +1,13 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 import "./styling/Popup.scss";
 
 function Popup(props) {
+  const nav = useNavigate();
   return (
     <Modal
       size="lg"
@@ -18,12 +22,16 @@ function Popup(props) {
             <img src={props.pet.photo_url} alt={props.pet.name} />
             <h3>{props.pet.name}</h3>
           </div>
+          <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
           <div className="match-profile">
             <img src={props.otherPet.photo_url} alt={props.otherPet.name} />
             <h3>{props.otherPet.name}</h3>
           </div>
         </div>
-          <button onClick={() => props.setShowPopup(false)} className="continue-button">Continue Swiping</button>
+        <div className="buttons">
+          <Button onClick={() => props.setShowPopup(false)} className="button continue-button">Continue Swiping</Button>
+          <Button onClick={() => nav("/matches")} className="button matches-button">Go to matches</Button>
+        </div>
       </div>
     </Modal>
   );
