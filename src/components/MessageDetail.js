@@ -55,7 +55,7 @@ export default function MessageDetail(props) {
     <div className="chatScreen">
     <div className="chat-messages">
     {privateMsgs.map((message) => (
-          location.state.data.currentpet !== (message.from_petid || message.from_petId) ? (
+          location.state.data.current_petId !== (message.from_petid || message.from_petId) ? (
             <div key={message.id} className="chatScreen_message">
               <Avatar
                 className="chatScreen_image"
@@ -73,7 +73,7 @@ export default function MessageDetail(props) {
                   src={message.from_pet_photo_url} />
               </div>
             )
-        ))}
+    ))}
         <div className="buffer"></div>
     </div>
         <form className="chatScreen_input">
