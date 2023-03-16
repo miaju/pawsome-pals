@@ -214,7 +214,13 @@ function App() {
   }
 
   async function newChat(chat) {
-    console.log(chat);
+    const msg = {
+      from_petId: chat.currentPet.id,
+      to_petId: chat.pet.id,
+      message: `Hey ${chat.pet.name}! My name is ${chat.currentPet.name}. This is a new chat.`,
+      timestamp: (new Date().toLocaleString("en-US"))
+    }
+    newMsg(msg).then(window.location.reload());
   }
 
   async function unmatch(petId, otherId) {
@@ -328,7 +334,7 @@ function App() {
                 messages={uniqueMessages}
                 userPets={pets}
                 currentPet={currentpet}
-                setCurrentPet={setCurrentpet}
+                setCurrentPet={handlePetChange}
                 newChat={newChat}
                 pending={pending}
                 matches={matches}
