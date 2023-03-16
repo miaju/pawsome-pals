@@ -60,11 +60,9 @@ export default function MatchDetail(props) {
                 onClick={() => setShow(true)}>
                 {notif ? "Delete" : "Unmatch"} <FontAwesomeIcon icon={faHeartCrack} />
               </button>
-              <Link to={'/messages'} >
-                <button>
+                <button onClick={() => props.newChat({currentPet: props.currentPet, pet: location.state.data})}>
                   Message <FontAwesomeIcon icon={faEnvelope} />
                 </button>
-              </Link>
             </div>
           </div>
         </section>

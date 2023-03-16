@@ -220,7 +220,7 @@ function App() {
       message: `Hey ${chat.pet.name}! My name is ${chat.currentPet.name}. This is a new chat.`,
       timestamp: (new Date().toLocaleString("en-US"))
     }
-    newMsg(msg).then(window.location.reload());
+    newMsg(msg).then(() => {window.location = "/messages"});
   }
 
   async function unmatch(petId, otherId) {
@@ -344,7 +344,17 @@ function App() {
             <Route path="/messages/:id" element={<MessageDetail newMsg={newMsg} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
-              element={<MatchDetail unmatch={unmatch} currentId={currentpet.id} getUserByPet={getUserByPet} addMatch={addMatch} />} />
+              element={
+                <MatchDetail
+                  unmatch={unmatch}
+                  currentPet={currentpet}
+                  currentId={currentpet.id}
+                  getUserByPet={getUserByPet}
+                  addMatch={addMatch}
+                  newChat={newChat}
+                />
+              }
+            />
             <Route
               path="/matches"
               element={
