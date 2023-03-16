@@ -352,6 +352,7 @@ function App() {
                   getUserByPet={getUserByPet}
                   addMatch={addMatch}
                   newChat={newChat}
+                  newMsg={newMsg}
                 />
               }
             />
@@ -367,6 +368,7 @@ function App() {
                   currentPet={currentpet} userPets={pets}
                   unMatch={unmatch}
                   addMatch={addMatch}
+                  newMsg={newMsg}
                 />}
             />
             {userId}
@@ -377,6 +379,7 @@ function App() {
                 currentPet={currentpet}
                 setCurrentPet={handlePetChange}
                 userId={userId}
+                newMsg={newMsg}
               />} />
             <Route path="/messages" element={<MessageList />} />
           </Routes>

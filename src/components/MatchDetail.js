@@ -13,12 +13,22 @@ export default function MatchDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const notif = (location.state.data.type === 'notifications');
+
   const unMatch = () => {
     setLoading(true)
     props.unmatch(props.currentId, location.state.data.id);
   }
 
   function toMatch() {
+    const newMsg = {
+      from_petId: props.currentId,
+      to_petId: location.state.data.id,
+      message: "You matched with each other!",
+      timestamp: new Date().toISOString()
+    };
+    props.newMsg(newMsg);
+    console.log(newMsg);
+
     setLoading(true);
     props.addMatch({ target: { id: location.state.data.id }, currentPet: { id: props.currentId }, dir: 'right' }).then((res) => {
       setTimeout(() => {
@@ -54,7 +64,7 @@ export default function MatchDetail(props) {
             <div className="match-buttons">
               {notif && (<button
                 onClick={toMatch}>
-                {loading ? <Spinner></Spinner>: <>Match <FontAwesomeIcon icon={faHeart} /></>}
+                {loading ? <Spinner></Spinner> : <>Match <FontAwesomeIcon icon={faHeart} /></>}
               </button>)}
               <button
                 onClick={() => setShow(true)}>

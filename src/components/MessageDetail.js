@@ -14,31 +14,28 @@ export default function MessageDetail(props) {
   const { setShowFooter } = props;
 
   useEffect(() => {
-    if (location.state.data.from_petId && location.state.data.to_petId) {
-      axios.get(`http://localhost:8080/api/messages/chat/${location.state.data.from_petId}/${location.state.data.to_petId}`)
+    if (location.state.data.current_petId && location.state.data.other_petId) {
+      axios.get(`http://localhost:8080/api/messages/chat/${location.state.data.current_petId}/${location.state.data.other_petId}`)
         .then((response) => {
           // console.log('RESPONSE', response)
           // const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
           // console.log(data.length);
           setPrivateMsgs(response.data);
-          const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-          setPrivateMsgs(data);
           setShowFooter(false);
         })
     }
-  }, [location.state.data.from_petId, location.state.data.to_petId])
-  //console.log('chat', privateMsgs)
+  }, [location.state.data.current_petId, location.state.data.other_petId])
 
   const handleSend = (e) => {
     e.preventDefault();
 
     const newMsg = {
-      from_pet_name: location.state.data.from_pet_name,
-      from_pet_photo_url: location.state.data.from_pet_url,
-      from_petId: location.state.data.from_petId,
-      to_pet_name: location.state.data.to_pet_name,
-      to_petId: location.state.data.to_petId,
-      to_pet_photo_url: location.state.data.to_pet_url,
+      from_pet_name: location.state.data.current_pet_name,
+      from_pet_photo_url: location.state.data.current_pet_photo_url,
+      from_petId: location.state.data.current_petId,
+      to_pet_name: location.state.data.other_pet_name,
+      to_petId: location.state.data.other_petId,
+      to_pet_photo_url: location.state.data.other_pet_photo_url,
       message: input,
       timestamp: new Date().toISOString()
     };
