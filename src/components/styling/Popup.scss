@@ -9,6 +9,10 @@
   display: flex;
   justify-self: center;
   align-self: center;
+
+  .modal-content {
+    border-radius: 5px;
+  }
 }
 
 .match-page {
@@ -19,9 +23,10 @@
   background-color: #f7f7f7;
 
   h1 {
-    font-family: Courier New;
+    font-family: $font-phudu;
     font-weight: bold;
-    color:#ac436c;
+    color: $indigo-dye;
+    font-size: 50px;
   }
 
   .match-profiles {
@@ -30,6 +35,12 @@
     width: 100%;
     max-width: 800px;
     margin: 50px 0;
+    font-family: $font-handlee;
+    svg {
+      align-self: center;
+      font-size: 100px;
+      color: #ac436c;
+    }
   }
 
   .match-profile {
@@ -53,21 +64,21 @@
     margin: 0;
   }
 
-  .continue-button {
+  .button {
     font-family: $font-handlee;
+    margin: 10px;
     padding: 10px 20px;
-    border-color: #ac436c;
+    border-color: $teal;
     border-radius: 5px;
-    background-color: #ac436c;
+    background-color: $teal;
     color: #fff;
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-  }
-
-  .continue-button:hover {
-    background-color: #fff;
-    color: #ac436c;
-    border-color: #ac436c;
+    &:hover {
+      background-color: #fff;
+      color: $teal;
+      border-color: $teal;
+    }
   }
 }
