@@ -29,7 +29,7 @@ function Advanced(props) {
       from_petId: current,
       to_petId: target,
       message: "You matched with each other!",
-      timestamp: new Date().toISOString()
+      timestamp: (new Date().toLocaleString("en-US"))
     };
 
     props.newMsg(newMsg);
