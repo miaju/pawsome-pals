@@ -4,7 +4,7 @@ import "./styling/MessageListItem.scss";
 import TimeAgo from 'timeago-react';
 
 export default function MessageListItem(props) {
-  console.log('Message list item PROPS', props)
+  //console.log('Message list item PROPS', props)
   return (
     <Link className="link" to={`/messages/${props.id}`} state={{ data: props }} >
       <div className="chat">

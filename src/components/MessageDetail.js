@@ -27,7 +27,7 @@ export default function MessageDetail(props) {
         })
     }
   }, [location.state.data.from_petId, location.state.data.to_petId])
-  console.log('chat', privateMsgs)
+  //console.log('chat', privateMsgs)
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -44,8 +44,8 @@ export default function MessageDetail(props) {
     };
 
     props.newMsg(newMsg);
-    console.log('newmsg', newMsg)
-    console.log('privatemessages', privateMsgs)
+    // console.log('newmsg', newMsg)
+    // console.log('privatemessages', privateMsgs)
     setPrivateMsgs([...privateMsgs, newMsg]);
     setInput("");
   };

@@ -195,9 +195,9 @@ function App() {
       });
   }
 
-  console.log('MESSAGGES', messages);
+  //console.log('MESSAGGES', messages);
 
-  function newMsg(msg) {
+  async function newMsg(msg) {
     const newMsg = {
       from_petId: msg.from_petId,
       to_petId: msg.to_petId,
@@ -211,6 +211,10 @@ function App() {
         console.log('NEW MESSAGE', res.data)
         setMessages([...messages, newMsg])
       })
+  }
+
+  async function newChat(chat) {
+    console.log(chat);
   }
 
   async function unmatch(petId, otherId) {
@@ -271,7 +275,7 @@ function App() {
   }
 
   const uniqueMessages = filterDuplicatemsgs(messages);
-  console.log(uniqueMessages)
+  //console.log(uniqueMessages)
 
   return (
     <div>
@@ -316,7 +320,21 @@ function App() {
               }
             />
 
-            <Route path="/messages" element={<MessageList currentId={currentpet.id} messages={uniqueMessages} />} />
+            <Route
+              path="/messages"
+              element={
+              <MessageList
+                currentId={currentpet.id}
+                messages={uniqueMessages}
+                userPets={pets}
+                currentPet={currentpet}
+                setCurrentPet={setCurrentpet}
+                newChat={newChat}
+                pending={pending}
+                matches={matches}
+                matchee={matchee}
+              />}
+            />
             <Route path="/messages/:id" element={<MessageDetail newMsg={newMsg} setShowFooter={setShowFooter} />} />
             <Route
               path="/matches/:id"
