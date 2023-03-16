@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import MessageListItem from "./MessageListItem";
 import { Dropdown, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+import MessageListItem from "./MessageListItem";
 import "./styling/MessageList.scss";
 
 
@@ -23,7 +25,7 @@ export default function MessageList(props) {
           })}
         </Dropdown.Menu>
       </Dropdown>
-      {props.currentPet?.name && <Button onClick={() => setShow(true)}>Click</Button>}
+      {(props.currentPet?.name && !show) && <FontAwesomeIcon icon={faPlus} onClick={() => setShow(true)}></FontAwesomeIcon>}
       <Dropdown style={show ? {display: "block"} : {display: "none"}} id="new-message-list">
         <span>Pick a pet that has interacted with {props.currentPet.name} to message </span>
         <Dropdown.Toggle id="dropdown-basic">

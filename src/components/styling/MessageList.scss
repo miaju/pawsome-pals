@@ -2,7 +2,39 @@
 
 .messages-container {
   .top {
+    margin: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    button {
+      font-family: $font-handlee;
+      background-color: $indigo-dye;
+      border-color: $indigo-dye;
+      &:active {
+        background-color: $indigo-dye;
+        border-color: $indigo-dye;
+      }
+      &:hover {
+        transform: scale(1.05);
+        color: $indigo-dye;
+        background-color: aliceblue;
+      }
+    }
+
+    svg {
+      font-size: 40px;
+      color: $charcoal;
+      &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+.dropdown {
+  font-family: $font-raleway;
+  .dropdown-item{
+    font-family: $font-handlee;
   }
 }
