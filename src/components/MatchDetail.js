@@ -24,7 +24,7 @@ export default function MatchDetail(props) {
       from_petId: props.currentId,
       to_petId: location.state.data.id,
       message: "You matched with each other!",
-      timestamp: new Date().toISOString()
+      timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
     console.log(newMsg);
