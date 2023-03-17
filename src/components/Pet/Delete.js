@@ -11,7 +11,6 @@ export default function Delete(props) {
   const deletePet = () => {
     setLoading(true);
     props.delete(props.id);
-    console.log("deletePet called in Delete.js");
   };
 
   return (

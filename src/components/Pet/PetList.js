@@ -11,7 +11,6 @@ export default function PetList(props) {
 
   function addPlus() {
     setShow(true);
-    console.log(show);
   }
 
   function hidePlus() {

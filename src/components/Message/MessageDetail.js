@@ -17,9 +17,6 @@ export default function MessageDetail(props) {
     if (location.state.data.current_petId && location.state.data.other_petId) {
       axios.get(`http://localhost:8080/api/messages/chat/${location.state.data.current_petId}/${location.state.data.other_petId}`)
         .then((response) => {
-          // console.log('RESPONSE', response)
-          // const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-          // console.log(data.length);
           setPrivateMsgs(response.data);
           setShowFooter(false);
         })
@@ -41,8 +38,6 @@ export default function MessageDetail(props) {
     };
 
     props.newMsg(newMsg);
-    // console.log('newmsg', newMsg)
-    // console.log('privatemessages', privateMsgs)
     setPrivateMsgs([...privateMsgs, newMsg]);
     setInput("");
   };

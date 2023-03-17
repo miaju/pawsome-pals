@@ -24,7 +24,6 @@ export default function MatchListItem(props) {
       timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
-    console.log(newMsg);
 
     setLoading(true);
     props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {

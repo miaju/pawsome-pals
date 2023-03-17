@@ -27,9 +27,8 @@ export default function MatchDetail(props) {
       timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
-    console.log(newMsg);
-
     setLoading(true);
+
     props.addMatch({ target: { id: location.state.data.id }, currentPet: { id: props.currentId }, dir: 'right' }).then((res) => {
       setTimeout(() => {
         navigate("/matches");

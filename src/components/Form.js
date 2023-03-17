@@ -183,23 +183,6 @@ export default function Form(props) {
             </input>
           </label>
           <br/>
-
-          {/* <label name="photo_url" htmlFor="upload pet photo" id="choose-file">
-            <span className="drop-title">Drop files here</span>
-            or
-            <input
-              type="text"
-              {...photo_url}
-              // onChange={(event) => {
-              //   // console.log(event.target.files[0]);
-              //   setPhoto(event.target.files[0]);
-              // }}
-              name="photo_url"
-              required
-            />
-          </label>
-          <br /> */}
-
           <button type="submit">playtime</button>
         </form>
       </div>

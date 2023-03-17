@@ -100,7 +100,6 @@ function App() {
   useEffect(() => {
     if ((JSON.parse(localStorage.getItem("currentpet")) !== null) && (JSON.parse(localStorage.getItem("currentpet")) !== undefined)) {
       const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
-      console.log(currentId);
       axios
         .get(`http://localhost:8080/api/matches/${currentId}`)
         .then((response) => {
@@ -171,7 +170,6 @@ function App() {
   // Create a new pet profile
   async function addPet(pet) {
     const currentId = userId;
-    // console.log(currentId)
     const newPet = {
       user_id: currentId,
       name: pet.name,
@@ -188,14 +186,10 @@ function App() {
     return axios
       .post(`http://localhost:8080/api/pets`, newPet)
       .then((res) => {
-        console.log("made it here");
-        console.log(res.data);
         setPets([...pets, pet]);
         return window.location = "/pets/view";
       });
   }
-
-  //console.log('MESSAGGES', messages);
 
   async function newMsg(msg) {
     const newMsg = {
@@ -208,7 +202,6 @@ function App() {
     return axios
       .post(`http://localhost:8080/api/messages`, newMsg)
       .then(res => {
-        console.log('NEW MESSAGE', res.data)
         setMessages([...messages, newMsg])
       })
   }
@@ -242,7 +235,6 @@ function App() {
   }
 
   function addMatch(match) {
-    console.log(match);
     if (match.currentPet && match.target) {
       const relationship = {
         current_pet: match.currentPet.id,
@@ -281,7 +273,6 @@ function App() {
   }
 
   const uniqueMessages = filterDuplicatemsgs(messages);
-  //console.log(uniqueMessages)
 
   return (
     <div>

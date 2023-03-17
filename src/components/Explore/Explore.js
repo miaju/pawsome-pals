@@ -32,7 +32,6 @@ function Advanced(props) {
     };
 
     props.newMsg(newMsg);
-    console.log('newmsg', newMsg)
   };
 
   useEffect(() => {
@@ -62,7 +61,6 @@ function Advanced(props) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}/${props.userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        console.log(data.length);
         if (props.currentPet.id === 70) {
           setExplorePets(shuffle(data.slice(0,15)));
         } else {
@@ -92,7 +90,7 @@ function Advanced(props) {
   const click = () => { setClicked(!clicked) }
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
+    //console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
     // TODO: when quickly swipe and restore multiple times the same card,
