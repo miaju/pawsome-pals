@@ -5,16 +5,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import Form from "components/Form";
 import NavBar from "components/NavBar";
-import Profile from "components/Profile";
+import Profile from "components/Profile/Profile";
 import Home from "components/Home";
-import PetList from "components/PetList";
-import PetDetail from "components/PetDetail";
-import Advanced from "components/MatchListTest";
+import PetList from "components/Pet/PetList";
+import PetDetail from "components/Pet/PetDetail";
+import Advanced from "components/Explore/Explore";
 import shuffle from "components/helpers/shuffleArray";
-import MatchList from "components/MatchList";
-import MatchDetail from "components/MatchDetail";
-import MessageList from "components/MessageList";
-import MessageDetail from "components/MessageDetail";
+import MatchList from "components/Match/MatchList";
+import MatchDetail from "components/Match/MatchDetail";
+import MessageList from "components/Message/MessageList";
+import MessageDetail from "components/Message/MessageDetail";
 import Footer from "components/Footer";
 
 function App() {

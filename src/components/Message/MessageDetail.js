@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import "./styling/MessageDetail.scss";
+import "./MessageDetail.scss";
 
 export default function MessageDetail(props) {
   const location = useLocation();

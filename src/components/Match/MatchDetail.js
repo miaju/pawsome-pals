@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "./styling/MatchItem.scss"
+import "./MatchItem.scss"
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeartCrack, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons'

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PetListItem from "./PetListItem";
 import Delete from "./Delete";
-import "./styling/PetListItem.scss";
+import "./PetListItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDog, faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

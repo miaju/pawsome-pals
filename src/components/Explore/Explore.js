@@ -6,10 +6,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
-import "./styling/MatchListTest.scss";
-import "./styling/MatchListItem.scss";
+import "./Explore.scss";
 import Popup from './Popup';
-import shuffle from './helpers/shuffleArray';
+import shuffle from '../helpers/shuffleArray';
 
 // a lot of the code for the tinder swiping effect comes from the react-tinder-card's web demo page
 // code can be found at: https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js

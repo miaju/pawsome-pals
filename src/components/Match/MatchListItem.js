@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { Link } from "react-router-dom";
-import "./styling/MatchListItem.scss"
+import "./MatchListItem.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from "react-bootstrap";

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import MessageListItem from "./MessageListItem";
-import "./styling/MessageList.scss";
+import "./MessageList.scss";
 
 
 export default function MessageList(props) {
