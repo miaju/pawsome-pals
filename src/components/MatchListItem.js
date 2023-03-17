@@ -21,7 +21,7 @@ export default function MatchListItem(props) {
       from_petId: props.currentPet.id,
       to_petId: props.id,
       message: "You matched with each other!",
-      timestamp: new Date().toISOString()
+      timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
     console.log(newMsg);
