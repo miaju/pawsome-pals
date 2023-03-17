@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./MatchItem.scss"
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeartCrack, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Spinner } from "react-bootstrap";

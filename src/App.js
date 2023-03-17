@@ -18,7 +18,6 @@ import MessageDetail from "components/Message/MessageDetail";
 import Footer from "components/Footer";
 
 function App() {
-  const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
   const [currentpet, setCurrentpet] = useState(() => {
     // getting stored value
@@ -70,12 +69,6 @@ function App() {
 
   useEffect(() => {
     const getData = (userId) => {
-      axios.get("http://localhost:8080/api/pets").then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({
-          ...value,
-        }));
-        setAllpets(shuffle(data));
-      });
       axios.get(`http://localhost:8080/api/pets/${userId}`).then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({
           ...value,

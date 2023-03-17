@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./styling/Form.scss";
 import coverphoto from "./styling/dog-cover-photo.png";
-import { useNavigate } from "react-router-dom";
 /**
  *
  * @param { Object } props: addPet function
  * @returns the Form view for new pet profiles.
  */
 export default function Form(props) {
-  const navigate = useNavigate();
 
   /**
    * @param { String } initial

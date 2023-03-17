@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faXmark, faArrowLeft, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
