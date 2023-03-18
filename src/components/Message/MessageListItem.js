@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styling/MessageListItem.scss";
+import "./MessageListItem.scss";
 import TimeAgo from 'timeago-react';
 
 export default function MessageListItem(props) {

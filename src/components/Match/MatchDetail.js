@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import "./styling/MatchItem.scss"
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import "./MatchItem.scss"
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeartCrack, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Spinner } from "react-bootstrap";
@@ -27,9 +27,8 @@ export default function MatchDetail(props) {
       timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
-    console.log(newMsg);
-
     setLoading(true);
+
     props.addMatch({ target: { id: location.state.data.id }, currentPet: { id: props.currentId }, dir: 'right' }).then((res) => {
       setTimeout(() => {
         navigate("/matches");

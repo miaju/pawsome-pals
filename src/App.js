@@ -5,20 +5,19 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import Form from "components/Form";
 import NavBar from "components/NavBar";
-import Profile from "components/Profile";
+import Profile from "components/Profile/Profile";
 import Home from "components/Home";
-import PetList from "components/PetList";
-import PetDetail from "components/PetDetail";
-import Advanced from "components/MatchListTest";
+import PetList from "components/Pet/PetList";
+import PetDetail from "components/Pet/PetDetail";
+import Advanced from "components/Explore/Explore";
 import shuffle from "components/helpers/shuffleArray";
-import MatchList from "components/MatchList";
-import MatchDetail from "components/MatchDetail";
-import MessageList from "components/MessageList";
-import MessageDetail from "components/MessageDetail";
+import MatchList from "components/Match/MatchList";
+import MatchDetail from "components/Match/MatchDetail";
+import MessageList from "components/Message/MessageList";
+import MessageDetail from "components/Message/MessageDetail";
 import Footer from "components/Footer";
 
 function App() {
-  const [allpets, setAllpets] = useState([]);
   const [pets, setPets] = useState([]);
   const [currentpet, setCurrentpet] = useState(() => {
     // getting stored value
@@ -70,12 +69,6 @@ function App() {
 
   useEffect(() => {
     const getData = (userId) => {
-      axios.get("http://localhost:8080/api/pets").then((response) => {
-        const data = Object.entries(response.data).map(([key, value]) => ({
-          ...value,
-        }));
-        setAllpets(shuffle(data));
-      });
       axios.get(`http://localhost:8080/api/pets/${userId}`).then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({
           ...value,
@@ -100,7 +93,6 @@ function App() {
   useEffect(() => {
     if ((JSON.parse(localStorage.getItem("currentpet")) !== null) && (JSON.parse(localStorage.getItem("currentpet")) !== undefined)) {
       const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
-      console.log(currentId);
       axios
         .get(`http://localhost:8080/api/matches/${currentId}`)
         .then((response) => {
@@ -171,7 +163,6 @@ function App() {
   // Create a new pet profile
   async function addPet(pet) {
     const currentId = userId;
-    // console.log(currentId)
     const newPet = {
       user_id: currentId,
       name: pet.name,
@@ -188,14 +179,10 @@ function App() {
     return axios
       .post(`http://localhost:8080/api/pets`, newPet)
       .then((res) => {
-        console.log("made it here");
-        console.log(res.data);
         setPets([...pets, pet]);
         return window.location = "/pets/view";
       });
   }
-
-  //console.log('MESSAGGES', messages);
 
   async function newMsg(msg) {
     const newMsg = {
@@ -208,7 +195,6 @@ function App() {
     return axios
       .post(`http://localhost:8080/api/messages`, newMsg)
       .then(res => {
-        console.log('NEW MESSAGE', res.data)
         setMessages([...messages, newMsg])
       })
   }
@@ -242,7 +228,6 @@ function App() {
   }
 
   function addMatch(match) {
-    console.log(match);
     if (match.currentPet && match.target) {
       const relationship = {
         current_pet: match.currentPet.id,
@@ -281,7 +266,6 @@ function App() {
   }
 
   const uniqueMessages = filterDuplicatemsgs(messages);
-  //console.log(uniqueMessages)
 
   return (
     <div>

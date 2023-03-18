@@ -1,15 +1,14 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faXmark, faArrowLeft, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
-import "./styling/MatchListTest.scss";
-import "./styling/MatchListItem.scss";
+import "./Explore.scss";
 import Popup from './Popup';
-import shuffle from './helpers/shuffleArray';
+import shuffle from '../helpers/shuffleArray';
 
 // a lot of the code for the tinder swiping effect comes from the react-tinder-card's web demo page
 // code can be found at: https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js
@@ -33,7 +32,6 @@ function Advanced(props) {
     };
 
     props.newMsg(newMsg);
-    console.log('newmsg', newMsg)
   };
 
   useEffect(() => {
@@ -63,7 +61,6 @@ function Advanced(props) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}/${props.userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        console.log(data.length);
         if (props.currentPet.id === 70) {
           setExplorePets(shuffle(data.slice(0,15)));
         } else {
@@ -93,7 +90,7 @@ function Advanced(props) {
   const click = () => { setClicked(!clicked) }
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
+    //console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
     // TODO: when quickly swipe and restore multiple times the same card,

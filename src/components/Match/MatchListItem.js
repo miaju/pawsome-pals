@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { Link } from "react-router-dom";
-import "./styling/MatchListItem.scss"
+import "./MatchListItem.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from "react-bootstrap";
@@ -24,7 +24,6 @@ export default function MatchListItem(props) {
       timestamp: (new Date().toLocaleString("en-US"))
     };
     props.newMsg(newMsg);
-    console.log(newMsg);
 
     setLoading(true);
     props.addMatch({target: props, currentPet: props.currentPet, dir: 'right'}).then((res) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-import "./styling/Profile.scss";
+import "./Profile.scss";
 
 const Profile = (props) => {
   const { user, isAuthenticated, logout} = props;

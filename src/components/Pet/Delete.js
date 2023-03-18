@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styling/Delete.scss";
+import "./Delete.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeletePetPopup from "./DeletePetPopup";
@@ -11,7 +11,6 @@ export default function Delete(props) {
   const deletePet = () => {
     setLoading(true);
     props.delete(props.id);
-    console.log("deletePet called in Delete.js");
   };
 
   return (

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import "./styling/MatchListItem.scss"
-import "./styling/MatchList.scss";
-import "./styling/petDropdown.scss";
+import "./MatchListItem.scss";
+import "./MatchList.scss";
+import "../styling/petDropdown.scss";
 import MatchListItem from "./MatchListItem";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons';
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Badge} from "react-bootstrap";
