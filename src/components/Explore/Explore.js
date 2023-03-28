@@ -22,6 +22,7 @@ function Advanced(props) {
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
+// make a new message if both pets matched with eachother
   const generateFirstMsg = (target, current) => {
 
     const newMsg = {
@@ -34,6 +35,7 @@ function Advanced(props) {
     props.newMsg(newMsg);
   };
 
+// when currentIndex changes add a match if the swipe direction was right
   useEffect(() => {
     let target = explorePets[currentIndex + 1];
     let currentPet = props.currentPet;
@@ -56,17 +58,13 @@ function Advanced(props) {
     [explorePets.length]
   )
 
+// when the current pet id changes get all the pets that the current pet hasn't interacted with before
   useEffect(() => {
     if (props.currentPet.id && props.userId) {
       axios.get(`http://localhost:8080/api/pets/explore/${props.currentPet.id}/${props.userId}`)
       .then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({ ...value }))
-        if (props.currentPet.id === 70) {
-          setExplorePets(shuffle(data.slice(0,15)));
-        } else {
-          setExplorePets(shuffle(data).slice(0,15));
-        }
-
+        setExplorePets(shuffle(data).slice(0,15));
       });}
   }, [props.currentPet, props.userId])
 
@@ -75,6 +73,7 @@ function Advanced(props) {
     currentIndexRef.current = val
   }
 
+// when the explore pets load in then set the current index as the last explore pet
   useEffect(() => {
     setCurrentIndex(explorePets.length - 1);
   }, [explorePets.length])
