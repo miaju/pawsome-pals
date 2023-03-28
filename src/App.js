@@ -33,26 +33,30 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [showFooter, setShowFooter] = useState(true);
-  const { user, loginWithRedirect, logout, isLoading, isAuthenticated } =
-    useAuth0();
+
+
+  const { user, loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
   const handlePetChange = (pet) => {
     localStorage.setItem("currentpet", JSON.stringify(pet));
     setCurrentpet(JSON.parse(localStorage.getItem("currentpet")));
   };
 
+// logout from app using auth0 logout hook and clear local storage
   function Logout() {
     localStorage.clear();
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
-  function deletePet(id) {
+// delete pet with given id
+  async function deletePet(id) {
     return axios
     .delete(`http://localhost:8080/api/pets/${id}`)
     .then(res =>
       window.location.reload())
   }
 
+// return user object from given email
   async function getUserByEmail(email) {
     return await axios
       .get(`http://localhost:8080/api/users`, { params: { email: email } })
@@ -60,6 +64,7 @@ function App() {
 
   }
 
+// get the user that made pet with given id
   async function getUserByPet(id) {
     return await axios
       .get(`http://localhost:8080/api/matches/owner/${id}`)
@@ -67,13 +72,14 @@ function App() {
 
   }
 
+// when user/checked state changes and are both exist/true get the user's pets and all users
   useEffect(() => {
     const getData = (userId) => {
       axios.get(`http://localhost:8080/api/pets/${userId}`).then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({
           ...value,
         }));
-        setPets(shuffle(data));
+        setPets(data);
       });
       axios.get("http://localhost:8080/api/users").then((response) => {
         const data = Object.entries(response.data).map(([key, value]) => ({
@@ -90,6 +96,7 @@ function App() {
     }
   }, [user, checked]);
 
+// when the current selected pet is changed, if the current pet is not null get full matches, pending matches, matchee matches, and messages for the current pet
   useEffect(() => {
     if ((JSON.parse(localStorage.getItem("currentpet")) !== null) && (JSON.parse(localStorage.getItem("currentpet")) !== undefined)) {
       const currentId = JSON.parse(localStorage.getItem("currentpet")).id;
@@ -128,7 +135,7 @@ function App() {
     }
   }, [currentpet]);
 
-
+// when user changes if not already checked check to see if auth0 user is in the local db, if not add user, then set checked to true
   useEffect(() => {
     if (user && !checked) {
       async function addUser(user) {
@@ -184,6 +191,7 @@ function App() {
       });
   }
 
+// create a new message
   async function newMsg(msg) {
     const newMsg = {
       from_petId: msg.from_petId,
@@ -199,6 +207,7 @@ function App() {
       })
   }
 
+// create a new chat
   async function newChat(chat) {
     const msg = {
       from_petId: chat.currentPet.id,
@@ -209,6 +218,7 @@ function App() {
     newMsg(msg).then(() => {window.location = "/messages"});
   }
 
+// delete a match between the 2 given pet ids
   async function unmatch(petId, otherId) {
     return axios
       .delete(`http://localhost:8080/api/matches`, {
@@ -227,6 +237,7 @@ function App() {
       });
   }
 
+// add a match
   function addMatch(match) {
     if (match.currentPet && match.target) {
       const relationship = {
@@ -251,6 +262,7 @@ function App() {
     })
   }
 
+// filter messages to make sure there are only the unique instances
   function filterDuplicatemsgs(messages) {
     const uniqueMessages = {};
     const uniqueArr = messages.filter(message => {
